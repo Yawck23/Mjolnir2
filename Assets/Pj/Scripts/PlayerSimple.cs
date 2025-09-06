@@ -1,23 +1,30 @@
+using System;
 using UnityEngine;
 using UnityEngine.VFX;
 
 public class PlayerSimple : MonoBehaviour
 
 {
-    [SerializeField] Transform Visual;
-    public CharacterController CharControl;
-    public float X;
-    public float Y;
-    public float Speed;
+    [SerializeField] Transform visual;
+    public CharacterController controller;
+    public float speed;
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
-    public Vector3 VectorInput;
     [SerializeField] Animator animator;
+
+    //Knockback
+    public float fuerzaRetroceso = 20f;
+    public float duracionRetroceso = 0.2f;
+    private Vector3 knockbackVector = Vector3.zero;
+    private float knockbackTimer = 0f;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Speed = 20;
-        
+        controller = GetComponent<CharacterController>();
+        speed = 20f;
+
     }
 
     // Update is called once per frame
@@ -26,24 +33,43 @@ public class PlayerSimple : MonoBehaviour
         ConseguirInput();
         Animaciones();
 
-        
-        if (VectorInput.magnitude >= 0.1f)
+        if (knockbackTimer > 0)
         {
-            float targetAngle = Mathf.Atan2(VectorInput.x, VectorInput.z) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            CharControl.Move(VectorInput * Speed * Time.deltaTime);
+            controller.Move(knockbackVector * Time.deltaTime);
+            knockbackTimer -= Time.deltaTime;
         }
 
+        if (ConseguirInput().magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(ConseguirInput().x, ConseguirInput().z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            controller.Move(ConseguirInput() * speed * Time.deltaTime);
+        }
     }
-    void ConseguirInput()
-    { 
-        X = Input.GetAxisRaw("Horizontal");
-        Y = Input.GetAxisRaw("Vertical");
-        VectorInput = new Vector3 (X, 0f ,Y).normalized;
+    public Vector3 ConseguirInput()
+    {
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+        Vector3 vectorInput = new Vector3(x, 0f, y).normalized;
+
+        return vectorInput;
     }
     void Animaciones()
     {
-        animator.SetFloat("Velocidad", ((VectorInput * Speed).magnitude));
+        animator.SetFloat("Velocidad", ((ConseguirInput() * speed).magnitude));
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.CompareTag("Enemigo"))
+        {
+            Vector3 dir = transform.position - hit.point;
+            dir.y = 0f;
+            dir.Normalize();
+
+            knockbackVector = dir * fuerzaRetroceso;
+            knockbackTimer = duracionRetroceso;
+        }
     }
 }

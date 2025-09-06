@@ -3,39 +3,39 @@ using UnityEngine;
 
 public class Chocar : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private CharacterController character;
+    [SerializeField] float fuerzaRetroceso;
+    [SerializeField] float duracionRetroceso;
+
+    private Vector3 knockbackVector = Vector3.zero;
+    private float knockbackTimer = 0f;
+
+    
     void Start()
     {
-        
+        character = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Enemigo")
+        if (knockbackTimer > 0)
         {
-            print("Enter");
+            character.Move(knockbackVector * Time.deltaTime);
+            knockbackTimer -= Time.deltaTime;
         }
     }
-    /*void OnCollisionEnter(Collision c)
-    {
-        // force is how forcefully we will push the player away from the enemy.
-        float force = 3;
 
-        // If the object we hit is the enemy
-        if (c.gameObject.tag == "enemy")
+    void OnCollisionEnter(Collision c)
+    {
+        if (c.gameObject.tag == "Enemigo")
         {
-            // Calculate Angle Between the collision point and the player
-            Vector3 dir = c.contacts[0].point - transform.position;
-            // We then get the opposite (-Vector3) and normalize it
+            Vector3 dir = transform.position - c.contacts[0].point;
             dir = -dir.normalized;
-            // And finally we add force in the direction of dir and multiply it by force. 
-            // This will push back the player
-            GetComponent<Rigidbody>().AddForce(dir * force);
+
+            knockbackVector = dir * fuerzaRetroceso;
+            knockbackTimer = duracionRetroceso;
         }
-    }*/
+    }
 }

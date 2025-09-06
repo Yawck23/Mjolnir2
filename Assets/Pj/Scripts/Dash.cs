@@ -29,7 +29,7 @@ public class Dash : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime+ dashTime)
         {
-            player.CharControl.Move(player.VectorInput *  dashSpeed * Time.deltaTime);
+            player.controller.Move(player.ConseguirInput() *  dashSpeed * Time.deltaTime);
             //animator.SetTrigger("Dash");
             yield return null;
             

@@ -275,14 +275,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58bb32610f979f4c9cf28273a60e74d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Visual: {fileID: 180308431}
-  CharControl: {fileID: 180308428}
-  X: 0
-  Y: 0
-  Speed: 0
+  visual: {fileID: 0}
+  controller: {fileID: 0}
+  speed: 0
   turnSmoothTime: 0.1
-  VectorInput: {x: 0, y: 0, z: 0}
   animator: {fileID: 180308427}
+  fuerzaRetroceso: 10
+  duracionRetroceso: 1
 --- !u!114 &180308430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,6 +302,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
   m_PrefabInstance: {fileID: 2050449225}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &180308432
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180308426}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.057882804, y: 0.07873322, z: 0.056940306}
+  m_Center: {x: 0.0005593729, y: 0.020436874, z: 0.006283226}
+--- !u!114 &180308434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180308426}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1978a403d8fb374f9ba9fde95ea22b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fuerzaRetroceso: 1
+  duracionRetroceso: 0.2
 --- !u!1 &594607129
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +432,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e6676a8a36c26a04c9eb434226372d46, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -529,8 +563,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773832195}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.16391046, y: 0.032460198, z: 0.005396515, w: 0.9859263}
-  m_LocalPosition: {x: -7.956398, y: -1.87, z: -4.9049263}
+  m_LocalRotation: {x: -0.16712433, y: 0.030709412, z: 0.0052081, w: 0.9854437}
+  m_LocalPosition: {x: -6.6, y: -1.87, z: 0.8999996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -799,8 +833,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851690464}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.16391043, y: 0.03246019, z: 0.0053965133, w: 0.98592633}
-  m_LocalPosition: {x: -7.956398, y: -1.87, z: -4.9049263}
+  m_LocalRotation: {x: -0.16712432, y: 0.030709412, z: 0.0052081007, w: 0.9854437}
+  m_LocalPosition: {x: -6.6, y: -1.87, z: 0.8999996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -920,6 +954,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1978a403d8fb374f9ba9fde95ea22b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fuerzaRetroceso: 0
+  duracionRetroceso: 0
 --- !u!65 &1224191533
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -953,7 +989,6 @@ GameObject:
   - component: {fileID: 1612935393}
   - component: {fileID: 1612935392}
   - component: {fileID: 1612935391}
-  - component: {fileID: 1612935395}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Enemigo
@@ -976,7 +1011,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
@@ -1050,33 +1085,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1612935395
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1612935390}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &2050449225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1087,7 +1095,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.956398
+      value: -6.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1095,7 +1103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.0950737
+      value: 10.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1209,10 +1217,16 @@ PrefabInstance:
       addedObject: {fileID: 180308429}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 180308434}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 180308428}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
       insertIndex: -1
       addedObject: {fileID: 180308427}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 180308432}
     - targetCorrespondingSourceObject: {fileID: -2848480487331179083, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1224191533}
