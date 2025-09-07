@@ -6,7 +6,8 @@ public class Movement : MonoBehaviour
 
 {
     [SerializeField] Animator animator;
-    private Principal player;
+    private PlayerController player;
+    private CharacterController controller;
 
     //Variables para el movimiento
     private float speed = 20f;
@@ -16,7 +17,8 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-        player = GetComponent<Principal>();
+        player = GetComponent<PlayerController>();
+        controller = GetComponent<CharacterController>();
 
     }
 
@@ -34,7 +36,7 @@ public class Movement : MonoBehaviour
             float targetAngle = Mathf.Atan2(player.getInput().x, player.getInput().z) * Mathf.Rad2Deg; //Obtener el ángulo para moverse
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime); //Aplicar un smooth para que no sea tan seco
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            player.controller.Move(player.getInput() * speed * Time.deltaTime);
+            controller.Move(player.getInput() * speed * Time.deltaTime);
         }
     }
     private void Animaciones()

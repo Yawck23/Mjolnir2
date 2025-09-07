@@ -3,14 +3,21 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
-    private Principal player;
-    public float dashSpeed;
-    public float dashTime;
     [SerializeField] Animator animator;
+    private PlayerController player;
+    private CharacterController controller;
+
+
+    private float dashSpeed;
+    private float dashTime;
+    private bool isDash;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GetComponent<Principal>();
+        player = GetComponent<PlayerController>();
+        controller = GetComponent<CharacterController>();
+
         dashSpeed = 20f;
         dashTime = 0.25f;
     }
@@ -18,7 +25,7 @@ public class Dash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Dash"))
+        if (Input.GetButtonDown("Dash") && !isDash)
         {
             StartCoroutine(DashCoroutine());
             animator.SetTrigger("Dash");
@@ -26,13 +33,21 @@ public class Dash : MonoBehaviour
     }
     IEnumerator DashCoroutine()
     {
+        isDash = true;
         float startTime = Time.time;
-        while (Time.time < startTime+ dashTime)
+        Vector3 playerLook = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
+
+        while (Time.time < startTime + dashTime)
         {
-            player.controller.Move(player.getInput() *  dashSpeed * Time.deltaTime);
-            //animator.SetTrigger("Dash");
+            controller.Move(playerLook * dashSpeed * Time.deltaTime);
             yield return null;
-            
+
         }
+        isDash = false;
+    }
+
+    public bool isDashing()
+    {
+        return isDash;
     }
 }
