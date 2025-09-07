@@ -4,9 +4,10 @@ using UnityEngine;
 public class Chocar : MonoBehaviour
 {
 
-    private CharacterController character;
-    [SerializeField] float fuerzaRetroceso;
-    [SerializeField] float duracionRetroceso;
+
+    private Principal player;
+    private float fuerzaRetroceso = 20f;
+    private float duracionRetroceso = 0.5f;
 
     private Vector3 knockbackVector = Vector3.zero;
     private float knockbackTimer = 0f;
@@ -14,7 +15,7 @@ public class Chocar : MonoBehaviour
     
     void Start()
     {
-        character = GetComponent<CharacterController>();
+        player = GetComponent<Principal>();
     }
 
     // Update is called once per frame
@@ -22,17 +23,18 @@ public class Chocar : MonoBehaviour
     {
         if (knockbackTimer > 0)
         {
-            character.Move(knockbackVector * Time.deltaTime);
+            player.controller.Move(knockbackVector * Time.deltaTime);
             knockbackTimer -= Time.deltaTime;
         }
     }
 
-    void OnCollisionEnter(Collision c)
+    void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (c.gameObject.tag == "Enemigo")
+        if (hit.collider.CompareTag("Enemigo"))
         {
-            Vector3 dir = transform.position - c.contacts[0].point;
-            dir = -dir.normalized;
+            Vector3 dir = transform.position - hit.point;
+            dir.y = 0f;
+            dir.Normalize();
 
             knockbackVector = dir * fuerzaRetroceso;
             knockbackTimer = duracionRetroceso;
