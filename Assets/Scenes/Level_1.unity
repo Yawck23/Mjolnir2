@@ -351,8 +351,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80212906c4bd793499d67c9612995bf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GRAVEDAD: 10
-  MAX_VEL_CAIDA: 5
+  GRAVEDAD: 50
+  MAX_VEL_CAIDA: 20
   FUERZA_SALTO: 20
 --- !u!1 &594607129
 GameObject:

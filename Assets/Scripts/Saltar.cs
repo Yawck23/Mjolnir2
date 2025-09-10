@@ -9,7 +9,9 @@ public class Saltar : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        controller = GetComponent<CharacterController>();
         CaluclarVelocidadVertical();
+        
     }
 
     // Update is called once per frame
