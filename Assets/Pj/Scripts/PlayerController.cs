@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!context.started) return; //Solo si la tecla se acaba de presionar
         if (!IsGrounded()) return;
+        if (isDashing) return;
 
         _velocity = jumpPower;
     }
@@ -107,7 +108,7 @@ public class PlayerController : MonoBehaviour
     public void Dash(InputAction.CallbackContext context)
     {
         if (!context.started) return; //Solo si la tecla se acaba de presionar
-
+        if (!IsGrounded()) return;
         if (isDashing || dashOnCooldown) return;
 
         _animator.SetTrigger("Dash");
