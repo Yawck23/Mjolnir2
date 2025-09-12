@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 _input;
     private CharacterController _characterController;
     private Vector3 _direction;
+    private bool ignoreInput = false;
 
     [SerializeField] private float speed;
 
@@ -86,14 +87,18 @@ public class PlayerController : MonoBehaviour
     private void ApplyMovement()
     {
         _characterController.Move(_direction * speed * Time.deltaTime);
-        _animator.SetFloat("Velocidad", ((_input * speed).magnitude));
+        _animator.SetFloat("Velocidad", (_input * speed).magnitude);
     }
 
 
     public void Move(InputAction.CallbackContext context)
     {
-        _input = context.ReadValue<Vector2>();
-        _direction = new Vector3(_input.x, 0.0f, _input.y); //Tomo el input y modifico _direction, que luego la uso en ApplyMovement
+        if (!ignoreInput)
+        {
+            _input = context.ReadValue<Vector2>();
+            _direction = new Vector3(_input.x, 0.0f, _input.y); //Tomo el input y modifico _direction, que luego la uso en ApplyMovement
+        }
+        
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -119,6 +124,8 @@ public class PlayerController : MonoBehaviour
     {
         isDashing = true;
         dashOnCooldown = true;
+        ignoreInput = true;
+
         float elapsedTime = 0f;
 
         if (_input == Vector2.zero) //Si no se está apretando WASD, la direction será a donde mira el jugador
@@ -136,6 +143,7 @@ public class PlayerController : MonoBehaviour
         _direction = new Vector3(_input.x, 0.0f, _input.y); //La direction toma nuevamente el input
 
         isDashing = false;
+        ignoreInput = false;
 
         yield return new WaitForSeconds(dashCooldown);
         dashOnCooldown = false;
