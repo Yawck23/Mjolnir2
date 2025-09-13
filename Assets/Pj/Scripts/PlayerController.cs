@@ -9,6 +9,13 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     #endregion
 
+    #region Variables: IceSlide
+    private Vector3 _slide;
+    [SerializeField] private float accel = 5f;
+    [SerializeField] private float friction = 0.2f;
+    [SerializeField] private bool groundIsIce;
+    #endregion
+
     #region Variables: Movement
     private Vector2 _input;
     private CharacterController _characterController;
@@ -32,12 +39,10 @@ public class PlayerController : MonoBehaviour
 
     #endregion
     #region Variables: Jumping
-
     [SerializeField] private float jumpPower;
 
     #endregion
     #region Variables: Dash
-
     [SerializeField] private float dashPower = 18f;
     [SerializeField] private float dashDuration = 0.5f;
     public float dashCooldown = 3.0f;
@@ -86,8 +91,26 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
-        _characterController.Move(_direction * speed * Time.deltaTime);
-        _animator.SetFloat("Velocidad", (_input * speed).magnitude);
+        if (!groundIsIce)
+        {
+            _characterController.Move(_direction * speed * Time.deltaTime);
+        }
+        else
+        {
+            _slide += _direction * accel * Time.deltaTime;
+
+            // Limitar velocidad máxima
+            if (_slide.magnitude > speed)
+            {
+                _slide = _slide.normalized * speed;
+            }
+
+            _slide *= Mathf.Exp(-friction * Time.deltaTime);
+            //_slide.y = _direction.y * speed;
+
+            _characterController.Move(_slide  * Time.deltaTime);
+        }
+        _animator.SetFloat("Movement", (_input * speed).magnitude);
     }
 
 
@@ -116,7 +139,7 @@ public class PlayerController : MonoBehaviour
         if (!IsGrounded()) return;
         if (isDashing || dashOnCooldown) return;
 
-        _animator.SetTrigger("Dash");
+        _animator.SetTrigger("DashStart");
         StartCoroutine(DoDash());
     }
 
@@ -141,9 +164,9 @@ public class PlayerController : MonoBehaviour
         }
 
         _direction = new Vector3(_input.x, 0.0f, _input.y); //La direction toma nuevamente el input
-
-        isDashing = false;
         ignoreInput = false;
+        isDashing = false;
+        
 
         yield return new WaitForSeconds(dashCooldown);
         dashOnCooldown = false;
