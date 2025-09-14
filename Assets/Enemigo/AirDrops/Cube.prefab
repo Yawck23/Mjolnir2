@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1304368451915579023}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Enemy
+  m_TagString: AirDrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,5 +121,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd4a9452def41846a8a16a815672fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityMultiplier: 2
+  gravityMultiplier: 2.5
   groundSeparation: 1

@@ -100,3 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drop: {fileID: 0}
+  maxDrops: 10
+  minY: 30
+  maxY: 50
+  waitForNextDrop: 2

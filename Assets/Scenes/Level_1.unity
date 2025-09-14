@@ -1291,6 +1291,18 @@ PrefabInstance:
       propertyPath: maxDrops
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 290896109129936936, guid: 24d2897fea5297446892d8bf1903f334, type: 3}
+      propertyPath: waitForNextDrop
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155265523541329069, guid: 24d2897fea5297446892d8bf1903f334, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155265523541329069, guid: 24d2897fea5297446892d8bf1903f334, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6155265523541329069, guid: 24d2897fea5297446892d8bf1903f334, type: 3}
       propertyPath: m_LocalPosition.x
       value: 38.4
