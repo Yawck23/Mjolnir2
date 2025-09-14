@@ -10,15 +10,33 @@ public class Gravity : MonoBehaviour
     [SerializeField] float groundSeparation = 1f;
     #endregion
 
+    #region Variables: detectPlayer
+    private Vector3 halfObjectExtents;
+    private BoxCollider objectCollider;
+    [SerializeField] private float detectDistance;
+    public bool playerDetected = false;
+    #endregion
+
+    void Start()
+    {
+        objectCollider = GetComponent<BoxCollider>();
+        halfObjectExtents = Vector3.Scale(objectCollider.size * 0.5f, transform.localScale);
+    }
+
     void Update()
     {
         ApplyGravity();
+        if (detectPlayer())
+        {
+            playerDetected = true;
+        }
+        
     }
 
     private void ApplyGravity()
     {
         //Raycast desde la parte centro/abajo del objeto, un poco más arriba
-        Vector3 origin = transform.position + Vector3.down * ((transform.localScale.y - 1f)/ 2);
+        Vector3 origin = transform.position + Vector3.down * ((transform.localScale.y - 1f) / 2);
         Ray ray = new Ray(origin, Vector3.down);
 
         //Si el raycast detecta un hit y ese hit está a poca distancia, frena el objeto
@@ -31,9 +49,37 @@ public class Gravity : MonoBehaviour
                 return;
             }
         }
-        
+
         //Aplicar gravedad
         _velocity.y += _gravity * gravityMultiplier * Time.deltaTime;
         transform.position += _velocity * Time.deltaTime;
+    }
+
+    private bool detectPlayer()
+    {
+        //Devuelve true si detecta una colisión con un jugador
+        Vector3 bottomCenter = transform.position - transform.up * detectDistance;
+
+        Ray[] rays = {
+            new Ray(transform.position - transform.right * halfObjectExtents.x - transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position - transform.right * halfObjectExtents.x - transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y))),
+            new Ray(transform.position + transform.right * halfObjectExtents.x - transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position + transform.right * halfObjectExtents.x - transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y))),
+            new Ray(transform.position - transform.right * halfObjectExtents.x + transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position - transform.right * halfObjectExtents.x + transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y))),
+            new Ray(transform.position + transform.right * halfObjectExtents.x + transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position + transform.right * halfObjectExtents.x + transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y)))
+        }; //Obtenemos un ray para cada esquina inferior del objeto y lo apuntamos detectDistance por debajo del centro del objeto
+
+        foreach (Ray ray in rays)
+        {
+            float distanceToPoint = Vector3.Distance(transform.position - transform.right * halfObjectExtents.x - transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y, bottomCenter);
+            Debug.DrawRay(ray.origin, ray.direction * distanceToPoint, Color.red);
+            if (Physics.Raycast(ray, out RaycastHit hit, distanceToPoint))
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

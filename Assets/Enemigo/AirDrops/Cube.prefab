@@ -123,3 +123,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityMultiplier: 2.5
   groundSeparation: 1
+  detectDistance: 10
+  playerDetected: 0

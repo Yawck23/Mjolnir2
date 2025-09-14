@@ -16,7 +16,7 @@ public class AirDropSpawn : MonoBehaviour
     #endregion
 
     #region Variables: SpawnOverlap
-    private Ray rayLeftBack, rayRightBack, rayFrontLeft, rayFrontRight; //Raycast en las esquinas del spawn
+    private Ray rayLeftBack, rayRightBack, rayLeftFront, rayRightFront; //Raycast en las esquinas del spawn
     private Vector3 halfObjectExtents; //Para calcular la mitad del objeto
     private BoxCollider dropCollider;
     private string dropTag;
@@ -24,15 +24,22 @@ public class AirDropSpawn : MonoBehaviour
     public int failures = 0; //Si falla muchas veces, deja de spawnerar objetos, por más que no se llegue al maxDrops
     #endregion
 
+    #region Variables: playerFollow
+    [SerializeField] private Transform player;
+    #endregion
     void Start()
     {
-        planeBounds = GetComponent<MeshRenderer>().bounds;
         dropCollider = drop.GetComponent<BoxCollider>();
         halfObjectExtents = Vector3.Scale(dropCollider.size * 0.5f, drop.transform.localScale);
         halfObjectExtents.y = drop.transform.position.y;
         dropTag = drop.tag;
-
         StartCoroutine(spawnCorutine());
+    }
+
+    void Update()
+    {
+        planeBounds = GetComponent<MeshRenderer>().bounds;
+        transform.position = new Vector3(player.position.x, 0.0f, player.position.z);
     }
 
     private Vector3 getSpawnPoint()
@@ -56,8 +63,8 @@ public class AirDropSpawn : MonoBehaviour
         //Raycast en cada esquina
         rayLeftBack  = new Ray(spawnObjective - Vector3.right * halfObjectExtents.x - Vector3.forward * halfObjectExtents.z, Vector3.down);
         rayRightBack = new Ray(spawnObjective + Vector3.right * halfObjectExtents.x - Vector3.forward * halfObjectExtents.z, Vector3.down);
-        rayFrontLeft   = new Ray(spawnObjective - Vector3.right * halfObjectExtents.x + Vector3.forward * halfObjectExtents.z, Vector3.down);
-        rayFrontRight  = new Ray(spawnObjective + Vector3.right * halfObjectExtents.x + Vector3.forward * halfObjectExtents.z, Vector3.down);
+        rayLeftFront   = new Ray(spawnObjective - Vector3.right * halfObjectExtents.x + Vector3.forward * halfObjectExtents.z, Vector3.down);
+        rayRightFront  = new Ray(spawnObjective + Vector3.right * halfObjectExtents.x + Vector3.forward * halfObjectExtents.z, Vector3.down);
 
         if (Physics.Raycast(rayLeftBack, out RaycastHit hit))
         {
@@ -75,7 +82,7 @@ public class AirDropSpawn : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(rayFrontLeft, out RaycastHit hit3))
+        if (Physics.Raycast(rayLeftFront, out RaycastHit hit3))
         {
             if (hit3.collider.CompareTag(dropTag))
             {
@@ -83,7 +90,7 @@ public class AirDropSpawn : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(rayFrontRight, out RaycastHit hit4))
+        if (Physics.Raycast(rayRightFront, out RaycastHit hit4))
         {
             if (hit4.collider.CompareTag(dropTag))
             {
