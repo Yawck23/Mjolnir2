@@ -8,26 +8,25 @@ public class AirDropSpawn : MonoBehaviour
 {
 
     #region Variables: Spawn
-    [SerializeField] GameObject drop;
-    private Bounds planeBounds;
-    [SerializeField] int maxDrops;
-    [SerializeField] float minY, maxY, waitForNextDrop;
+    [SerializeField] GameObject drop; //Objeto a dropear
+    private Bounds planeBounds; //Los limites donde dropean
+    [SerializeField] int maxDrops; //Drops máximos
+    [SerializeField] float minY, maxY; //Altura minima y máxima para el drop
+    [SerializeField] float waitForNextDrop; //Tiempo de espera entre drops
     #endregion
 
     #region Variables: SpawnOverlap
-    private List<Vector3> listOfSpawnedPoints;
-    private Ray rayLeftBack, rayRightBack, rayFrontLeft, rayFrontRight;
-    private Vector3 halfObjectExtents;
+    private Ray rayLeftBack, rayRightBack, rayFrontLeft, rayFrontRight; //Raycast en las esquinas del spawn
+    private Vector3 halfObjectExtents; //Para calcular la mitad del objeto
     private BoxCollider dropCollider;
     private string dropTag;
-    private int spawnedObjects = 0;
-    public int failures = 0;
+    private int spawnedObjects = 0; //Para contar la cantidad de items spawneados
+    public int failures = 0; //Si falla muchas veces, deja de spawnerar objetos, por más que no se llegue al maxDrops
     #endregion
 
     void Start()
     {
         planeBounds = GetComponent<MeshRenderer>().bounds;
-        listOfSpawnedPoints = new List<Vector3>();
         dropCollider = drop.GetComponent<BoxCollider>();
         halfObjectExtents = Vector3.Scale(dropCollider.size * 0.5f, drop.transform.localScale);
         halfObjectExtents.y = drop.transform.position.y;
@@ -38,6 +37,8 @@ public class AirDropSpawn : MonoBehaviour
 
     private Vector3 getSpawnPoint()
     {
+        //Devuelve un posible punto de Spawn
+
         float x = Random.Range(planeBounds.min.x, planeBounds.max.x);
         float z = Random.Range(planeBounds.min.z, planeBounds.max.z);
         float y = Random.Range(minY, maxY);
@@ -49,8 +50,10 @@ public class AirDropSpawn : MonoBehaviour
 
     private bool validSpawnPoint(Vector3 spawnObjective)
     {
+        //Valida si no hay otro objeto debajo con el mismo tag
         bool valid = true;
 
+        //Raycast en cada esquina
         rayLeftBack  = new Ray(spawnObjective - Vector3.right * halfObjectExtents.x - Vector3.forward * halfObjectExtents.z, Vector3.down);
         rayRightBack = new Ray(spawnObjective + Vector3.right * halfObjectExtents.x - Vector3.forward * halfObjectExtents.z, Vector3.down);
         rayFrontLeft   = new Ray(spawnObjective - Vector3.right * halfObjectExtents.x + Vector3.forward * halfObjectExtents.z, Vector3.down);
@@ -93,11 +96,13 @@ public class AirDropSpawn : MonoBehaviour
 
     private void spawnRandomDrop(Vector3 spawnPoint)
     {
+        //Spawnea un objeto en una posisción dada
         Instantiate(drop, spawnPoint, Quaternion.identity);
     }
 
     private IEnumerator spawnCorutine()
     {
+        //Spawnea los objetos hasta el maxDrops o hasta que falle más de x veces
         while (spawnedObjects < maxDrops && failures < 100)
         {
             Vector3 spawnObjective = getSpawnPoint();
