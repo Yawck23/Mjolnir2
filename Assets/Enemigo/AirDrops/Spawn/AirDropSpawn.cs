@@ -29,6 +29,10 @@ public class AirDropSpawn : MonoBehaviour
     #endregion
     void Start()
     {
+        //Movemos el spawn al player al start y en cada update
+        transform.position = new Vector3(player.position.x, 0.0f, player.position.z);
+        planeBounds = GetComponent<MeshRenderer>().bounds;
+
         dropCollider = drop.GetComponent<BoxCollider>();
         halfObjectExtents = Vector3.Scale(dropCollider.size * 0.5f, drop.transform.localScale);
         halfObjectExtents.y = drop.transform.position.y;
@@ -38,8 +42,9 @@ public class AirDropSpawn : MonoBehaviour
 
     void Update()
     {
-        planeBounds = GetComponent<MeshRenderer>().bounds;
         transform.position = new Vector3(player.position.x, 0.0f, player.position.z);
+        planeBounds = GetComponent<MeshRenderer>().bounds;
+        
     }
 
     private Vector3 getSpawnPoint()

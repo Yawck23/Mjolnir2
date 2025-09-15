@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Gravity : MonoBehaviour
+public class AirDropBehaviour : MonoBehaviour
 {
 
     #region Variables: gravity
@@ -17,18 +17,30 @@ public class Gravity : MonoBehaviour
     public bool playerDetected = false;
     #endregion
 
+    #region Variables: applyDamage
+    private GameObject playerObject;
+    private HealthSystem playerHealth;
+    [SerializeField] private float damage = 5f;
+    #endregion
+
     void Start()
     {
         objectCollider = GetComponent<BoxCollider>();
         halfObjectExtents = Vector3.Scale(objectCollider.size * 0.5f, transform.localScale);
+        playerObject = GameObject.FindWithTag("Player");
+        playerHealth = playerObject.GetComponent<HealthSystem>();
     }
 
     void Update()
     {
         ApplyGravity();
-        if (detectPlayer())
+        if (_velocity.y < -0.1f && !playerDetected) //El método se ejecuta mientras esté cayendo y no haya tocado al player
         {
-            playerDetected = true;
+            if (detectPlayer())
+            {
+                playerDetected = true;
+                playerHealth.TakeDamage(damage);
+            }
         }
         
     }

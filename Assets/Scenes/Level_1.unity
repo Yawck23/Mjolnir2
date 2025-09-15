@@ -328,6 +328,20 @@ CapsuleCollider:
   m_Height: 0.09
   m_Direction: 1
   m_Center: {x: 0, y: 0.01, z: 0.005}
+--- !u!114 &180308435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180308426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df019bb2c97770f40b2e9aee160c4822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
 --- !u!1 &594607129
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,8 +568,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773832195}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14874911, y: 0.0615713, z: 0.009280129, w: 0.98691267}
-  m_LocalPosition: {x: -22.12, y: 13.4, z: 15.389999}
+  m_LocalRotation: {x: -0.16672254, y: 0.06951518, z: 0.01178443, w: 0.98347974}
+  m_LocalPosition: {x: -22.12, y: 13.4, z: 46.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -833,8 +847,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851690464}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14874913, y: 0.0615713, z: 0.00928013, w: 0.98691267}
-  m_LocalPosition: {x: -22.12, y: 13.4, z: 15.389999}
+  m_LocalRotation: {x: -0.16672254, y: 0.06951518, z: 0.01178443, w: 0.98347974}
+  m_LocalPosition: {x: -22.12, y: 13.4, z: 46.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1141,7 +1155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30.39
+      value: 61.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1220,6 +1234,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 6d9a6d9c25feb2f46b68312c63a2243d, type: 2}
     - target: {fileID: 919132149155446097, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
       propertyPath: m_Name
       value: Mjolnir
       objectReference: {fileID: 0}
@@ -1263,6 +1281,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
       insertIndex: -1
       addedObject: {fileID: 180308434}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 180308435}
     - targetCorrespondingSourceObject: {fileID: -2848480487331179083, guid: 1f4c348286bb38844870b09df978cc97, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1224191533}
@@ -1285,7 +1306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 290896109129936936, guid: 24d2897fea5297446892d8bf1903f334, type: 3}
       propertyPath: minY
-      value: 35
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 290896109129936936, guid: 24d2897fea5297446892d8bf1903f334, type: 3}
       propertyPath: player
