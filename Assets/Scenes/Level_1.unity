@@ -176,6 +176,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ymir2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2306c1ccc85a89d4185a7c033d938a79, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -379,6 +383,66 @@ Transform:
   - {fileID: 15747890}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &611384080
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 247.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7395692
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6730806
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 84.611
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      propertyPath: m_Name
+      value: YmirAnimaciones1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1007766255}
+  m_SourcePrefab: {fileID: 100100000, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
 --- !u!1 &666870282
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1241,33 @@ MonoBehaviour:
   - {fileID: 15747893}
   elasticity: 0.1
   targetForcus: {fileID: 1688899446}
+--- !u!1 &1007766254 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+  m_PrefabInstance: {fileID: 611384080}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1007766255
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007766254}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f7a20d1ae97b83a4c9e1fd5565cf82a9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1076895966
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,3 +1937,4 @@ SceneRoots:
   - {fileID: 666870286}
   - {fileID: 1253418349}
   - {fileID: 1335816094731491875}
+  - {fileID: 611384080}
