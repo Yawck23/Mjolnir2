@@ -125,4 +125,4 @@ MonoBehaviour:
   groundSeparation: 1
   detectDistance: 10
   playerDetected: 0
-  playerObject: {fileID: 0}
+  damage: 10

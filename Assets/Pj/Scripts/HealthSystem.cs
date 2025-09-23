@@ -1,13 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    public float maxHealth = 100f;
+    [SerializeField] float maxHealth = 100f;
+    [SerializeField] float reviveHeal = 30f;
     public float currentHealth;
+    private PlayerController playerController;
+    [SerializeField] GameObject cadera;
+    [SerializeField] GameObject roto;
 
     void Start()
     {
         currentHealth = maxHealth;
+        playerController = GetComponent<PlayerController>();
     }
 
     public void TakeDamage(float amount)
@@ -29,6 +35,31 @@ public class HealthSystem : MonoBehaviour
 
     void Die()
     {
-        //Morir
+        cadera.SetActive(false);
+        roto.SetActive(true);
+        playerController.enabled = false;
+        StartCoroutine(dieCorutine());
+    }
+
+    IEnumerator dieCorutine()
+    {
+        while (currentHealth <= 0)
+        {
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                Revive();
+            }
+            yield return null;
+        }
+    }
+
+
+    void Revive()
+    {
+        Heal(reviveHeal);
+        roto.SetActive(false);
+        cadera.SetActive(true);
+        playerController.enabled = true;
+        
     }
 }
