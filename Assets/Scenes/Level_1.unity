@@ -341,9 +341,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   reviveHeal: 30
+  inmuneTime: 1
   currentHealth: 0
-  cadera: {fileID: 57331785}
-  roto: {fileID: 9874443}
+  gameObjCadera: {fileID: 57331785}
+  gameObjRoto: {fileID: 9874443}
 --- !u!1 &594607129
 GameObject:
   m_ObjectHideFlags: 0
