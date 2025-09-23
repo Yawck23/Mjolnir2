@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
+    #region Variables: Health
     [SerializeField] float maxHealth = 100f;
     [SerializeField] float reviveHeal = 30f;
+    [SerializeField] float inmuneTime = 1f;
+
+    private bool isInmune = false;
     public float currentHealth;
+    #endregion
+
+
+    #region Variables: Components
     private PlayerController playerController;
-    [SerializeField] GameObject cadera;
-    [SerializeField] GameObject roto;
+    [SerializeField] GameObject gameObjCadera;
+    [SerializeField] GameObject gameObjRoto;
     private Animator animatorRoto;
+    #endregion
 
     void Start()
     {
@@ -21,13 +30,18 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        currentHealth -= amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); //Mantener la vida entre 0 y max
-
-        if (currentHealth <= 0)
+        if (!isInmune)
         {
-            Die();
-        }
+            currentHealth -= amount;
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); //Mantener la vida entre 0 y max
+            
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+
+            StartCoroutine(InmuneCoroutine()); //Inmunidad temporal
+        }   
     }
 
     public void Heal(float amount)
@@ -38,8 +52,8 @@ public class HealthSystem : MonoBehaviour
 
     void Die()
     {
-        cadera.SetActive(false);
-        roto.SetActive(true);
+        gameObjCadera.SetActive(false);
+        gameObjRoto.SetActive(true);
         playerController.enabled = false;
         StartCoroutine(dieCorutine());
     }
@@ -56,14 +70,25 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
+    private IEnumerator InmuneCoroutine()
+    {
+        isInmune = true;
+
+        yield return new WaitForSeconds(inmuneTime);
+
+        isInmune = false;
+    }
+
 
     void Revive()
     {
-        animatorRoto.SetTrigger("Revive");
-        Heal(reviveHeal);
-        roto.SetActive(false);
-        cadera.SetActive(true);
-        playerController.enabled = true;
+        animatorRoto.SetTrigger("Revive"); //Animación de revivir
+        Heal(reviveHeal); //Curar
+
+        gameObjRoto.SetActive(false);
+        gameObjCadera.SetActive(true);
+        playerController.enabled = true; //Habilitar el movimiento
+        StartCoroutine(InmuneCoroutine()); //Inmunidad temporal
         
     }
 }
