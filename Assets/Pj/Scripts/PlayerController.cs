@@ -91,6 +91,8 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
+        if (isDashing) return; //Para no aplicar doble movimiento en el dash
+        
         if (!groundIsIce)
         {
             _characterController.Move(_direction * speed * Time.deltaTime);
@@ -130,7 +132,26 @@ public class PlayerController : MonoBehaviour
         if (!IsGrounded()) return;
         if (isDashing) return;
 
+        //_animator.SetTrigger("JumpStart"); //Falta agregar la animación del salto
+        StartCoroutine(DoJump());
+    }
+
+    private IEnumerator DoJump()
+    {
+        ignoreInput = true;
         _velocity = jumpPower;
+
+        yield return null; //Esperar un frame para que detecte que no está en el suelo
+
+        //Esperamos que toque el suelo para volver a tomar el input
+        while (!IsGrounded())
+        {
+            yield return null;
+        }
+
+        ResetInput();
+
+        ignoreInput = false;
     }
 
     public void Dash(InputAction.CallbackContext context)
@@ -163,13 +184,25 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        _direction = new Vector3(_input.x, 0.0f, _input.y); //La direction toma nuevamente el input
+        ResetInput();
         ignoreInput = false;
         isDashing = false;
         
 
         yield return new WaitForSeconds(dashCooldown);
         dashOnCooldown = false;
+    }
+
+    private void ResetInput()
+    {//Resetea el input para no depender del InputContext que solo se ejecuta al presionar teclas
+        _input.x = Input.GetAxisRaw("Horizontal");
+        _input.y = Input.GetAxisRaw("Vertical");
+
+        if (_input.sqrMagnitude < 0.1f)
+        {
+            _direction.x = 0f;
+            _direction.z = 0f;
+        }
     }
 
     private bool IsGrounded() => _characterController.isGrounded; //Para no usar _characterController.isGrounded

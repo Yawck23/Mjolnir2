@@ -314,10 +314,10 @@ MonoBehaviour:
   groundIsIce: 0
   speed: 30
   rotationSpeed: 500
-  gravityMultiplier: 1.2
-  jumpPower: 1.8
-  dashPower: 0.5
-  dashDuration: 0.5
+  gravityMultiplier: 0.5
+  jumpPower: 1.6
+  dashPower: 1.2
+  dashDuration: 0.7
   dashCooldown: 1.2
 --- !u!136 &180308434
 CapsuleCollider:
@@ -1724,7 +1724,7 @@ PrefabInstance:
       objectReference: {fileID: 180308431}
     - target: {fileID: 290896109129936936, guid: 24d2897fea5297446892d8bf1903f334, type: 3}
       propertyPath: maxDrops
-      value: 20
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 290896109129936936, guid: 24d2897fea5297446892d8bf1903f334, type: 3}
       propertyPath: waitForNextDrop
