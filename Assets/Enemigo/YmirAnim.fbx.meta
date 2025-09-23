@@ -60,7 +60,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Ataque.001
+      name: ArrastrarBajo
       takeName: Ataque.001
       internalID: -2192079589209881435
       firstFrame: 0
@@ -89,7 +89,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Ataque.002
+      name: AplastarCerca
       takeName: Ataque.002
       internalID: -4431011630353699342
       firstFrame: 0
@@ -118,7 +118,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: AtaquesHielo.001
+      name: PisoHielo
       takeName: AtaquesHielo.001
       internalID: 4272961798709180552
       firstFrame: 0
@@ -147,7 +147,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: AtaquesHielo
+      name: LluviaHielo
       takeName: AtaquesHielo
       internalID: -1399527842789849094
       firstFrame: 0
@@ -176,7 +176,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Ataque.003
+      name: AplastarLejos
       takeName: Ataque.003
       internalID: 3989319363190214358
       firstFrame: 0

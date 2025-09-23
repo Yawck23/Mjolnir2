@@ -78,7 +78,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ataque_001
+  m_Name: ArrastrarBajo
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -149,7 +149,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AtaquesHielo_001
+  m_Name: PisoHielo
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -511,7 +511,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ataque_003
+  m_Name: AplastarLejos
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -675,7 +675,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AtaquesHielo
+  m_Name: LluviaHielo
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -800,7 +800,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ataque_002
+  m_Name: AplastarCerca
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
