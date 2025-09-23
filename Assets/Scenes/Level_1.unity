@@ -1724,7 +1724,7 @@ PrefabInstance:
       objectReference: {fileID: 180308431}
     - target: {fileID: 290896109129936936, guid: 24d2897fea5297446892d8bf1903f334, type: 3}
       propertyPath: maxDrops
-      value: 2
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 290896109129936936, guid: 24d2897fea5297446892d8bf1903f334, type: 3}
       propertyPath: waitForNextDrop

@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
@@ -9,11 +10,13 @@ public class HealthSystem : MonoBehaviour
     private PlayerController playerController;
     [SerializeField] GameObject cadera;
     [SerializeField] GameObject roto;
+    private Animator animatorRoto;
 
     void Start()
     {
         currentHealth = maxHealth;
         playerController = GetComponent<PlayerController>();
+        animatorRoto = transform.Find("Roto").GetComponent<Animator>();
     }
 
     public void TakeDamage(float amount)
@@ -56,6 +59,7 @@ public class HealthSystem : MonoBehaviour
 
     void Revive()
     {
+        animatorRoto.SetTrigger("Revive");
         Heal(reviveHeal);
         roto.SetActive(false);
         cadera.SetActive(true);
