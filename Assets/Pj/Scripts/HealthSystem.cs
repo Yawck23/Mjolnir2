@@ -91,4 +91,12 @@ public class HealthSystem : MonoBehaviour
         StartCoroutine(InmuneCoroutine()); //Inmunidad temporal
         
     }
+
+    /*private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.CompareTag("Enemy"))
+        {
+            TakeDamage(30);
+        }
+    }*/
 }

@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle.003
+      name: Idle
       takeName: Idle.003
       internalID: 3238587901356477952
       firstFrame: 0
@@ -42,7 +42,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -231,7 +231,7 @@ ModelImporter:
       - time: 0
         functionName: StartFollow
         data: 
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 11500000, guid: 4711e26b5901fe045affc77dcd79b176, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
