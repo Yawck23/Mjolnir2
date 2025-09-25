@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
             }
 
             _slide *= Mathf.Exp(-friction * Time.deltaTime);
-            //_slide.y = _direction.y * speed;
+            _slide.y = _direction.y * accel;
 
             _characterController.Move(_slide  * Time.deltaTime);
         }
