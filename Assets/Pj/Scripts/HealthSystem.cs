@@ -19,6 +19,8 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] GameObject gameObjCadera;
     [SerializeField] GameObject gameObjRoto;
     private Animator animatorRoto;
+    private CapsuleCollider collider;
+    private CharacterController charController;
     #endregion
 
     void Start()
@@ -26,6 +28,8 @@ public class HealthSystem : MonoBehaviour
         currentHealth = maxHealth;
         playerController = GetComponent<PlayerController>();
         animatorRoto = transform.Find("Roto").GetComponent<Animator>();
+        collider = GetComponent<CapsuleCollider>();
+        charController = GetComponent<CharacterController>();
     }
 
     public void TakeDamage(float amount)
@@ -52,9 +56,12 @@ public class HealthSystem : MonoBehaviour
 
     void Die()
     {
+        playerController.enabled = false;
         gameObjCadera.SetActive(false);
         gameObjRoto.SetActive(true);
-        playerController.enabled = false;
+        collider.enabled = false;
+        charController.enabled = false;
+
         StartCoroutine(dieCorutine());
     }
 
@@ -79,7 +86,6 @@ public class HealthSystem : MonoBehaviour
         isInmune = false;
     }
 
-
     void Revive()
     {
         animatorRoto.SetTrigger("Revive"); //Animación de revivir
@@ -87,16 +93,12 @@ public class HealthSystem : MonoBehaviour
 
         gameObjRoto.SetActive(false);
         gameObjCadera.SetActive(true);
-        playerController.enabled = true; //Habilitar el movimiento
+
+        //Rehabilitamos collider, controller y movement
+        collider.enabled = true;
+        charController.enabled = true;
+        playerController.enabled = true;
         StartCoroutine(InmuneCoroutine()); //Inmunidad temporal
         
     }
-
-    /*private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.collider.CompareTag("Enemy"))
-        {
-            TakeDamage(30);
-        }
-    }*/
 }

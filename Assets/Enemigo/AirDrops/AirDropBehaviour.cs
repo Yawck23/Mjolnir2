@@ -4,10 +4,11 @@ public class AirDropBehaviour : MonoBehaviour
 {
 
     #region Variables: gravity
-    private Vector3 _velocity;
+    //private Vector3 _velocity;
     [SerializeField] float gravityMultiplier = 2.0f;
-    private float _gravity = -9.81f;
-    [SerializeField] float groundSeparation = 1f;
+    //private float _gravity = -9.81f;
+    //[SerializeField] float groundSeparation = 1f;
+    private Rigidbody rb;
     #endregion
 
     #region Variables: detectPlayer
@@ -23,41 +24,47 @@ public class AirDropBehaviour : MonoBehaviour
     [SerializeField] private float damage = 5f;
     #endregion
 
+    [SerializeField] float destroyAfter = 10f;
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        rb.useGravity = false;
         objectCollider = GetComponent<BoxCollider>();
         halfObjectExtents = Vector3.Scale(objectCollider.size * 0.5f, transform.localScale);
         playerObject = GameObject.FindWithTag("Player");
         playerHealth = playerObject.GetComponent<HealthSystem>();
+
+        Destroy(this.gameObject, destroyAfter);
+    }
+
+    private void FixedUpdate()
+    {
+        rb.AddForce(Physics.gravity * gravityMultiplier, ForceMode.Acceleration);
     }
 
     void Update()
     {
-        ApplyGravity();
-        if (_velocity.y < -0.1f && !playerDetected) //El método se ejecuta mientras esté cayendo y no haya tocado al player
+        //ApplyGravity();
+        if (detectPlayer())
         {
-            if (detectPlayer())
-            {
-                playerDetected = true;
-                playerHealth.TakeDamage(damage);
-            }
+            playerDetected = true;
+            playerHealth.TakeDamage(damage);
         }
-        
+
     }
 
-    private void ApplyGravity()
+    /*private void ApplyGravity()
     {
         //Raycast desde la parte centro/abajo del objeto, un poco más arriba
         Vector3 origin = transform.position + Vector3.down * ((transform.localScale.y - 1f) / 2);
         Ray ray = new Ray(origin, Vector3.down);
 
         //Si el raycast detecta un hit y ese hit está a poca distancia, frena el objeto
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit, 1000f, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
         {
             if (hit.distance < groundSeparation)
             {
                 _velocity.y = 0.0f;
-                //Destroy(this.gameObject, 10f);
                 return;
             }
         }
@@ -65,7 +72,7 @@ public class AirDropBehaviour : MonoBehaviour
         //Aplicar gravedad
         _velocity.y += _gravity * gravityMultiplier * Time.deltaTime;
         transform.position += _velocity * Time.deltaTime;
-    }
+    }*/
 
     private bool detectPlayer()
     {
@@ -83,7 +90,7 @@ public class AirDropBehaviour : MonoBehaviour
         {
             float distanceToPoint = Vector3.Distance(transform.position - transform.right * halfObjectExtents.x - transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y, bottomCenter);
             Debug.DrawRay(ray.origin, ray.direction * distanceToPoint, Color.red);
-            if (Physics.Raycast(ray, out RaycastHit hit, distanceToPoint))
+            if (Physics.Raycast(ray, out RaycastHit hit, distanceToPoint, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
             {
                 if (hit.collider.CompareTag("Player"))
                 {

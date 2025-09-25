@@ -10,10 +10,16 @@ public class AttacksManager : MonoBehaviour
     private bool canTakeDamage;
     private bool canLookAtPlayer;
     private int randomAttackSelect;
+
+    [SerializeField] GameObject airDrop;
+
     private float timer;
     [SerializeField] float attackCooldown = 8f;
     [SerializeField] float turnSpeed = 360f;
     [SerializeField] float modelOffset = -105f;
+
+    private bool playerInLejos = false;
+    private bool playerInCerca = false;
 
     void Start()
     {
@@ -67,25 +73,54 @@ public class AttacksManager : MonoBehaviour
 
     }
 
+    public void OnPlayerEnterZone (DetectionZone.ZoneType zone)
+    {
+        if (zone == DetectionZone.ZoneType.Cerca)
+        {
+            playerInCerca = true;
+        }else if (zone == DetectionZone.ZoneType.Lejos)
+        {
+            playerInLejos = true;
+        }
+    }
+
+    public void OnPlayerExitZone(DetectionZone.ZoneType zone)
+    {
+        if (zone == DetectionZone.ZoneType.Cerca)
+        {
+            playerInCerca = false;
+        }
+        else if (zone == DetectionZone.ZoneType.Lejos)
+        {
+            playerInLejos = false;
+        }
+    }
+
+    public void AirDropStart()
+    {
+        Instantiate(airDrop);
+    }
+
     private void AttackSelect()
     {
         timer -= Time.deltaTime;
         if (timer <= 0f)
         {
-            int randomAttackSelect = Random.Range(1, 4); // 1, 2 o 3
+            int randomAttackSelect = Random.Range(1, 4); // 1 o 2
             
             switch (randomAttackSelect)
             {
                 case 1:
-                    animator.SetTrigger("AplastarLejos");
+                    if (playerInCerca) animator.SetTrigger("AplastarCerca");
+                    if (playerInLejos) animator.SetTrigger("AplastarLejos");
                     break;
 
                 case 2:
-                    animator.SetTrigger("AplastarCerca");
+                    animator.SetTrigger("ArrastrarBajo");
                     break;
 
                 case 3:
-                    animator.SetTrigger("ArrastrarBajo");
+                    animator.SetBool("LluviaHielo", true);
                     break;
             }
 

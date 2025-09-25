@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drop: {fileID: 4798606737726777425, guid: a12ef9be043b9eb48bc20b798653c8da, type: 3}
   maxDrops: 10
-  minY: 30
-  maxY: 50
-  waitForNextDrop: 2
+  minY: 40
+  maxY: 70
+  waitForNextDrop: 1.2
   failures: 0

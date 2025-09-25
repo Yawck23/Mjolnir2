@@ -25,10 +25,15 @@ public class AirDropSpawn : MonoBehaviour
     #endregion
 
     #region Variables: playerFollow
-    [SerializeField] private Transform player;
+    private Transform player;
     #endregion
+
+    private Animator enemyAnimator;
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        enemyAnimator = GameObject.Find("Ymir").GetComponent<Animator>();
+        
         //Movemos el spawn al player al start y en cada update
         transform.position = new Vector3(player.position.x, 0.0f, player.position.z);
         planeBounds = GetComponent<MeshRenderer>().bounds;
@@ -71,7 +76,7 @@ public class AirDropSpawn : MonoBehaviour
         rayLeftFront   = new Ray(spawnObjective - Vector3.right * halfObjectExtents.x + Vector3.forward * halfObjectExtents.z, Vector3.down);
         rayRightFront  = new Ray(spawnObjective + Vector3.right * halfObjectExtents.x + Vector3.forward * halfObjectExtents.z, Vector3.down);
 
-        if (Physics.Raycast(rayLeftBack, out RaycastHit hit))
+        if (Physics.Raycast(rayLeftBack, out RaycastHit hit, 1000f, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
         {
             if (hit.collider.CompareTag(dropTag))
             {
@@ -79,7 +84,7 @@ public class AirDropSpawn : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(rayRightBack, out RaycastHit hit2))
+        if (Physics.Raycast(rayRightBack, out RaycastHit hit2, 1000f, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
         {
             if (hit2.collider.CompareTag(dropTag))
             {
@@ -87,7 +92,7 @@ public class AirDropSpawn : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(rayLeftFront, out RaycastHit hit3))
+        if (Physics.Raycast(rayLeftFront, out RaycastHit hit3, 1000f, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
         {
             if (hit3.collider.CompareTag(dropTag))
             {
@@ -95,7 +100,7 @@ public class AirDropSpawn : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(rayRightFront, out RaycastHit hit4))
+        if (Physics.Raycast(rayRightFront, out RaycastHit hit4, 1000f, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
         {
             if (hit4.collider.CompareTag(dropTag))
             {
@@ -130,5 +135,10 @@ public class AirDropSpawn : MonoBehaviour
                 yield return null;
             }
         }
+
+        enemyAnimator.SetBool("LluviaHielo", false);
+
+        yield return new WaitForSeconds(1f);
+        Destroy(this.gameObject);
     }
 }
