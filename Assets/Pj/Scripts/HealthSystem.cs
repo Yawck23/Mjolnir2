@@ -19,7 +19,6 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] GameObject gameObjCadera;
     [SerializeField] GameObject gameObjRoto;
     private Animator animatorRoto;
-    private CapsuleCollider collider;
     private CharacterController charController;
     #endregion
 
@@ -28,7 +27,6 @@ public class HealthSystem : MonoBehaviour
         currentHealth = maxHealth;
         playerController = GetComponent<PlayerController>();
         animatorRoto = transform.Find("Roto").GetComponent<Animator>();
-        collider = GetComponent<CapsuleCollider>();
         charController = GetComponent<CharacterController>();
     }
 
@@ -56,17 +54,19 @@ public class HealthSystem : MonoBehaviour
 
     void Die()
     {
-        playerController.enabled = false;
+
         gameObjCadera.SetActive(false);
         gameObjRoto.SetActive(true);
-        collider.enabled = false;
-        charController.enabled = false;
+
 
         StartCoroutine(dieCorutine());
     }
 
     IEnumerator dieCorutine()
     {
+        playerController.enabled = false;
+        charController.enabled = false;
+
         while (currentHealth <= 0)
         {
             if (Input.GetKeyDown(KeyCode.O))
@@ -94,8 +94,7 @@ public class HealthSystem : MonoBehaviour
         gameObjRoto.SetActive(false);
         gameObjCadera.SetActive(true);
 
-        //Rehabilitamos collider, controller y movement
-        collider.enabled = true;
+        //Rehabilitamos controller y movement
         charController.enabled = true;
         playerController.enabled = true;
         StartCoroutine(InmuneCoroutine()); //Inmunidad temporal
