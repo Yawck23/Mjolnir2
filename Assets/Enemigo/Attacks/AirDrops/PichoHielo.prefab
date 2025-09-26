@@ -106,8 +106,8 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2, y: 0.32, z: 0.2}
-  m_Center: {x: 0.02, y: 0.07, z: 0}
+  m_Size: {x: 0.29952094, y: 0.36556762, z: 0.24610464}
+  m_Center: {x: 0.02213697, y: 0.07863644, z: -0.013978933}
 --- !u!114 &-9163069668984850338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,8 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd4a9452def41846a8a16a815672fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityMultiplier: 3
+  gravityMultiplier: 5
   detectDistance: 20
+  centerOffset: 0.65
   playerDetected: 0
   damage: 100
   destroyAfter: 10

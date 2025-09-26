@@ -1,3 +1,4 @@
+using System.Timers;
 using UnityEngine;
 
 public class AirDropBehaviour : MonoBehaviour
@@ -14,7 +15,8 @@ public class AirDropBehaviour : MonoBehaviour
     #region Variables: detectPlayer
     private Vector3 halfObjectExtents;
     private BoxCollider objectCollider;
-    [SerializeField] private float detectDistance;
+    [SerializeField] float detectDistance;
+    [SerializeField] float centerOffset;
     public bool playerDetected = false;
     #endregion
 
@@ -80,11 +82,12 @@ public class AirDropBehaviour : MonoBehaviour
         Vector3 bottomCenter = transform.position - transform.up * detectDistance;
 
         Ray[] rays = {
-            new Ray(transform.position - transform.right * halfObjectExtents.x - transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position - transform.right * halfObjectExtents.x - transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y))),
-            new Ray(transform.position + transform.right * halfObjectExtents.x - transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position + transform.right * halfObjectExtents.x - transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y))),
-            new Ray(transform.position - transform.right * halfObjectExtents.x + transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position - transform.right * halfObjectExtents.x + transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y))),
-            new Ray(transform.position + transform.right * halfObjectExtents.x + transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position + transform.right * halfObjectExtents.x + transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y)))
-        }; //Obtenemos un ray para cada esquina inferior del objeto y lo apuntamos detectDistance por debajo del centro del objeto
+            new Ray(transform.position - transform.right * halfObjectExtents.x * centerOffset - transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position - transform.right * halfObjectExtents.x * centerOffset - transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y))),
+            new Ray(transform.position + transform.right * halfObjectExtents.x * centerOffset - transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position + transform.right * halfObjectExtents.x * centerOffset - transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y))),
+            new Ray(transform.position - transform.right * halfObjectExtents.x * centerOffset + transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position - transform.right * halfObjectExtents.x * centerOffset + transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y))),
+            new Ray(transform.position + transform.right * halfObjectExtents.x * centerOffset + transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position + transform.right * halfObjectExtents.x * centerOffset + transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y)))
+        };  //Obtenemos un ray para cada esquina inferior del objeto y lo apuntamos detectDistance por debajo del centro del objeto
+                //El centerOffset nos sirve para arrimar el raycast desde la esquina hacia el centro del objeto
 
         foreach (Ray ray in rays)
         {
