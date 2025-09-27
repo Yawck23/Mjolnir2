@@ -70,7 +70,6 @@ public class AttacksManager : MonoBehaviour
         {
             playerHealth.TakeDamage(30);
         }
-
     }
 
     public void OnPlayerEnterZone (DetectionZone.ZoneType zone)
@@ -143,4 +142,6 @@ public class AttacksManager : MonoBehaviour
         }
 
     }
+
+    public bool CanTakeDamage() => canTakeDamage;
 }

@@ -205,5 +205,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private bool IsGrounded() => _characterController.isGrounded; //Para no usar _characterController.isGrounded
+    public bool IsGrounded() => _characterController.isGrounded; //Para no usar _characterController.isGrounded
+    public bool IsDashing() => isDashing;
 }
