@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityMultiplier: 7
-  detectDistance: 23
-  centerOffset: 0.65
+  detectDistance: 25
+  centerOffset: 0.8
   playerDetected: 0
   damage: 100
   destroyAfter: 10

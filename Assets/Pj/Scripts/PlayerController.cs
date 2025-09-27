@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
         ApplyMovement();
     }
 
+    #region Movement methods
     private void ApplyGravity()
     {
         if (IsGrounded() && _velocity < 0.0f)
@@ -114,8 +115,9 @@ public class PlayerController : MonoBehaviour
         }
         _animator.SetFloat("Movement", (_input * speed).magnitude);
     }
+    #endregion
 
-
+    #region Inputs
     public void Move(InputAction.CallbackContext context)
     {
         if (!ignoreInput)
@@ -136,6 +138,18 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(DoJump());
     }
 
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if (!context.started) return; //Solo si la tecla se acaba de presionar
+        if (!IsGrounded()) return;
+        if (isDashing || dashOnCooldown) return;
+
+        _animator.SetTrigger("DashStart");
+        StartCoroutine(DoDash());
+    }
+    #endregion
+
+    #region Corroutines
     private IEnumerator DoJump()
     {
         ignoreInput = true;
@@ -153,17 +167,6 @@ public class PlayerController : MonoBehaviour
 
         ignoreInput = false;
     }
-
-    public void Dash(InputAction.CallbackContext context)
-    {
-        if (!context.started) return; //Solo si la tecla se acaba de presionar
-        if (!IsGrounded()) return;
-        if (isDashing || dashOnCooldown) return;
-
-        _animator.SetTrigger("DashStart");
-        StartCoroutine(DoDash());
-    }
-
     private IEnumerator DoDash()
     {
         isDashing = true;
@@ -192,6 +195,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         dashOnCooldown = false;
     }
+    #endregion
 
     private void ResetInput()
     {//Resetea el input para no depender del InputContext que solo se ejecuta al presionar teclas
@@ -205,6 +209,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    #region Getters
     public bool IsGrounded() => _characterController.isGrounded; //Para no usar _characterController.isGrounded
     public bool IsDashing() => isDashing;
+    #endregion
 }

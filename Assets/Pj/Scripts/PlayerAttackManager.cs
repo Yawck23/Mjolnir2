@@ -5,6 +5,7 @@ public class PlayerAttackManager : MonoBehaviour
 {
     private PlayerController controller;
     private EnemyHealthSystem enemyHealth;
+
     [SerializeField] float dashDamage = 10f;
     [SerializeField] float airDropDamage = 10f;
     private void Start()
@@ -14,6 +15,7 @@ public class PlayerAttackManager : MonoBehaviour
 
     }
 
+    //Hitbox del enemigo son Triggers
     private void OnTriggerEnter(Collider other)
     {
         if (!controller.IsDashing()) return;
@@ -24,6 +26,7 @@ public class PlayerAttackManager : MonoBehaviour
         }
     }
 
+    //AirDrops son colliders
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (!controller.IsDashing()) return;

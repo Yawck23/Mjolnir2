@@ -1625,10 +1625,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4711e26b5901fe045affc77dcd79b176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airDrop: {fileID: 8740546959792921959, guid: 24d2897fea5297446892d8bf1903f334, type: 3}
   attackCooldown: 6
-  turnSpeed: 300
+  turnSpeed: 360
   modelOffset: -105
+  airDrop: {fileID: 8740546959792921959, guid: 24d2897fea5297446892d8bf1903f334, type: 3}
 --- !u!54 &1007766257
 Rigidbody:
   m_ObjectHideFlags: 0

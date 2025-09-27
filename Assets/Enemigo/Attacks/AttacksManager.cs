@@ -2,24 +2,30 @@ using UnityEngine;
 
 public class AttacksManager : MonoBehaviour
 {
+    #region Variables: Components
     private Animator animator;
     private HealthSystem playerHealth;
     private Transform targetPlayer;
+    #endregion
 
+    #region Variables: Boolean States
     private bool canApplyDamage;
     private bool canTakeDamage;
     private bool canLookAtPlayer;
-    private int randomAttackSelect;
-
-    [SerializeField] GameObject airDrop;
-
-    private float timer;
-    [SerializeField] float attackCooldown = 8f;
-    [SerializeField] float turnSpeed = 360f;
-    [SerializeField] float modelOffset = -105f;
 
     private bool playerInLejos = false;
     private bool playerInCerca = false;
+    #endregion
+
+    #region Variables: Attacks
+    private float timer;
+    private int randomAttackSelect;
+    [SerializeField] float attackCooldown = 8f;
+    [SerializeField] float turnSpeed = 360f;
+    [SerializeField] float modelOffset = -105f;
+    [SerializeField] GameObject airDrop;
+    #endregion
+
 
     void Start()
     {
@@ -41,19 +47,16 @@ public class AttacksManager : MonoBehaviour
         canApplyDamage = true;
         canTakeDamage = false;
     }
-
     public void TakeDamage()
     {
         canTakeDamage = true;
         canApplyDamage = false;
     }
-
     public void NoDamage()
     {
         canTakeDamage = false;
         canApplyDamage = false;
     }
-
     public void StartLookAtPlayer()
     {
         canLookAtPlayer = true;
@@ -62,16 +65,13 @@ public class AttacksManager : MonoBehaviour
     {
         canLookAtPlayer = false;
     }
+    public void AirDropStart()
+    {
+        Instantiate(airDrop);
+    }
     #endregion
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && canApplyDamage)
-        {
-            playerHealth.TakeDamage(30);
-        }
-    }
-
+    #region Triggers Zones
     public void OnPlayerEnterZone (DetectionZone.ZoneType zone)
     {
         if (zone == DetectionZone.ZoneType.Cerca)
@@ -82,7 +82,6 @@ public class AttacksManager : MonoBehaviour
             playerInLejos = true;
         }
     }
-
     public void OnPlayerExitZone(DetectionZone.ZoneType zone)
     {
         if (zone == DetectionZone.ZoneType.Cerca)
@@ -94,12 +93,7 @@ public class AttacksManager : MonoBehaviour
             playerInLejos = false;
         }
     }
-
-    public void AirDropStart()
-    {
-        Instantiate(airDrop);
-    }
-
+    #endregion
     private void AttackSelect()
     {
         timer -= Time.deltaTime;
@@ -124,6 +118,13 @@ public class AttacksManager : MonoBehaviour
             }
 
             timer = attackCooldown;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && canApplyDamage)
+        {
+            playerHealth.TakeDamage(30);
         }
     }
 
