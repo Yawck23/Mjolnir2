@@ -5,12 +5,14 @@ public class PlayerAttackManager : MonoBehaviour
 {
     private PlayerController controller;
     private EnemyHealthSystem enemyHealth;
+    private Animator animator;
 
     [SerializeField] float dashDamage = 10f;
     [SerializeField] float airDropDamage = 10f;
     private void Start()
     {
         controller = GetComponent<PlayerController>();
+        animator = GetComponent<Animator>();
         enemyHealth = GameObject.Find("Ymir").GetComponent<EnemyHealthSystem>();
 
     }
@@ -39,11 +41,13 @@ public class PlayerAttackManager : MonoBehaviour
 
     private void DashAttack()
     {
+        animator.SetTrigger("Choque");
         enemyHealth.TakeDamage(dashDamage);
     }
 
     private void AirDropAttack()
     {
+        animator.SetTrigger("Choque");
         //Lanzar el objeto y, si golpea en el enemigo, hacerle daño
     }
 }
