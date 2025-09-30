@@ -120,9 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd4a9452def41846a8a16a815672fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityMultiplier: 7
+  gravityMultiplier: 12
   detectDistance: 25
-  centerOffset: 0.8
+  centerOffset: 1
   playerDetected: 0
   damage: 100
   destroyAfter: 10

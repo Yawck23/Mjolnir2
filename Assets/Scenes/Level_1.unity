@@ -336,6 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashDamage: 10
   airDropDamage: 10
+  airDropAttackCooldown: 2
 --- !u!1 &213164809
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,7 +1626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4711e26b5901fe045affc77dcd79b176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 6
+  attackCooldown: 8
   turnSpeed: 360
   modelOffset: -105
   airDrop: {fileID: 8740546959792921959, guid: 24d2897fea5297446892d8bf1903f334, type: 3}

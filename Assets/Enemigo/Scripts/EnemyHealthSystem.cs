@@ -27,11 +27,14 @@ public class EnemyHealthSystem : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        if (amount <= 0f) return;
+
         if (!attackManager.CanTakeDamage()) return;
         
         if (!isInmune)
         {
-            //Animation take damage falta agregar
+            animatorYmir.SetTrigger("Hurt");
+            Debug.Log("HurtTrigger");
             currentHealth -= amount;
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); //Mantener la vida entre 0 y max
             
