@@ -103,5 +103,5 @@ MonoBehaviour:
   maxDrops: 7
   minY: 100
   maxY: 150
-  waitForNextDrop: 2
+  waitForNextDrop: 0.4
   failures: 0
