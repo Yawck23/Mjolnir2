@@ -4941,6 +4941,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.50761414
       objectReference: {fileID: 0}
+    - target: {fileID: -6210818895977540078, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -5790867612772777447, guid: 3477f8d798378f54e9195cd4ba584ba6, type: 3}
+    - target: {fileID: -6210818895977540078, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cd75f5aea1a5d3142b2a3fb2da70b47c, type: 2}
     - target: {fileID: -6008172623415059002, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
       propertyPath: m_Name
       value: Bone.004
@@ -6974,8 +6982,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773832195}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15212335, y: -1.4550303e-10, z: 2.2395055e-11, w: 0.98836154}
-  m_LocalPosition: {x: 14.9, y: 31.714117, z: -295.47433}
+  m_LocalRotation: {x: 0.1521234, y: -0.00000001300413, z: 0.0000000020015274, w: 0.98836154}
+  m_LocalPosition: {x: 14.9, y: 33.217648, z: -300.24292}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7853,6 +7861,7 @@ GameObject:
   - component: {fileID: 851690466}
   - component: {fileID: 851690465}
   - component: {fileID: 851690471}
+  - component: {fileID: 851690473}
   m_Layer: 0
   m_Name: FreeLook Camera
   m_TagString: Untagged
@@ -8015,8 +8024,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851690464}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15212335, y: -1.4550307e-10, z: 2.2395176e-11, w: 0.98836154}
-  m_LocalPosition: {x: 14.9, y: 31.714117, z: -295.47433}
+  m_LocalRotation: {x: 0.1521234, y: -0.00000001300413, z: 0.0000000020015272, w: 0.98836154}
+  m_LocalPosition: {x: 14.9, y: 33.217648, z: -300.24292}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8061,7 +8070,7 @@ MonoBehaviour:
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   OrbitStyle: 0
-  Radius: 20
+  Radius: 25
   Orbits:
     Top:
       Radius: 2
@@ -8104,6 +8113,45 @@ MonoBehaviour:
       Wait: 1
       Time: 2
     Restrictions: 0
+--- !u!114 &851690473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851690464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe43d662878a7c43bcd44d43c9e2094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 1
+  IgnoreTag: 
+  TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  MinimumDistanceFromTarget: 0.3
+  AvoidObstacles:
+    Enabled: 1
+    DistanceLimit: 0
+    MinimumOcclusionTime: 0
+    CameraRadius: 0
+    UseFollowTarget:
+      Enabled: 0
+      YOffset: 0
+    Strategy: 0
+    MaximumEffort: 4
+    SmoothingTime: 0
+    Damping: 0.4
+    DampingWhenOccluded: 0.2
+  ShotQualityEvaluation:
+    Enabled: 0
+    OptimalDistance: 10
+    NearLimit: 5
+    FarLimit: 30
+    MaxQualityBoost: 0.2
 --- !u!1001 &854989469
 PrefabInstance:
   m_ObjectHideFlags: 0
