@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
+using UnityEditor;
+
+//using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    #region Animator
+    #region Components
     private Animator _animator;
+    private HealthSystem _healthSystem;
     #endregion
 
     #region Variables: IceSlide
@@ -54,6 +58,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
+        _healthSystem = GetComponent<HealthSystem>();
         _mainCamera = Camera.main;
         _animator = GetComponent<Animator>();
     }
@@ -63,6 +68,9 @@ public class PlayerController : MonoBehaviour
         ApplyRotation();
         ApplyGravity();
         ApplyMovement();
+        DetectIceGround();
+
+        
     }
 
     #region Movement methods
@@ -93,7 +101,7 @@ public class PlayerController : MonoBehaviour
     private void ApplyMovement()
     {
         if (isDashing) return; //Para no aplicar doble movimiento en el dash
-        
+
         if (!groundIsIce)
         {
             _characterController.Move(_direction * speed * Time.deltaTime);
@@ -111,9 +119,28 @@ public class PlayerController : MonoBehaviour
             _slide *= Mathf.Exp(-friction * Time.deltaTime);
             _slide.y = _direction.y * accel;
 
-            _characterController.Move(_slide  * Time.deltaTime);
+            _characterController.Move(_slide * Time.deltaTime);
         }
         _animator.SetFloat("Movement", (_input * speed).magnitude);
+    }
+    
+    private void DetectIceGround()
+    {
+        Vector3 origin = _characterController.bounds.center;
+        float groundCheckDistance = _characterController.bounds.extents.y + 0.2f;
+        RaycastHit hit;
+
+        if (Physics.Raycast(origin, Vector3.down, out hit, groundCheckDistance))
+        {
+            if (hit.collider.CompareTag("PisoHielo"))
+            {
+                groundIsIce = true;
+            }
+            else
+            {
+                groundIsIce = false;
+            }
+        }
     }
     #endregion
 
@@ -182,6 +209,11 @@ public class PlayerController : MonoBehaviour
 
         while (elapsedTime < dashDuration)
         {
+            if (_healthSystem.getIsDead() == true)
+            {
+                break;
+            }
+
             elapsedTime += Time.deltaTime;
             _characterController.Move(_direction * speed * dashPower * Time.deltaTime);
             yield return null;

@@ -6,6 +6,8 @@ public class AttacksManager : MonoBehaviour
     private Animator animator;
     private HealthSystem playerHealth;
     private Transform targetPlayer;
+
+    private Transform pivotYmir;
     #endregion
 
     #region Variables: Boolean States
@@ -33,6 +35,8 @@ public class AttacksManager : MonoBehaviour
         targetPlayer = player.GetComponent<Transform>();
         playerHealth = player.GetComponent<HealthSystem>();
         animator = GetComponent<Animator>();
+        pivotYmir = transform.parent;
+
     }
 
     void Update()
@@ -132,14 +136,14 @@ public class AttacksManager : MonoBehaviour
     {
         if (canLookAtPlayer)
         {
-            Vector3 to = targetPlayer.position - transform.position;
+            Vector3 to = targetPlayer.position - pivotYmir.position;
             to.y = 0f;
             if (to.sqrMagnitude < 0.0001f) return;
 
             // LookRotation ya mira en +Z; le sumamos el offset del modelo
             Quaternion desired = Quaternion.LookRotation(to, Vector3.up) * Quaternion.Euler(0f, modelOffset, 0f);
 
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, desired, turnSpeed * Time.deltaTime);
+            pivotYmir.rotation = Quaternion.RotateTowards(pivotYmir.rotation, desired, turnSpeed * Time.deltaTime);
         }
 
     }

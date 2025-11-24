@@ -10,6 +10,7 @@ public class HealthSystem : MonoBehaviour
 
     private bool isInmune = false;
     public float currentHealth;
+    private bool isDead = false;
     #endregion
 
 
@@ -56,7 +57,7 @@ public class HealthSystem : MonoBehaviour
 
         gameObjCadera.SetActive(false);
         gameObjRoto.SetActive(true);
-
+        isDead = true;
 
         StartCoroutine(dieCorutine());
     }
@@ -87,16 +88,21 @@ public class HealthSystem : MonoBehaviour
 
     void Revive()
     {
-        animatorRoto.SetTrigger("Revive"); //Animación de revivir
+        animatorRoto.SetTrigger("Revive"); //Animaciï¿½n de revivir
         Heal(reviveHeal); //Curar
 
         gameObjRoto.SetActive(false);
         gameObjCadera.SetActive(true);
-
+        isDead = false;
         //Rehabilitamos controller y movement
         charController.enabled = true;
         playerController.enabled = true;
         StartCoroutine(InmuneCoroutine()); //Inmunidad temporal
-        
+
+    }
+    
+    public bool getIsDead()
+    {
+        return isDead;
     }
 }
