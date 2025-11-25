@@ -26,7 +26,6 @@ public class PlayerAttackManager : MonoBehaviour
         if (!controller.IsDashing()) return;
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("EnemeyHit");
             DashAttack();
         }
     }
@@ -52,7 +51,6 @@ public class PlayerAttackManager : MonoBehaviour
         if (Time.time < _nextAirDropAttack) return; //Ataque en Cooldown
 
         animator.SetTrigger("Choque");
-        Debug.Log("AirDropHit");
         //Lanzar el objeto y, si golpea en el enemigo, hacerle da�o
 
         _nextAirDropAttack = Time.time + airDropAttackCooldown;
