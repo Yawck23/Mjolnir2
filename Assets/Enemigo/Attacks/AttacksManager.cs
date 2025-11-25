@@ -8,6 +8,7 @@ public class AttacksManager : MonoBehaviour
     private Transform targetPlayer;
 
     private Transform pivotYmir;
+    private EnemyHealthSystem ymirHealth;
     #endregion
 
     #region Variables: Boolean States
@@ -26,6 +27,7 @@ public class AttacksManager : MonoBehaviour
     [SerializeField] float turnSpeed = 360f;
     [SerializeField] float modelOffset = -105f;
     [SerializeField] GameObject airDrop;
+    [SerializeField] GameObject pisoHielo;
     #endregion
 
 
@@ -34,6 +36,7 @@ public class AttacksManager : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         targetPlayer = player.GetComponent<Transform>();
         playerHealth = player.GetComponent<HealthSystem>();
+        ymirHealth = GetComponent<EnemyHealthSystem>();
         animator = GetComponent<Animator>();
         pivotYmir = transform.parent;
 
@@ -73,6 +76,11 @@ public class AttacksManager : MonoBehaviour
     {
         Instantiate(airDrop);
     }
+
+    public void PisoHieloStart()
+    {
+        Instantiate(pisoHielo);
+    }
     #endregion
 
     #region Triggers Zones
@@ -101,28 +109,42 @@ public class AttacksManager : MonoBehaviour
     private void AttackSelect()
     {
         timer -= Time.deltaTime;
-        if (timer <= 0f)
-        {
-            int randomAttackSelect = Random.Range(1, 4); // 1 o 2
+        if (timer > 0f) return; //Esperamos al cooldown
+
+        int actualStage = ymirHealth.getActualStage();
+        int maxRandomRange = 3; //Por defecto hace ataques 1 y 2
+
+        if (actualStage > 1) maxRandomRange = 5; //Si se pasa la stage 1, hace ataques 1, 2, 3, 4.
+
+
+        int randomAttackSelect = Random.Range(1, maxRandomRange);
             
-            switch (randomAttackSelect)
-            {
-                case 1:
-                    if (playerInCerca) animator.SetTrigger("AplastarCerca");
-                    if (playerInLejos) animator.SetTrigger("AplastarLejos");
-                    break;
+        switch (randomAttackSelect)
+        {
+            case 1:
+                if (playerInCerca) animator.SetTrigger("AplastarCerca");
+                if (playerInLejos) animator.SetTrigger("AplastarLejos");
+                timer = attackCooldown;
+                break;
 
-                case 2:
-                    animator.SetTrigger("ArrastrarBajo");
-                    break;
+            case 2:
+                animator.SetTrigger("ArrastrarBajo");
+                timer = attackCooldown;
+                break;
 
-                case 3:
-                    animator.SetBool("LluviaHielo", true);
-                    break;
-            }
+            case 3:
+                animator.SetBool("LluviaHielo", true);
+                timer = attackCooldown;
+                break;
 
-            timer = attackCooldown;
+            case 4:
+                animator.SetTrigger("PisoHielo");
+                timer = attackCooldown / 4;
+                break;
         }
+
+        //timer = attackCooldown;
+        
     }
     private void OnTriggerEnter(Collider other)
     {

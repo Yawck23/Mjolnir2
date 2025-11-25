@@ -12,8 +12,9 @@ public class EnemyHealthSystem : MonoBehaviour
     #endregion
 
     #region Variables: Stages
-    [SerializeField] float damageToStage2 = 30f;
-    [SerializeField] float damageToStage3 = 40f;
+    [SerializeField] float damageToStage2 = 20f;
+    [SerializeField] float damageToStage3 = 30f;
+    [SerializeField] float damageToStage4 = 30f;
     private int actualStage;
 
     #endregion
@@ -85,7 +86,14 @@ public class EnemyHealthSystem : MonoBehaviour
                 break;
             
             case 3:
-                
+                if (maxHealth - damageToStage2 - damageToStage3 - damageToStage4 >= currentHealth){
+                    actualStage = 4;
+                    Debug.Log("Cambio a stage 4");
+                    animatorYmir.SetInteger("Stage", actualStage);
+                }
+                break;
+
+            case 4:
                 break;
         }
 
@@ -104,4 +112,6 @@ public class EnemyHealthSystem : MonoBehaviour
 
         isInmune = false;
     }
+
+    public int getActualStage() => actualStage;
 }
