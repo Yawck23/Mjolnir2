@@ -116,9 +116,8 @@ public class AttacksManager : MonoBehaviour
 
         if (actualStage > 1) maxRandomRange = 5; //Si se pasa la stage 1, hace ataques 1, 2, 3, 4.
 
-
         int randomAttackSelect = Random.Range(1, maxRandomRange);
-            
+
         switch (randomAttackSelect)
         {
             case 1:
@@ -139,9 +138,13 @@ public class AttacksManager : MonoBehaviour
 
             case 4:
                 animator.SetTrigger("PisoHielo");
-                timer = attackCooldown / 4;
+                timer = attackCooldown / 4; //Espera menos para realizar otro ataque
                 break;
         }
+
+        int bisAttack = Random.Range(0, 2);
+        if (bisAttack == 0) animator.SetBool("BisAttack", false);
+        if (bisAttack == 1) animator.SetBool("BisAttack", true);
 
         //timer = attackCooldown;
         
