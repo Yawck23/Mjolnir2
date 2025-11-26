@@ -19,7 +19,6 @@ public class EnemyHealthSystem : MonoBehaviour
 
     #endregion
 
-
     #region Variables: Components
     private Animator animatorYmir;
     private AttacksManager attackManager;
@@ -31,6 +30,7 @@ public class EnemyHealthSystem : MonoBehaviour
         currentHealth = maxHealth;
         animatorYmir = GetComponent<Animator>();
         attackManager = GetComponent<AttacksManager>();
+        animatorYmir.SetInteger("Stage", actualStage);
     }
 
     public void TakeDamage(float amount)
@@ -44,7 +44,7 @@ public class EnemyHealthSystem : MonoBehaviour
         animatorYmir.SetTrigger("Hurt");
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); //Mantener la vida entre 0 y max
-        Debug.Log("Stage actual =" +actualStage);
+
         StageManager();
             
         if (currentHealth <= 0)
