@@ -101,9 +101,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.7535372
-  m_TransitionOffset: 0
-  m_ExitTime: 0.76487094
+  m_TransitionDuration: 1.1649218
+  m_TransitionOffset: 0.12991081
+  m_ExitTime: 0.78342944
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -933,9 +933,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.4650941
+  m_TransitionDuration: 1.4970932
   m_TransitionOffset: 0
-  m_ExitTime: 0.87234044
+  m_ExitTime: 0.61497855
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -961,9 +961,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 1.0298426
+  m_TransitionDuration: 1.5093292
   m_TransitionOffset: 0
-  m_ExitTime: 0.8280416
+  m_ExitTime: 0.6588106
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

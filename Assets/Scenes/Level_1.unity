@@ -1238,7 +1238,7 @@ MonoBehaviour:
   accel: 20
   friction: 0.5
   groundIsIce: 0
-  speed: 45
+  speed: 50
   rotationSpeed: 450
   gravityMultiplier: 0.5
   jumpPower: 2
@@ -4163,6 +4163,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1511971869194326108, guid: 8e4be11aec760f84881da4ddf92068d3, type: 3}
   m_PrefabInstance: {fileID: 542914390}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &547845380 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7432389577035061402, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+  m_PrefabInstance: {fileID: 611384080}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &547845382
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547845380}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.14
+  m_Height: 0.73
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.27, z: 0}
 --- !u!1001 &549504399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4963,6 +4991,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1007766258}
+    - targetCorrespondingSourceObject: {fileID: -7064480081570031876, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1004153101}
+    - targetCorrespondingSourceObject: {fileID: -7432389577035061402, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 547845382}
     - targetCorrespondingSourceObject: {fileID: -3748836805809632403, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 611384083}
@@ -6796,7 +6830,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 80
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -7837,7 +7871,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 180308431}
     CustomLookAtTarget: 1
   Lens:
-    FieldOfView: 80
+    FieldOfView: 90
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -9036,6 +9070,34 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5288f7237f358f43b974709e220c72d, type: 3}
+--- !u!1 &1004153099 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7064480081570031876, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+  m_PrefabInstance: {fileID: 611384080}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1004153101
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004153099}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.22
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: -0.01, y: 0.19, z: -0.02}
 --- !u!1 &1007766254 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
