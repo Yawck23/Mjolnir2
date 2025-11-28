@@ -1279,6 +1279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2eff7dff8a72b044ba2e6c54d1ee78b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iceProjectile: {fileID: 7242957482451523017, guid: 7c8e202033511924faf7e86f7c5a1c51, type: 3}
   dashDamage: 10
   airDropDamage: 10
   airDropAttackCooldown: 2

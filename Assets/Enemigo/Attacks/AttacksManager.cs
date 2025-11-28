@@ -116,7 +116,10 @@ public class AttacksManager : MonoBehaviour
 
         if (actualStage > 1) maxRandomRange = 5; //Si se pasa la stage 1, hace ataques 1, 2, 3, 4.
 
+        //DEBUG
         int randomAttackSelect = Random.Range(1, maxRandomRange);
+        randomAttackSelect = 3;
+        //DEBUG
 
         switch (randomAttackSelect)
         {
