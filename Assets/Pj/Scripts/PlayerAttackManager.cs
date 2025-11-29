@@ -43,7 +43,8 @@ public class PlayerAttackManager : MonoBehaviour
         if (!controller.IsDashing()) return;
         if (hit.collider.CompareTag("AirDrop"))
         {
-            AirDropAttack(hit);
+            AirDropAttack();
+            Destroy(hit.gameObject);
         }
     }
 
@@ -53,7 +54,7 @@ public class PlayerAttackManager : MonoBehaviour
         enemyHealth.TakeDamage(dashDamage);
     }
 
-    private void AirDropAttack(ControllerColliderHit hit)
+    private void AirDropAttack()
     {
         if (Time.time < _nextAirDropAttack) return; //Ataque en Cooldown
 
