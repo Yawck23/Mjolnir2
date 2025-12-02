@@ -1376,6 +1376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2eff7dff8a72b044ba2e6c54d1ee78b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iceProjectile: {fileID: 7242957482451523017, guid: 7c8e202033511924faf7e86f7c5a1c51, type: 3}
   dashDamage: 10
   airDropDamage: 10
   airDropAttackCooldown: 2
@@ -5096,6 +5097,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1007766258}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1007766259}
     - targetCorrespondingSourceObject: {fileID: -7064480081570031876, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1004153101}
@@ -9255,6 +9259,9 @@ MonoBehaviour:
   modelOffset: -100
   airDrop: {fileID: 8740546959792921959, guid: 24d2897fea5297446892d8bf1903f334, type: 3}
   pisoHielo: {fileID: 8873252093590197748, guid: d9ee716109aab534ca480ff17dc7d891, type: 3}
+  debugMode: 1
+  debugAttack: 3
+  debugStage: 3
 --- !u!54 &1007766257
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9300,6 +9307,29 @@ MonoBehaviour:
   damageToStage2: 30
   damageToStage3: 40
   damageToStage4: 30
+--- !u!136 &1007766259
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007766254}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 34.468506
+  m_Height: 134.67346
+  m_Direction: 1
+  m_Center: {x: -45.741585, y: 27.336731, z: 1.2101021}
 --- !u!1001 &1013678252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9791,7 +9821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &1040189862
 CapsuleCollider:
   m_ObjectHideFlags: 0

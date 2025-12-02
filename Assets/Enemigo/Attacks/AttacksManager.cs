@@ -30,6 +30,11 @@ public class AttacksManager : MonoBehaviour
     [SerializeField] GameObject pisoHielo;
     #endregion
 
+    #region DebugMode
+    [SerializeField] bool debugMode = false;
+    [SerializeField] int debugAttack;
+    [SerializeField] int debugStage;
+    #endregion
 
     void Start()
     {
@@ -46,6 +51,11 @@ public class AttacksManager : MonoBehaviour
     {
         LookAtPlayer();
         AttackSelect();
+        
+        if (debugMode)
+        {
+            animator.SetInteger("Stage", debugStage);
+        }
     }
 
     #region Event Methods
@@ -117,6 +127,12 @@ public class AttacksManager : MonoBehaviour
         if (actualStage > 1) maxRandomRange = 5; //Si se pasa la stage 1, hace ataques 1, 2, 3, 4.
 
         int randomAttackSelect = Random.Range(1, maxRandomRange);
+        
+        if (debugMode)
+        {
+            randomAttackSelect = debugAttack;
+        }
+
 
         switch (randomAttackSelect)
         {
