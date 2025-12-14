@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour
     {
         MainMenuPanel.SetActive(false);
         TimePanel.SetActive(true);
+        GameManager.GM.StartGame();
     }
 
     /// <summary>
@@ -64,5 +65,26 @@ public class UIManager : MonoBehaviour
         MainMenuPanel.SetActive(true);
         TimePanel.SetActive(false);
         InGameMenuPanel.SetActive(false);
+
+        Restart();
+
+        GameManager.GM.GoToMainMenu();
+    }
+
+    public void Restart()
+    {
+        GameManager.GM.Restart();
+        GameManager.GM.Resume();
+        gameTime = 0;
+    }
+
+    public void Resume()
+    {
+        GameManager.GM.Resume();
+    }
+    
+    public void ExitGame()
+    {
+        GameManager.GM.Exit();
     }
 }

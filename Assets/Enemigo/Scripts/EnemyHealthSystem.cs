@@ -17,6 +17,8 @@ public class EnemyHealthSystem : MonoBehaviour
     [SerializeField] float damageToStage4 = 30f;
     private int actualStage;
 
+    [SerializeField] GameObject iceDome;
+
     #endregion
 
     #region Variables: Components
@@ -74,6 +76,7 @@ public class EnemyHealthSystem : MonoBehaviour
                     actualStage = 2;
                     Debug.Log("Cambio a stage 2");
                     animatorYmir.SetInteger("Stage", actualStage);
+                    iceDome.SetActive(true);
                 }
                 break;
             
