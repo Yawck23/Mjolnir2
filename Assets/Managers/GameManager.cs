@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
 
     public void AddToDeathCount()
     {
-        deathsCount ++;
+        deathsCount++;
     }
 
 
@@ -101,14 +101,24 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        GameStarted = true;
-        Pause = false;
-        uiManager.StartGame();
-        gameTime = 0;
-        deathsCount = 0;
+        switch (uiManager.GetSelectedLevel())
+        {
+            case 1:
+                SceneManager.LoadScene("Level_1");
+                GameStarted = true;
+                Pause = false;
+                uiManager.StartGame();
+                gameTime = 0;
+                deathsCount = 0;
+                break;
 
-        // ( La escena se debe ser previamente agregada la lista de escenas en build settings)
-        SceneManager.LoadScene("Level_1");
+            case 2:
+                GoToComingSoon();
+                break;
+
+            case 3:
+                break;
+        }
     }
 
     public void GoToMainMenu()
@@ -118,10 +128,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
 
         // ( La escena se debe ser previamente agregada la lista de escenas en build settings)
-        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("MainMenu")){
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("MainMenu"))
+        {
             SceneManager.LoadScene("MainMenu");
         }
-            
+
         uiManager.GoToMainMenue();
     }
 
@@ -150,7 +161,12 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
         uiManager.Win();
+        uiManager.unlockLevel2();
     }
 
+    public void GoToComingSoon()
+    {
+        uiManager.GoToComingSoon();
+    }
     #endregion
 }

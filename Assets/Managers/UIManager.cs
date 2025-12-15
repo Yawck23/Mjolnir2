@@ -5,13 +5,15 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] Text gameTimeText, winGameTimeText, deathsCountText;
-    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, TimePanel, LvlSelectPanel, WinPanel;
+    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, TimePanel, LvlSelectPanel, WinPanel, CoomingSoonPanel;
 
     private UICameraMovement cameraMovScript;
+    private UILevelSelect levelSelectScript;
 
     void Start()
     {
         cameraMovScript = GetComponent<UICameraMovement>();
+        levelSelectScript = GetComponentInChildren<UILevelSelect>();
         GoToMainMenue();
     }
 
@@ -54,6 +56,7 @@ public class UIManager : MonoBehaviour
         InGameMenuPanel.SetActive(false);
         LvlSelectPanel.SetActive(false);
         WinPanel.SetActive(false);
+        CoomingSoonPanel.SetActive(false);
 
         cameraMovScript.goToMainMenuCamera();
 
@@ -61,14 +64,31 @@ public class UIManager : MonoBehaviour
 
     public void GoToLvlSelect()
     {
+        CoomingSoonPanel.SetActive(false);
         MainMenuPanel.SetActive(false);
         LvlSelectPanel.SetActive(true);
         cameraMovScript.goToLvlSelectCamera();
     }
-    
+
+    public void GoToComingSoon()
+    {
+        LvlSelectPanel.SetActive(false);
+        CoomingSoonPanel.SetActive(true);
+    }
+
     public void Win()
     {
         WinPanel.SetActive(true);
         winGameTimeText.text = "Ganaste en " + GameManager.GM.GetGameTime().ToString("0") + " segundos y con " + GameManager.GM.GetDeathsCount().ToString("0") + " muertes";
+    }
+
+    public int GetSelectedLevel()
+    {
+        return levelSelectScript.getLevelSelected();
+    }
+    
+    public void unlockLevel2()
+    {
+        levelSelectScript.unlockLevel2();
     }
 }
