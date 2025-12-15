@@ -115,11 +115,14 @@ public class GameManager : MonoBehaviour
     {
         GameStarted = false;
         Pause = true;
-        uiManager.GoToMainMenue();
         Time.timeScale = 1;
-    
+
         // ( La escena se debe ser previamente agregada la lista de escenas en build settings)
-        SceneManager.LoadScene("MainMenu");
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("MainMenu")){
+            SceneManager.LoadScene("MainMenu");
+        }
+            
+        uiManager.GoToMainMenue();
     }
 
     public void Resume()

@@ -42,8 +42,6 @@ public class UIManager : MonoBehaviour
         MainMenuPanel.SetActive(false);
         TimePanel.SetActive(true);
         LvlSelectPanel.SetActive(false);
-
-        cameraMovScript.DisableMainMenuCameras();
     }
 
     /// <summary>
@@ -51,8 +49,6 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void GoToMainMenue()
     {
-        cameraMovScript.EnableMainMenuCameras();
-
         MainMenuPanel.SetActive(true);
         TimePanel.SetActive(false);
         InGameMenuPanel.SetActive(false);

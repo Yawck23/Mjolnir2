@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 373988140}
   - component: {fileID: 373988139}
   m_Layer: 0
-  m_Name: LvlSelect Camera
+  m_Name: LvlSelectCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -490,7 +490,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 533791002}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &446582000
 GameObject:
@@ -615,8 +615,6 @@ Transform:
   m_Children:
   - {fileID: 8475847449582010139}
   - {fileID: 8475847449613809508}
-  - {fileID: 963194228}
-  - {fileID: 373988140}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &534313363
@@ -1010,7 +1008,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1080,7 +1078,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 533791002}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &998989582
 GameObject:
@@ -3061,8 +3059,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286027779cd7b044392349c93bc779f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 963194225}
-  lvlSelectCamera: {fileID: 373988137}
+  mainMenuSceneName: MainMenu
+  mainCameraName: MainCamera
+  lvlSelectCameraName: LvlSelectCamera
   transitionDuration: 3
 --- !u!4 &8475847449613809508
 Transform:
@@ -3572,6 +3571,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 705507995}
+  - {fileID: 963194228}
+  - {fileID: 373988140}
   - {fileID: 533791002}
   - {fileID: 925832081}
   - {fileID: 1395308271}
