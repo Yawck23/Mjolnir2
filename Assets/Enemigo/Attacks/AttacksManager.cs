@@ -121,6 +121,8 @@ public class AttacksManager : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer > 0f) return; //Esperamos al cooldown
 
+        if (ymirHealth.IsDead()) return;
+
         int actualStage = ymirHealth.getActualStage();
         int maxRandomRange = 3; //Por defecto hace ataques 1 y 2
 

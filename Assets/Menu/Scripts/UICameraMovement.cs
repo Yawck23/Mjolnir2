@@ -27,7 +27,7 @@ public class UICameraMovement : MonoBehaviour
         if (mainCamera.transform.position.Equals(mainCameraPos)) return; //Evita que se mueva la cámara al iniciar el juego
         StartCoroutine(CameraLerpCoroutine(lvlSelectCameraPos, mainCameraPos, transitionDuration));
     }
-    
+
     private IEnumerator CameraLerpCoroutine(Vector3 start, Vector3 target, float lerpDuration)
     {
         float timeElapsed = 0f;
@@ -40,5 +40,17 @@ public class UICameraMovement : MonoBehaviour
         }
 
         mainCamera.transform.position = target;
+    }
+
+    public void DisableMainMenuCameras() //Se desactivan porque estan en el DontDestroyOnLoad
+    {
+        mainCamera.SetActive(false);
+        lvlSelectCamera.SetActive(false);
+    }
+    
+    public void EnableMainMenuCameras()
+    {
+        mainCamera.SetActive(true);
+        lvlSelectCamera.SetActive(true);
     }
 }

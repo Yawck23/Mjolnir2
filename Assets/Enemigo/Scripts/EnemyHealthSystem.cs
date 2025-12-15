@@ -1,4 +1,5 @@
 using System.Collections;
+using NUnit.Framework;
 using UnityEngine;
 
 public class EnemyHealthSystem : MonoBehaviour
@@ -6,6 +7,8 @@ public class EnemyHealthSystem : MonoBehaviour
     #region Variables: Health
     [SerializeField] float maxHealth = 100f;
     [SerializeField] float inmuneTime = 1f;
+
+    private bool isDead;
 
     private bool isInmune = false;
     public float currentHealth;
@@ -28,6 +31,7 @@ public class EnemyHealthSystem : MonoBehaviour
 
     void Start()
     {
+        isDead = false;
         actualStage = 1;
         currentHealth = maxHealth;
         animatorYmir = GetComponent<Animator>();
@@ -65,7 +69,8 @@ public class EnemyHealthSystem : MonoBehaviour
 
     private void Die()
     {
-        //StartCoroutine(dieCorutine());
+        isDead = true;
+        StartCoroutine(dieCorutine());
     }
 
     private void StageManager (){
@@ -102,10 +107,11 @@ public class EnemyHealthSystem : MonoBehaviour
 
     }
 
-    /*IEnumerator dieCorutine()
+    IEnumerator dieCorutine()
     {
-        //Falta implementar
-    }*/
+        GameManager.GM.Win();
+        yield return null;
+    }
 
     private IEnumerator InmuneCoroutine()
     {
@@ -117,4 +123,5 @@ public class EnemyHealthSystem : MonoBehaviour
     }
 
     public int getActualStage() => actualStage;
+    public bool IsDead() => isDead;
 }

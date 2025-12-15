@@ -4,9 +4,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    float gameTime;
-    [SerializeField] Text gameTimeText;
-    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, TimePanel, LvlSelectPanel;
+    [SerializeField] Text gameTimeText, winGameTimeText, deathsCountText;
+    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, TimePanel, LvlSelectPanel, WinPanel;
 
     private UICameraMovement cameraMovScript;
 
@@ -19,29 +18,19 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         // Si el juego fue iniciado
-        if (GameManager.GM.GetGameStarted())
-        {
-            // Counsulto el estado de Pausa en el objeto GM
-            // Si el juego está en transcurso cuento el tiempo y lo muestro en pantalla.
-            if (!GameManager.GM.GetPause())
-            {
-                gameTime = gameTime + Time.deltaTime;
-                gameTimeText.text = "Time: " + gameTime.ToString("0");
-            }
+        if (!GameManager.GM.GetGameStarted()) return;
 
-            // Counsulto el estado de Pausa.
-            // Si el juego está en pausa activo el menú.
-            // Me aseguro de hacer esta acción una vez consultando el estado del menú
-            if (GameManager.GM.GetPause() && !InGameMenuPanel.activeSelf)
-            {
-                InGameMenuPanel.SetActive(true);
-            }
-            // De lo controario lo apago.
-            // Me aseguro de hacer esta acción una vez consultando el estado del menú
-            else if (!GameManager.GM.GetPause() && InGameMenuPanel.activeSelf)
-            {
+        gameTimeText.text = "Time: " + GameManager.GM.GetGameTime().ToString("0");
+        deathsCountText.text = "Deaths: " + GameManager.GM.GetDeathsCount().ToString("0");
+
+            
+        if (GameManager.GM.GetPause() && !InGameMenuPanel.activeSelf)
+        {
+            InGameMenuPanel.SetActive(true);
+        }
+        else if (!GameManager.GM.GetPause() && InGameMenuPanel.activeSelf)
+        {
                 InGameMenuPanel.SetActive(false);
-            }
         }
     }
 
@@ -53,7 +42,8 @@ public class UIManager : MonoBehaviour
         MainMenuPanel.SetActive(false);
         TimePanel.SetActive(true);
         LvlSelectPanel.SetActive(false);
-        GameManager.GM.StartGame();
+
+        cameraMovScript.DisableMainMenuCameras();
     }
 
     /// <summary>
@@ -61,39 +51,28 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void GoToMainMenue()
     {
+        cameraMovScript.EnableMainMenuCameras();
+
         MainMenuPanel.SetActive(true);
         TimePanel.SetActive(false);
         InGameMenuPanel.SetActive(false);
         LvlSelectPanel.SetActive(false);
+        WinPanel.SetActive(false);
 
         cameraMovScript.goToMainMenuCamera();
 
-        Restart();
-
-        GameManager.GM.GoToMainMenu();
     }
 
-    public void Restart()
-    {
-        GameManager.GM.Restart();
-        GameManager.GM.Resume();
-        gameTime = 0;
-    }
-
-    public void Resume()
-    {
-        GameManager.GM.Resume();
-    }
-
-    public void ExitGame()
-    {
-        GameManager.GM.Exit();
-    }
-    
     public void GoToLvlSelect()
     {
         MainMenuPanel.SetActive(false);
         LvlSelectPanel.SetActive(true);
         cameraMovScript.goToLvlSelectCamera();
+    }
+    
+    public void Win()
+    {
+        WinPanel.SetActive(true);
+        winGameTimeText.text = "Ganaste en " + GameManager.GM.GetGameTime().ToString("0") + " segundos y con " + GameManager.GM.GetDeathsCount().ToString("0") + " muertes";
     }
 }

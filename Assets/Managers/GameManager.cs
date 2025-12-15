@@ -26,19 +26,18 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    bool Pause;
-    bool GameStarted;
-    //UIManager uiManager;
+    private bool Pause;
+    private bool GameStarted;
+    private UIManager uiManager;
+    private float gameTime;
+    private float deathsCount = 0;
 
     void Start()
     {
-        // Inicializo las variables de tiempo y timescale
         Pause = true;
-        // Timescale refiere a la velocidad de todo lo que est� controlado por tiempo
-        // esto incluye la fisica y todas las acciones que se calculen con Time.DeltaTime
         Time.timeScale = 1f; // 1 representa el tiempo normal del juego
-        // Consigo el el UIManager
-        //uiManager = transform.Find("CanvasMenu").GetComponent<UIManager>();
+
+        uiManager = transform.Find("CanvasMenu").GetComponent<UIManager>();
     }
 
     void Update()
@@ -47,10 +46,17 @@ public class GameManager : MonoBehaviour
         {
             TogglePause();
         }
+
+        if (!GetPause())
+        {
+            gameTime += Time.deltaTime;
+        }
     }
 
     #region Funciones publicas accesibles por todos los elementos del programa
 
+
+    #region Getters & Setters
     public bool GetPause()
     {
         return Pause;
@@ -61,74 +67,86 @@ public class GameManager : MonoBehaviour
         return GameStarted;
     }
 
+    public float GetGameTime()
+    {
+        return gameTime;
+    }
+
+    public float GetDeathsCount()
+    {
+        return deathsCount;
+    }
+
+    public void AddToDeathCount()
+    {
+        deathsCount ++;
+    }
+
+
+    #endregion
+
     public void TogglePause()
     {
-        // Cambio puase al valor opuesto
         Pause = !Pause;
-        // Cuando cambio pausa actualizo el estado de TimeScale
-        // Si el juego est� en pausa TimeScale es cero
+
         if (Pause)
         {
             Time.timeScale = 0;
         }
-        // Si el juego no est� en pausa el TimeScale es uno
         else
         {
             Time.timeScale = 1;
         }
     }
 
-    /// <summary>
-    /// Funci�n p�blica que inicia el juego y carga el primer nivel
-    /// </summary>
     public void StartGame()
     {
         GameStarted = true;
         Pause = false;
-        // Llamo una funcion del uiManager
-        //uiManager.StartGame();
-        // Se carga la escena del nivel 1. Esta funcion se llama referenciando al nombre de la escena
+        uiManager.StartGame();
+        gameTime = 0;
+        deathsCount = 0;
+
         // ( La escena se debe ser previamente agregada la lista de escenas en build settings)
         SceneManager.LoadScene("Level_1");
     }
 
-    /// <summary>
-    /// Funci�n publica llamada por un boton de men� para volver a la escena inicial
-    /// </summary>
     public void GoToMainMenu()
     {
         GameStarted = false;
         Pause = true;
-        //uiManager.GoToMainMenue();
+        uiManager.GoToMainMenue();
         Time.timeScale = 1;
-        // Llamo una funcion del uiManager
-        // Se carga la escena del nivel 1. Esta funcion se llama referenciando al nombre de la escena
+    
         // ( La escena se debe ser previamente agregada la lista de escenas en build settings)
         SceneManager.LoadScene("MainMenu");
     }
 
-    /// <summary>
-    /// Funci�n publica llamada por boton de men� para reanudar el juego
-    /// </summary>
     public void Resume()
     {
         TogglePause();
     }
 
-    /// <summary>
-    /// Funci�n publica llamada por boton de men� para reiniciar la escena
-    /// </summary>
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameTime = 0;
+        deathsCount = 0;
     }
 
-    /// <summary>
-    /// Funci�n publica llamada por el boton de men� para cerrar la aplicaci�n (Funciona s�lo si el juego est� compilado).
-    /// </summary>
     public void Exit()
     {
         Application.Quit();
+    }
+
+    public void GoToLvlSelect()
+    {
+        uiManager.GoToLvlSelect();
+    }
+
+    public void Win()
+    {
+        uiManager.Win();
     }
 
     #endregion
