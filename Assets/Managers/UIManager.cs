@@ -1,20 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 
 public class UIManager : MonoBehaviour
 {
     float gameTime;
-    // Variable de tipo elemento de texto (Requiere que se escriba "using UnityEngine.UI;"
-    // en la parte superior del scrpit para funcionar)
     [SerializeField] Text gameTimeText;
-    // Objeto panel de menú con los botones
-    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, TimePanel;
+    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, TimePanel, LvlSelectPanel;
+
+    private UICameraMovement cameraMovScript;
 
     void Start()
     {
+        cameraMovScript = GetComponent<UICameraMovement>();
         GoToMainMenue();
     }
 
@@ -54,6 +52,7 @@ public class UIManager : MonoBehaviour
     {
         MainMenuPanel.SetActive(false);
         TimePanel.SetActive(true);
+        LvlSelectPanel.SetActive(false);
         GameManager.GM.StartGame();
     }
 
@@ -65,6 +64,9 @@ public class UIManager : MonoBehaviour
         MainMenuPanel.SetActive(true);
         TimePanel.SetActive(false);
         InGameMenuPanel.SetActive(false);
+        LvlSelectPanel.SetActive(false);
+
+        cameraMovScript.goToMainMenuCamera();
 
         Restart();
 
@@ -82,9 +84,16 @@ public class UIManager : MonoBehaviour
     {
         GameManager.GM.Resume();
     }
-    
+
     public void ExitGame()
     {
         GameManager.GM.Exit();
+    }
+    
+    public void GoToLvlSelect()
+    {
+        MainMenuPanel.SetActive(false);
+        LvlSelectPanel.SetActive(true);
+        cameraMovScript.goToLvlSelectCamera();
     }
 }
