@@ -64,6 +64,11 @@ public class HealthSystem : MonoBehaviour
 
     IEnumerator dieCorutine()
     {
+        while (playerController.IsGrounded() == false) //Si muere en el aire, esperamos a que toque el piso para desactivar el playerController
+        {
+            yield return null;
+        }
+        
         playerController.enabled = false;
         charController.enabled = false;
 

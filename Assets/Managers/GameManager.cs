@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
             // Si este es el �nico elemento GameManager se asigna a la variable GM
             GM = this;
             // Se pone en un modo que evita ser destruido al cambiar de escena
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
         }
     }
     #endregion
