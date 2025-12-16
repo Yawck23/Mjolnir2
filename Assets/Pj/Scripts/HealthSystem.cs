@@ -20,6 +20,11 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] GameObject gameObjRoto;
     private Animator animatorRoto;
     private CharacterController charController;
+    
+    #endregion
+
+    #region Player Particles
+    private PlayerParticles playerParticles;
     #endregion
 
     void Start()
@@ -28,6 +33,7 @@ public class HealthSystem : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         animatorRoto = transform.Find("Roto").GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
+        playerParticles = GetComponent<PlayerParticles>();
     }
 
     public void TakeDamage(float amount)
@@ -54,7 +60,8 @@ public class HealthSystem : MonoBehaviour
 
     void Die()
     {
-        GameManager.GM.AddToDeathCount();
+        if (GameManager.GM != null)
+            GameManager.GM.AddToDeathCount();
 
         gameObjCadera.SetActive(false);
         gameObjRoto.SetActive(true);
@@ -103,6 +110,7 @@ public class HealthSystem : MonoBehaviour
         //Rehabilitamos controller y movement
         charController.enabled = true;
         playerController.enabled = true;
+        playerParticles.PlayRayoRevivir(); //Particulas de revivir
         StartCoroutine(InmuneCoroutine()); //Inmunidad temporal
 
     }
