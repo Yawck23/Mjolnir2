@@ -42771,21 +42771,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 180308431}
     m_Modifications:
+    - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3657328344993185637, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: m_Name
       value: RayoRevivir
       objectReference: {fileID: 0}
     - target: {fileID: 5649565201308342363, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.023
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5649565201308342363, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.054246996
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5649565201308342363, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.037290037
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5649565201308342363, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: m_LocalRotation.w

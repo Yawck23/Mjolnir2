@@ -60,8 +60,7 @@ public class HealthSystem : MonoBehaviour
 
     void Die()
     {
-        if (GameManager.GM != null)
-            GameManager.GM.AddToDeathCount();
+        GameManager.GM.AddToDeathCount();
 
         gameObjCadera.SetActive(false);
         gameObjRoto.SetActive(true);
