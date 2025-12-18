@@ -27,8 +27,8 @@ public class AirDropSpawn : MonoBehaviour
     #region Variables: playerFollow
     private Transform player;
     #endregion
-
     private Animator enemyAnimator;
+    private bool animationEnded = false;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -67,45 +67,30 @@ public class AirDropSpawn : MonoBehaviour
 
     private bool validSpawnPoint(Vector3 spawnObjective)
     {
-        //Valida si no hay otro objeto debajo con el mismo tag
+        //Valida si no hay otro objeto debajo o por encima con el mismo tag
         bool valid = true;
 
-        //Raycast en cada esquina
-        rayLeftBack  = new Ray(spawnObjective - Vector3.right * halfObjectExtents.x - Vector3.forward * halfObjectExtents.z, Vector3.down);
-        rayRightBack = new Ray(spawnObjective + Vector3.right * halfObjectExtents.x - Vector3.forward * halfObjectExtents.z, Vector3.down);
-        rayLeftFront   = new Ray(spawnObjective - Vector3.right * halfObjectExtents.x + Vector3.forward * halfObjectExtents.z, Vector3.down);
-        rayRightFront  = new Ray(spawnObjective + Vector3.right * halfObjectExtents.x + Vector3.forward * halfObjectExtents.z, Vector3.down);
+        //Raycast en cada esquina en dirección hacia abajo y hacia arriba
+        Ray[] rays = {
+            new Ray(spawnObjective - Vector3.right * halfObjectExtents.x - Vector3.forward * halfObjectExtents.z, Vector3.down),
+            new Ray(spawnObjective + Vector3.right * halfObjectExtents.x - Vector3.forward * halfObjectExtents.z, Vector3.down),
+            new Ray(spawnObjective - Vector3.right * halfObjectExtents.x + Vector3.forward * halfObjectExtents.z, Vector3.down),
+            new Ray(spawnObjective + Vector3.right * halfObjectExtents.x + Vector3.forward * halfObjectExtents.z, Vector3.down),
+            new Ray(spawnObjective - Vector3.right * halfObjectExtents.x - Vector3.forward * halfObjectExtents.z, Vector3.up),
+            new Ray(spawnObjective + Vector3.right * halfObjectExtents.x - Vector3.forward * halfObjectExtents.z, Vector3.up),
+            new Ray(spawnObjective - Vector3.right * halfObjectExtents.x + Vector3.forward * halfObjectExtents.z, Vector3.up),
+            new Ray(spawnObjective + Vector3.right * halfObjectExtents.x + Vector3.forward * halfObjectExtents.z, Vector3.up)
+        }; 
 
-        if (Physics.Raycast(rayLeftBack, out RaycastHit hit, 1000f, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
+        foreach (Ray ray in rays)
         {
-            if (hit.collider.CompareTag(dropTag))
+            if (Physics.Raycast(ray, out RaycastHit hit, 1000f, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
             {
-                valid = false;
-            }
-        }
-
-        if (Physics.Raycast(rayRightBack, out RaycastHit hit2, 1000f, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
-        {
-            if (hit2.collider.CompareTag(dropTag))
-            {
-                valid = false;
-            }
-        }
-
-        if (Physics.Raycast(rayLeftFront, out RaycastHit hit3, 1000f, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
-        {
-            if (hit3.collider.CompareTag(dropTag))
-            {
-                valid = false;
-            }
-        }
-
-        if (Physics.Raycast(rayRightFront, out RaycastHit hit4, 1000f, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
-        {
-            if (hit4.collider.CompareTag(dropTag))
-            {
-                valid = false;
-            }
+                if (hit.collider.CompareTag(dropTag))
+                {
+                    valid = false;
+                }
+            } 
         }
 
         return valid;
@@ -137,8 +122,14 @@ public class AirDropSpawn : MonoBehaviour
         }
 
         enemyAnimator.SetBool("LluviaHielo", false);
+        animationEnded = true;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         Destroy(this.gameObject);
+    }
+
+    void OnDestroy() //Para intentar solucionar el bug de que se cuelga en la lluvia de hielo
+    {
+        if (animationEnded == false) enemyAnimator.SetBool("LluviaHielo", false);
     }
 }

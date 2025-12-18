@@ -120,41 +120,41 @@ public class AttacksManager : MonoBehaviour
     {
         timer -= Time.deltaTime;
         if (timer > 0f) return; //Esperamos al cooldown
+        if (ymirHealth.IsDead()) return; //Si el boss está muerto, no elige ataques
+        if (playerHealth.getIsDead()) return; //Si el player está muerto, no elige ataques
 
-        if (ymirHealth.IsDead()) return;
-
-        int actualStage = ymirHealth.getActualStage();
-        int maxRandomRange = 3; //Por defecto hace ataques 1 y 2
-
-        if (actualStage > 1) maxRandomRange = 5; //Si se pasa la stage 1, hace ataques 1, 2, 3, 4.
-
-        int randomAttackSelect = Random.Range(1, maxRandomRange);
-        
         if (debugMode)
         {
             randomAttackSelect = debugAttack;
+        }
+        else
+        {
+            int actualStage = ymirHealth.getActualStage();
+            int maxRandomRange = 3; //Por defecto hace ataques 1 y 2
+            if (actualStage > 1) maxRandomRange = 5; //Si se pasa la stage 1, hace ataques 1, 2, 3, 4.
+            randomAttackSelect = Random.Range(1, maxRandomRange);
         }
 
 
         switch (randomAttackSelect)
         {
-            case 1:
+            case 1: //Aplastar cerca o lejos
                 if (playerInCerca) animator.SetTrigger("AplastarCerca");
                 if (playerInLejos) animator.SetTrigger("AplastarLejos");
                 timer = attackCooldown;
                 break;
 
-            case 2:
+            case 2: //Arrastrar
                 animator.SetTrigger("ArrastrarBajo");
                 timer = attackCooldown;
                 break;
 
-            case 3:
+            case 3: //Lluvia de hielo
                 animator.SetBool("LluviaHielo", true);
                 timer = attackCooldown;
                 break;
 
-            case 4:
+            case 4: //Piso de hielo
                 animator.SetTrigger("PisoHielo");
                 timer = attackCooldown / 4; //Espera menos para realizar otro ataque
                 break;
@@ -162,16 +162,13 @@ public class AttacksManager : MonoBehaviour
 
         int bisAttack = Random.Range(0, 2);
         if (bisAttack == 0) animator.SetBool("BisAttack", false);
-        if (bisAttack == 1) animator.SetBool("BisAttack", true);
-
-        //timer = attackCooldown;
-        
+        if (bisAttack == 1) animator.SetBool("BisAttack", true);        
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && canApplyDamage)
         {
-            playerHealth.TakeDamage(30);
+            playerHealth.TakeDamage(100f);
         }
     }
 
