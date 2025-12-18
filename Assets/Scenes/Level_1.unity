@@ -14631,7 +14631,7 @@ MonoBehaviour:
   currentHealth: 0
   damageToStage2: 40
   damageToStage3: 40
-  damageToStage4: 30
+  damageToStage4: 40
   iceDome: {fileID: 1169307846}
 --- !u!136 &1007766259
 CapsuleCollider:
