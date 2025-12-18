@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] Text gameTimeText, winGameTimeText, deathsCountText;
-    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, TimePanel, LvlSelectPanel, WinPanel, CoomingSoonPanel;
+    [SerializeField] Text gameTimeText, winGameTimeText, deathsCountText, deathsCountTextInDeathScreen;
+    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, TimePanel, LvlSelectPanel, WinPanel, CoomingSoonPanel, DeathScreenPanel;
 
     private UICameraMovement cameraMovScript;
     private UILevelSelect levelSelectScript;
@@ -57,6 +58,7 @@ public class UIManager : MonoBehaviour
         LvlSelectPanel.SetActive(false);
         WinPanel.SetActive(false);
         CoomingSoonPanel.SetActive(false);
+        DeathScreenPanel.SetActive(false);
 
         cameraMovScript.goToMainMenuCamera();
 
@@ -76,10 +78,20 @@ public class UIManager : MonoBehaviour
         CoomingSoonPanel.SetActive(true);
     }
 
+    public void GoToDeathScreen()
+    {
+        DeathScreenPanel.SetActive(true);
+        StartCoroutine(DeathCountCoRoutineTest());
+    }
+
+    public void ExitDeathScreen(){
+        DeathScreenPanel.SetActive(false);
+    }
+
     public void Win()
     {
         WinPanel.SetActive(true);
-        winGameTimeText.text = "Ganaste en " + GameManager.GM.GetGameTime().ToString("0") + " segundos y con " + GameManager.GM.GetDeathsCount().ToString("0") + " muertes";
+        winGameTimeText.text = "Ganaste\n" + "Tiempo: " + GameManager.GM.GetGameTime().ToString("0") + "\nMuertes: " + GameManager.GM.GetDeathsCount().ToString("0");
     }
 
     public int GetSelectedLevel()
@@ -90,5 +102,13 @@ public class UIManager : MonoBehaviour
     public void unlockLevel2()
     {
         levelSelectScript.unlockLevel2();
+    }
+
+    private IEnumerator DeathCountCoRoutineTest()
+    {
+        // Código antes de la espera
+        yield return new WaitForSeconds(1f); // Espera para cambiar de número
+        
+        deathsCountTextInDeathScreen.text = "Muertes: " + GameManager.GM.GetDeathsCount().ToString("0");
     }
 }

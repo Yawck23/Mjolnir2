@@ -67,6 +67,8 @@ public class HealthSystem : MonoBehaviour
         isDead = true;
 
         StartCoroutine(dieCorutine());
+
+        GameManager.GM.GoToDeathScreen();
     }
 
     IEnumerator dieCorutine()
@@ -110,6 +112,9 @@ public class HealthSystem : MonoBehaviour
         charController.enabled = true;
         playerController.enabled = true;
         playerParticles.PlayRayoRevivir(); //Particulas de revivir
+
+        GameManager.GM.ExitDeathScreen();
+
         StartCoroutine(InmuneCoroutine()); //Inmunidad temporal
 
     }

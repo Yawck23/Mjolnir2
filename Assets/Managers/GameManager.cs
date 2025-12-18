@@ -164,6 +164,14 @@ public class GameManager : MonoBehaviour
         uiManager.unlockLevel2();
     }
 
+    public void GoToDeathScreen()
+    {
+        uiManager.GoToDeathScreen();
+    }
+
+    public void ExitDeathScreen(){
+        uiManager.ExitDeathScreen();
+    }
     public void GoToComingSoon()
     {
         uiManager.GoToComingSoon();
