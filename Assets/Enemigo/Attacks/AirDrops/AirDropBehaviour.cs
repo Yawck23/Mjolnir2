@@ -15,15 +15,16 @@ public class AirDropBehaviour : MonoBehaviour
     #region Variables: detectPlayer
     private Vector3 halfObjectExtents;
     private BoxCollider objectCollider;
-    [SerializeField] float detectDistance;
-    [SerializeField] float centerOffset;
+    //[SerializeField] float detectDistance;
+    //[SerializeField] float centerOffset;
     public bool playerDetected = false;
+    [SerializeField] float detectDistance = 15f; // Distancia extra hacia abajo
     #endregion
 
     #region Variables: applyDamage
     private GameObject playerObject;
     private HealthSystem playerHealth;
-    [SerializeField] private float damage = 5f;
+    [SerializeField] private float damage = 100f;
     #endregion
 
     [SerializeField] float destroyAfter = 10f;
@@ -78,7 +79,7 @@ public class AirDropBehaviour : MonoBehaviour
 
     private bool detectPlayer()
     {
-        //Devuelve true si detecta una colisión con un jugador
+        /*//Devuelve true si detecta una colisión con un jugador
         Vector3 bottomCenter = transform.position - transform.up * detectDistance;
 
         Ray[] rays = {
@@ -100,6 +101,37 @@ public class AirDropBehaviour : MonoBehaviour
                     return true;
                 }
             }
+        }
+
+        return false;*/
+
+
+        //Nueva detección del player
+        Bounds bounds = objectCollider.bounds;
+        Vector3 centerBottom = new Vector3(bounds.center.x, bounds.min.y, bounds.center.z);
+
+        Vector3[] corners = new Vector3[4];
+        corners[0] = new Vector3(bounds.min.x, bounds.min.y, bounds.min.z);
+        corners[1] = new Vector3(bounds.max.x, bounds.min.y, bounds.min.z);
+        corners[2] = new Vector3(bounds.max.x, bounds.min.y, bounds.max.z);
+        corners[3] = new Vector3(bounds.min.x, bounds.min.y, bounds.max.z);
+
+        foreach (Vector3 corner in corners)
+        {
+            Vector3 target = centerBottom + Vector3.down * detectDistance;
+            Vector3 direction = (target - corner).normalized;
+            float distance = Vector3.Distance(corner, target);
+
+            if (Physics.Raycast(corner, direction, out RaycastHit hit, distance, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    return true;
+                }
+            }
+
+            // Dibujar el rayo para debug
+            Debug.DrawRay(corner, direction * distance, Color.blue);
         }
 
         return false;
