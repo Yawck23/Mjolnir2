@@ -7,6 +7,9 @@ public class PisoHieloSpawn : MonoBehaviour
 
     [SerializeField] float offsetPiso = 1.5f;
     [SerializeField] float timeDuration = 20f;
+    private float lifeTimer = 0f;
+
+    [SerializeField] float damagePeriod = 0.3f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,5 +27,19 @@ public class PisoHieloSpawn : MonoBehaviour
         transform.rotation = pisoHieloRotation;
 
         Destroy(this.gameObject, timeDuration);
+    }
+
+    void Update()
+    {
+        lifeTimer += Time.deltaTime;
+    }
+
+    public float GetLifeTimer()
+    {
+        return lifeTimer;
+    }
+
+    public float GetDamagePeriod(){
+        return damagePeriod;
     }
 }

@@ -40,9 +40,10 @@ public class PlayerAttackManager : MonoBehaviour
     //AirDrops son colliders
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (!controller.IsDashing()) return;
+        
         if (hit.collider.CompareTag("AirDrop"))
         {
+            if (!controller.IsDashing()) return;
             AirDropAttack();
             Destroy(hit.gameObject);
         }

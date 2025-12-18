@@ -123,4 +123,18 @@ public class HealthSystem : MonoBehaviour
     {
         return isDead;
     }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.CompareTag("PisoHielo"))
+        {
+            PisoHieloSpawn pisoHielo = hit.collider.GetComponentInParent<PisoHieloSpawn>();
+            float pisoHieloLifeTime = pisoHielo.GetLifeTimer();
+            float damagePeriod = pisoHielo.GetDamagePeriod();
+            if (pisoHieloLifeTime < damagePeriod)
+            {
+                TakeDamage(100f); //Daño si el piso de hielo es muy nuevo
+            }
+        }
+    }
 }
