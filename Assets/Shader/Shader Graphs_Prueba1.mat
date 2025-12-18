@@ -32,7 +32,7 @@ Material:
     - _Noise_scale: 20
     - _Twirl_amount: 8
     m_Colors:
-    - _Color: {r: 1.1039064, g: 7.8417273, b: 13.766359, a: 1}
+    - _Color: {r: 1.7956486, g: 4.808112, b: 7.4642653, a: 1}
     - _NoiseSpeed: {r: 0, g: 0.5, b: 0, a: 0}
     - _TwirlSpeed: {r: 0, g: 0.5, b: 0, a: 0}
     - _Twirl_Center: {r: 0.5, g: -0.5, b: 0, a: 0}

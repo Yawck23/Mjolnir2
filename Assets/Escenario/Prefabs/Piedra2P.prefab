@@ -48,12 +48,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: f33b7ade73e88f348860c96ad950037d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fc5f598a528a02429bd3eaea216f541, type: 2}
     - target: {fileID: 919132149155446097, guid: f33b7ade73e88f348860c96ad950037d, type: 3}
       propertyPath: m_Name
-      value: Piedra2
+      value: Piedra2P
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f33b7ade73e88f348860c96ad950037d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4077991763653338165}
   m_SourcePrefab: {fileID: 100100000, guid: f33b7ade73e88f348860c96ad950037d, type: 3}
+--- !u!1 &3679074236642001767 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f33b7ade73e88f348860c96ad950037d, type: 3}
+  m_PrefabInstance: {fileID: 4598134913246150198}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4077991763653338165
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679074236642001767}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4493585093827132993, guid: f33b7ade73e88f348860c96ad950037d, type: 3}

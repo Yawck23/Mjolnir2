@@ -48,9 +48,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 36e105865117e6248b3e9a0219c079cc, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4cab2085fb23b8f45a76fe6a3b7f5c61, type: 2}
     - target: {fileID: 919132149155446097, guid: 36e105865117e6248b3e9a0219c079cc, type: 3}
       propertyPath: m_Name
-      value: PinoFlaco2
+      value: PinoFlaco2P
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
