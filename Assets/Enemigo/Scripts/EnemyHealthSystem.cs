@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHealthSystem : MonoBehaviour
 {
     #region Variables: Health
-    [SerializeField] float maxHealth = 100f;
+    private float maxHealth;
     [SerializeField] float inmuneTime = 1f;
 
     private bool isDead;
@@ -15,9 +15,10 @@ public class EnemyHealthSystem : MonoBehaviour
     #endregion
 
     #region Variables: Stages
-    [SerializeField] float damageToStage2 = 20f;
-    [SerializeField] float damageToStage3 = 30f;
-    [SerializeField] float damageToStage4 = 30f;
+    [SerializeField] float stage1Health = 30f;
+    [SerializeField] float stage2Health = 30f;
+    [SerializeField] float stage3Health = 30f;
+    [SerializeField] float stage4Health = 30f;
     private int actualStage;
 
     [SerializeField] GameObject iceDome;
@@ -33,6 +34,7 @@ public class EnemyHealthSystem : MonoBehaviour
     {
         isDead = false;
         actualStage = 1;
+        maxHealth = stage1Health + stage2Health + stage3Health + stage4Health;
         currentHealth = maxHealth;
         animatorYmir = GetComponent<Animator>();
         attackManager = GetComponent<AttacksManager>();
@@ -77,7 +79,7 @@ public class EnemyHealthSystem : MonoBehaviour
 
         switch (actualStage){
             case 1:
-                if ((maxHealth - damageToStage2) >= currentHealth){
+                if ((maxHealth - stage1Health) >= currentHealth){
                     actualStage = 2;
                     Debug.Log("Cambio a stage 2");
                     animatorYmir.SetInteger("Stage", actualStage);
@@ -86,7 +88,7 @@ public class EnemyHealthSystem : MonoBehaviour
                 break;
             
             case 2:
-                if (maxHealth - damageToStage2 - damageToStage3 >= currentHealth){
+                if (maxHealth - stage1Health - stage2Health >= currentHealth){
                     actualStage = 3;
                     Debug.Log("Cambio a stage 3");
                     animatorYmir.SetInteger("Stage", actualStage);
@@ -94,7 +96,7 @@ public class EnemyHealthSystem : MonoBehaviour
                 break;
             
             case 3:
-                if (maxHealth - damageToStage2 - damageToStage3 - damageToStage4 >= currentHealth){
+                if (maxHealth - stage1Health - stage2Health - stage3Health >= currentHealth){
                     actualStage = 4;
                     Debug.Log("Cambio a stage 4");
                     animatorYmir.SetInteger("Stage", actualStage);

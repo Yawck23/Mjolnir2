@@ -168,7 +168,7 @@ public class AttacksManager : MonoBehaviour
     {
         if (other.CompareTag("Player") && canApplyDamage)
         {
-            playerHealth.TakeDamage(100f);
+            playerHealth.TakeDamage();
         }
     }
 

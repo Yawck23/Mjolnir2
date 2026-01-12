@@ -14,7 +14,6 @@ public class PlayerAttackManager : MonoBehaviour
     #endregion
 
     [SerializeField] float dashDamage = 10f;
-    [SerializeField] float airDropDamage = 10f;
     [SerializeField] float airDropAttackCooldown = 2f;
     private float _nextAirDropAttack = 0f;
 

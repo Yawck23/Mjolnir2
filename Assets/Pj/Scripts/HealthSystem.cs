@@ -4,13 +4,12 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     #region Variables: Health
-    [SerializeField] float maxHealth = 100f;
-    [SerializeField] float reviveHeal = 30f;
     [SerializeField] float inmuneTime = 1f;
 
     private bool isInmune = false;
-    public float currentHealth;
     private bool isDead = false;
+
+    [SerializeField] KeyCode reviveKey = KeyCode.O;
     #endregion
 
 
@@ -29,33 +28,20 @@ public class HealthSystem : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth;
+        isDead = false;
         playerController = GetComponent<PlayerController>();
         animatorRoto = transform.Find("Roto").GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
         playerParticles = GetComponent<PlayerParticles>();
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage()
     {
         if (!isInmune)
         {
-            currentHealth -= amount;
-            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); //Mantener la vida entre 0 y max
-            
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
-
+            Die();
             StartCoroutine(InmuneCoroutine()); //Inmunidad temporal
         }   
-    }
-
-    public void Heal(float amount)
-    {
-        currentHealth += amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); //Mantener la vida entre 0 y max
     }
 
     void Die()
@@ -81,9 +67,9 @@ public class HealthSystem : MonoBehaviour
         playerController.enabled = false;
         charController.enabled = false;
 
-        while (currentHealth <= 0)
+        while (isDead == true)
         {
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Input.GetKeyDown(reviveKey))
             {
                 Revive();
             }
@@ -103,7 +89,6 @@ public class HealthSystem : MonoBehaviour
     void Revive()
     {
         animatorRoto.SetTrigger("Revive"); //Animaci�n de revivir
-        Heal(reviveHeal); //Curar
 
         gameObjRoto.SetActive(false);
         gameObjCadera.SetActive(true);
@@ -133,7 +118,7 @@ public class HealthSystem : MonoBehaviour
             float damagePeriod = pisoHielo.GetDamagePeriod();
             if (pisoHieloLifeTime < damagePeriod)
             {
-                TakeDamage(100f); //Daño si el piso de hielo es muy nuevo
+                TakeDamage(); //Daño si el piso de hielo es muy nuevo
             }
         }
     }

@@ -21,10 +21,9 @@ public class AirDropBehaviour : MonoBehaviour
     [SerializeField] float detectDistance = 15f; // Distancia extra hacia abajo
     #endregion
 
-    #region Variables: applyDamage
+    #region Variables: Components
     private GameObject playerObject;
     private HealthSystem playerHealth;
-    [SerializeField] private float damage = 100f;
     #endregion
 
     [SerializeField] float destroyAfter = 10f;
@@ -51,7 +50,7 @@ public class AirDropBehaviour : MonoBehaviour
         if (detectPlayer())
         {
             playerDetected = true;
-            playerHealth.TakeDamage(damage);
+            playerHealth.TakeDamage();
         }
 
     }
