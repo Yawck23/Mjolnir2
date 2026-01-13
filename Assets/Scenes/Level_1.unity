@@ -2480,10 +2480,10 @@ MonoBehaviour:
   m_LegacyPriority: 0
   Target:
     TrackingTarget: {fileID: 1650340404}
-    LookAtTarget: {fileID: 1650340404}
+    LookAtTarget: {fileID: 820614200}
     CustomLookAtTarget: 1
   Lens:
-    FieldOfView: 75.3
+    FieldOfView: 75
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -2594,11 +2594,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 1665142441}
   player: {fileID: 180308431}
-  smoothSpeed: 180
+  rotationSmoothSpeed: 180
   minRadius: 90
   maxRadius: 205
   minDistance: 70
   maxDistance: 180
+  lookAtTargets:
+  - {fileID: 1650340404}
+  - {fileID: 611384084}
+  targetFocusDummy: {fileID: 820614200}
+  targetChangeKey: 114
+  focusSmoothSpeed: 2
 --- !u!114 &283625752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5642,7 +5648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3748836805809632403, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
       propertyPath: m_Name
-      value: Bone.008
+      value: ManoDerecha
       objectReference: {fileID: 0}
     - target: {fileID: -3748836805809632403, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
       propertyPath: m_TagString
@@ -5806,6 +5812,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.20983025, y: 1.1, z: 0.3}
   m_Center: {x: 0.027829776, y: 0.25, z: -0.0000002343223}
+--- !u!4 &611384084 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2466357704844149868, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+  m_PrefabInstance: {fileID: 611384080}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &618020015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8145,6 +8156,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83d99abf92b98f9428c855c81c31d684, type: 3}
+--- !u!1 &820614199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 820614200}
+  m_Layer: 0
+  m_Name: CameraFocusDummy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &820614200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820614199}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 34.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1665142441}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &821267082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25593,6 +25635,7 @@ Transform:
   m_Children:
   - {fileID: 611384081}
   - {fileID: 1650340404}
+  - {fileID: 820614200}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &1677461570

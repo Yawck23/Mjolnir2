@@ -5,23 +5,33 @@ public class NewCameraTest : MonoBehaviour
 {
     [SerializeField] Transform enemy;
     [SerializeField] Transform player;
-    [SerializeField] float smoothSpeed = 180f;
+    [SerializeField] float rotationSmoothSpeed = 180f;
     [SerializeField] float minRadius = 90f;
     [SerializeField] float maxRadius = 180f;
     [SerializeField] float minDistance = 5f;
     [SerializeField] float maxDistance = 25f;
 
+    [SerializeField] Transform[] lookAtTargets;
+    [SerializeField] Transform targetFocusDummy;
+    [SerializeField] KeyCode targetChangeKey = KeyCode.R;
+    private int targetIndex = 0;
+    [SerializeField] float focusSmoothSpeed = 5f;
+
     private CinemachineOrbitalFollow orbital;
+    private CinemachineCamera cinemachineCamera;
 
     void Awake()
     {
         orbital = GetComponent<CinemachineOrbitalFollow>();
+        cinemachineCamera = GetComponent<CinemachineCamera>();
+        targetFocusDummy.position = lookAtTargets[targetIndex].position;
     }
 
     void LateUpdate()
     {
         HorizontalCamRotation();
         RadiusCamAdjust();
+        FocusTargetSelect();
     }
 
     private void HorizontalCamRotation()
@@ -41,7 +51,7 @@ public class NewCameraTest : MonoBehaviour
         orbital.HorizontalAxis.Value = Mathf.MoveTowardsAngle(
             orbital.HorizontalAxis.Value,
             targetAngle,
-            smoothSpeed * Time.deltaTime
+            rotationSmoothSpeed * Time.deltaTime
         );
     }
 
@@ -55,4 +65,17 @@ public class NewCameraTest : MonoBehaviour
         orbital.Radius = targetRadius;
     }
 
+    private void FocusTargetSelect()
+    {
+        if (Input.GetKeyDown(targetChangeKey))
+        {
+            targetIndex++;
+            if (targetIndex >= lookAtTargets.Length)
+            {
+                targetIndex = 0;
+            }
+        }
+
+        targetFocusDummy.position = Vector3.Lerp(targetFocusDummy.position, lookAtTargets[targetIndex].position, focusSmoothSpeed * Time.deltaTime);
+    }
 }
