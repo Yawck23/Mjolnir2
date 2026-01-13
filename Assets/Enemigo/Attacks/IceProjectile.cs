@@ -32,7 +32,6 @@ public class IceProjectile : MonoBehaviour
     {
         if (other.tag.Equals("Enemy"))
         {
-            Debug.Log("Ice Projectile hit");
             ymirHealth.TakeDamage(iceProjectileDamage);
             Destroy(this.gameObject);
         }

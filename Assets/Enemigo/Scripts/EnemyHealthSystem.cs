@@ -48,6 +48,8 @@ public class EnemyHealthSystem : MonoBehaviour
         if (!attackManager.CanTakeDamage()) return;
         
         if (isInmune) return;
+
+        Debug.Log("Ymir recibe " + amount + " de daño.");
         
         animatorYmir.SetTrigger("Hurt");
         currentHealth -= amount;

@@ -14565,12 +14565,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4711e26b5901fe045affc77dcd79b176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 8
+  attackCooldown: 7
   turnSpeed: 360
   modelOffset: -100
   airDrop: {fileID: 8740546959792921959, guid: 24d2897fea5297446892d8bf1903f334, type: 3}
   pisoHielo: {fileID: 8873252093590197748, guid: d9ee716109aab534ca480ff17dc7d891, type: 3}
-  debugMode: 0
+  debugMode: 1
   debugAttack: 3
   debugStage: 2
 --- !u!54 &1007766257

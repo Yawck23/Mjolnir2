@@ -1,42 +1,40 @@
-using System.Timers;
+using NUnit.Framework;
 using UnityEngine;
 
 public class AirDropBehaviour : MonoBehaviour
 {
 
-    #region Variables: gravity
-    //private Vector3 _velocity;
-    [SerializeField] float gravityMultiplier = 2.0f;
-    //private float _gravity = -9.81f;
-    //[SerializeField] float groundSeparation = 1f;
-    private Rigidbody rb;
+    #region Variables: Modifiers
+    [SerializeField] float gravityMultiplier = 12f;
+    public bool playerDetected = false;
+    [SerializeField] float destroyAfter = 20f;
     #endregion
 
-    #region Variables: detectPlayer
-    private Vector3 halfObjectExtents;
-    private BoxCollider objectCollider;
-    //[SerializeField] float detectDistance;
-    //[SerializeField] float centerOffset;
-    public bool playerDetected = false;
-    [SerializeField] float detectDistance = 15f; // Distancia extra hacia abajo
-    #endregion
+    private bool hasLanded = false;
 
     #region Variables: Components
     private GameObject playerObject;
     private HealthSystem playerHealth;
+    private Rigidbody rb;
+    private BoxCollider ObjCollider;
     #endregion
 
-    [SerializeField] float destroyAfter = 10f;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        ObjCollider = GetComponent<BoxCollider>();
         rb.useGravity = false;
-        objectCollider = GetComponent<BoxCollider>();
-        halfObjectExtents = Vector3.Scale(objectCollider.size * 0.5f, transform.localScale);
         playerObject = GameObject.FindWithTag("Player");
         playerHealth = playerObject.GetComponent<HealthSystem>();
 
         Destroy(this.gameObject, destroyAfter);
+    }
+
+    void Update()
+    {
+        if (!hasLanded){
+            DetectFloor();
+        }
     }
 
     private void FixedUpdate()
@@ -44,95 +42,28 @@ public class AirDropBehaviour : MonoBehaviour
         rb.AddForce(Physics.gravity * gravityMultiplier, ForceMode.Acceleration);
     }
 
-    void Update()
+    void OnCollisionEnter(Collision collision)
     {
-        //ApplyGravity();
-        if (detectPlayer())
+        if (collision.collider.CompareTag("Player") && !playerDetected)
         {
-            playerDetected = true;
-            playerHealth.TakeDamage();
+            if (!hasLanded)
+            {
+                playerHealth.TakeDamage();
+                playerDetected = true;
+            }
         }
 
+        if (collision.collider.CompareTag("AirDrop"))
+        {
+            if (transform.position.y >= collision.transform.position.y)
+            {
+                Destroy(collision.gameObject);
+            }
+        }
     }
 
-    /*private void ApplyGravity()
+    private void DetectFloor()
     {
-        //Raycast desde la parte centro/abajo del objeto, un poco más arriba
-        Vector3 origin = transform.position + Vector3.down * ((transform.localScale.y - 1f) / 2);
-        Ray ray = new Ray(origin, Vector3.down);
-
-        //Si el raycast detecta un hit y ese hit está a poca distancia, frena el objeto
-        if (Physics.Raycast(ray, out RaycastHit hit, 1000f, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
-        {
-            if (hit.distance < groundSeparation)
-            {
-                _velocity.y = 0.0f;
-                return;
-            }
-        }
-
-        //Aplicar gravedad
-        _velocity.y += _gravity * gravityMultiplier * Time.deltaTime;
-        transform.position += _velocity * Time.deltaTime;
-    }*/
-
-    private bool detectPlayer()
-    {
-        /*//Devuelve true si detecta una colisión con un jugador
-        Vector3 bottomCenter = transform.position - transform.up * detectDistance;
-
-        Ray[] rays = {
-            new Ray(transform.position - transform.right * halfObjectExtents.x * centerOffset - transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position - transform.right * halfObjectExtents.x * centerOffset - transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y))),
-            new Ray(transform.position + transform.right * halfObjectExtents.x * centerOffset - transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position + transform.right * halfObjectExtents.x * centerOffset - transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y))),
-            new Ray(transform.position - transform.right * halfObjectExtents.x * centerOffset + transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position - transform.right * halfObjectExtents.x * centerOffset + transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y))),
-            new Ray(transform.position + transform.right * halfObjectExtents.x * centerOffset + transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y, (bottomCenter - (transform.position + transform.right * halfObjectExtents.x * centerOffset + transform.forward * halfObjectExtents.z * centerOffset - transform.up * halfObjectExtents.y)))
-        };  //Obtenemos un ray para cada esquina inferior del objeto y lo apuntamos detectDistance por debajo del centro del objeto
-                //El centerOffset nos sirve para arrimar el raycast desde la esquina hacia el centro del objeto
-
-        foreach (Ray ray in rays)
-        {
-            float distanceToPoint = Vector3.Distance(transform.position - transform.right * halfObjectExtents.x - transform.forward * halfObjectExtents.z - transform.up * halfObjectExtents.y, bottomCenter);
-            Debug.DrawRay(ray.origin, ray.direction * distanceToPoint, Color.red);
-            if (Physics.Raycast(ray, out RaycastHit hit, distanceToPoint, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
-            {
-                if (hit.collider.CompareTag("Player"))
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;*/
-
-
-        //Nueva detección del player
-        Bounds bounds = objectCollider.bounds;
-        Vector3 centerBottom = new Vector3(bounds.center.x, bounds.min.y, bounds.center.z);
-
-        Vector3[] corners = new Vector3[4];
-        corners[0] = new Vector3(bounds.min.x, bounds.min.y, bounds.min.z);
-        corners[1] = new Vector3(bounds.max.x, bounds.min.y, bounds.min.z);
-        corners[2] = new Vector3(bounds.max.x, bounds.min.y, bounds.max.z);
-        corners[3] = new Vector3(bounds.min.x, bounds.min.y, bounds.max.z);
-
-        foreach (Vector3 corner in corners)
-        {
-            Vector3 target = centerBottom + Vector3.down * detectDistance;
-            Vector3 direction = (target - corner).normalized;
-            float distance = Vector3.Distance(corner, target);
-
-            if (Physics.Raycast(corner, direction, out RaycastHit hit, distance, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
-            {
-                if (hit.collider.CompareTag("Player"))
-                {
-                    return true;
-                }
-            }
-
-            // Dibujar el rayo para debug
-            Debug.DrawRay(corner, direction * distance, Color.blue);
-        }
-
-        return false;
+        hasLanded = Physics.Raycast(transform.position, Vector3.down, ObjCollider.bounds.extents.y + 0.2f, 0, QueryTriggerInteraction.Ignore);
     }
 }
