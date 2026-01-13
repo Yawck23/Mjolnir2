@@ -28,7 +28,7 @@ public class AirDropSpawn : MonoBehaviour
     private Transform player;
     #endregion
     private Animator enemyAnimator;
-    private bool animationEnded = false;
+    //private bool animationEnded = false;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -121,15 +121,15 @@ public class AirDropSpawn : MonoBehaviour
             }
         }
 
-        enemyAnimator.SetBool("LluviaHielo", false);
-        animationEnded = true;
+        enemyAnimator.SetTrigger("LluviaHieloEnd");
+        //animationEnded = true;
 
         yield return new WaitForSeconds(2f);
         Destroy(this.gameObject);
     }
 
-    void OnDestroy() //Para intentar solucionar el bug de que se cuelga en la lluvia de hielo
+    /*void OnDestroy() //Para intentar solucionar el bug de que se cuelga en la lluvia de hielo
     {
         if (animationEnded == false) enemyAnimator.SetBool("LluviaHielo", false);
-    }
+    }*/
 }

@@ -21,7 +21,7 @@ public class AttacksManager : MonoBehaviour
     #endregion
 
     #region Variables: Attacks
-    private float timer;
+    private float nextAttackTimer;
     private int randomAttackSelect;
     [SerializeField] float attackCooldown = 8f;
     [SerializeField] float turnSpeed = 360f;
@@ -50,7 +50,7 @@ public class AttacksManager : MonoBehaviour
     void Update()
     {
         LookAtPlayer();
-        AttackSelect();
+        AttackTimerUpdate();
         
         if (debugMode)
         {
@@ -91,6 +91,55 @@ public class AttacksManager : MonoBehaviour
     {
         Instantiate(pisoHielo);
     }
+
+    public void AttackSelect()
+    {
+        if (nextAttackTimer > 0f) return; //Esperamos al cooldown
+        if (ymirHealth.IsDead()) return; //Si el boss está muerto, no elige ataques
+        if (playerHealth.getIsDead()) return; //Si el player está muerto, no elige ataques
+
+        if (debugMode)
+        {
+            randomAttackSelect = debugAttack;
+        }
+        else
+        {
+            int actualStage = ymirHealth.getActualStage();
+            int maxRandomRange = 3; //Por defecto hace ataques 1 y 2
+            if (actualStage > 1) maxRandomRange = 5; //Si se pasa la stage 1, hace ataques 1, 2, 3, 4.
+            randomAttackSelect = Random.Range(1, maxRandomRange);
+        }
+
+
+        switch (randomAttackSelect)
+        {
+            case 1: //Aplastar cerca o lejos
+                if (playerInCerca) animator.SetTrigger("AplastarCerca");
+                if (playerInLejos) animator.SetTrigger("AplastarLejos");
+                nextAttackTimer = attackCooldown;
+                break;
+
+            case 2: //Arrastrar
+                animator.SetTrigger("ArrastrarBajo");
+                nextAttackTimer = attackCooldown;
+                break;
+
+            case 3: //Lluvia de hielo
+                animator.SetTrigger("LluviaHielo");
+                nextAttackTimer = attackCooldown;
+                break;
+
+            case 4: //Piso de hielo
+                animator.SetTrigger("PisoHielo");
+                nextAttackTimer = attackCooldown / 4; //Espera menos para realizar otro ataque
+                break;
+        }
+
+        int bisAttack = Random.Range(0, 2);
+        if (bisAttack == 0) animator.SetBool("BisAttack", false);
+        if (bisAttack == 1) animator.SetBool("BisAttack", true);        
+    }
+
     #endregion
 
     #region Triggers Zones
@@ -116,60 +165,18 @@ public class AttacksManager : MonoBehaviour
         }
     }
     #endregion
-    private void AttackSelect()
-    {
-        timer -= Time.deltaTime;
-        if (timer > 0f) return; //Esperamos al cooldown
-        if (ymirHealth.IsDead()) return; //Si el boss está muerto, no elige ataques
-        if (playerHealth.getIsDead()) return; //Si el player está muerto, no elige ataques
 
-        if (debugMode)
-        {
-            randomAttackSelect = debugAttack;
-        }
-        else
-        {
-            int actualStage = ymirHealth.getActualStage();
-            int maxRandomRange = 3; //Por defecto hace ataques 1 y 2
-            if (actualStage > 1) maxRandomRange = 5; //Si se pasa la stage 1, hace ataques 1, 2, 3, 4.
-            randomAttackSelect = Random.Range(1, maxRandomRange);
-        }
-
-
-        switch (randomAttackSelect)
-        {
-            case 1: //Aplastar cerca o lejos
-                if (playerInCerca) animator.SetTrigger("AplastarCerca");
-                if (playerInLejos) animator.SetTrigger("AplastarLejos");
-                timer = attackCooldown;
-                break;
-
-            case 2: //Arrastrar
-                animator.SetTrigger("ArrastrarBajo");
-                timer = attackCooldown;
-                break;
-
-            case 3: //Lluvia de hielo
-                animator.SetBool("LluviaHielo", true);
-                timer = attackCooldown;
-                break;
-
-            case 4: //Piso de hielo
-                animator.SetTrigger("PisoHielo");
-                timer = attackCooldown / 4; //Espera menos para realizar otro ataque
-                break;
-        }
-
-        int bisAttack = Random.Range(0, 2);
-        if (bisAttack == 0) animator.SetBool("BisAttack", false);
-        if (bisAttack == 1) animator.SetBool("BisAttack", true);        
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && canApplyDamage)
         {
             playerHealth.TakeDamage();
         }
+    }
+
+    private void AttackTimerUpdate()
+    {
+        nextAttackTimer -= Time.deltaTime;
     }
 
     private void LookAtPlayer()
