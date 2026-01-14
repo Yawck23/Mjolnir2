@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         cameraMovScript = GetComponent<UICameraMovement>();
-        levelSelectScript = GetComponentInChildren<UILevelSelect>();
+        levelSelectScript = LvlSelectPanel.GetComponent<UILevelSelect>();
         GoToMainMenue();
     }
 
@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
     {
         MainMenuPanel.SetActive(false);
         TimePanel.SetActive(true);
-        LvlSelectPanel.SetActive(false);
+        //LvlSelectPanel.SetActive(false);
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ public class UIManager : MonoBehaviour
         MainMenuPanel.SetActive(true);
         TimePanel.SetActive(false);
         InGameMenuPanel.SetActive(false);
-        LvlSelectPanel.SetActive(false);
+        //LvlSelectPanel.SetActive(false);
         WinPanel.SetActive(false);
         CoomingSoonPanel.SetActive(false);
         DeathScreenPanel.SetActive(false);
@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour
 
     public void GoToComingSoon()
     {
-        LvlSelectPanel.SetActive(false);
+        //LvlSelectPanel.SetActive(false);
         CoomingSoonPanel.SetActive(true);
     }
 
