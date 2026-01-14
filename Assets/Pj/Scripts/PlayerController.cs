@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour
         if (!IsGrounded()) return;
         if (isDashing) return;
 
-        //_animator.SetTrigger("JumpStart"); //Falta agregar la animación del salto
+        _animator.SetTrigger("JumpStart"); //Falta agregar la animación del salto
         StartCoroutine(DoJump());
     }
 

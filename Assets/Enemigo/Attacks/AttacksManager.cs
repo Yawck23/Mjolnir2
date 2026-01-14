@@ -15,6 +15,7 @@ public class AttacksManager : MonoBehaviour
     private bool canApplyDamage;
     private bool canTakeDamage;
     private bool canLookAtPlayer;
+    private bool canDestroyPisoHielo;
 
     private bool playerInLejos = false;
     private bool playerInCerca = false;
@@ -93,7 +94,7 @@ public class AttacksManager : MonoBehaviour
     }
 
     public void AttackSelect()
-    {
+    {        
         if (nextAttackTimer > 0f) return; //Esperamos al cooldown
         if (ymirHealth.IsDead()) return; //Si el boss está muerto, no elige ataques
         if (playerHealth.getIsDead()) return; //Si el player está muerto, no elige ataques
@@ -110,12 +111,14 @@ public class AttacksManager : MonoBehaviour
             randomAttackSelect = Random.Range(1, maxRandomRange);
         }
 
+        canDestroyPisoHielo = false; //Por defecto no puede destruir el piso de hielo
 
         switch (randomAttackSelect)
         {
             case 1: //Aplastar cerca o lejos
                 if (playerInCerca) animator.SetTrigger("AplastarCerca");
                 if (playerInLejos) animator.SetTrigger("AplastarLejos");
+                canDestroyPisoHielo = true; //Se habilita el romper piso de hielo
                 nextAttackTimer = attackCooldown;
                 break;
 
@@ -196,4 +199,6 @@ public class AttacksManager : MonoBehaviour
     }
 
     public bool CanTakeDamage() => canTakeDamage;
+
+    public bool CanDestroyPisoHielo() => canDestroyPisoHielo;
 }
