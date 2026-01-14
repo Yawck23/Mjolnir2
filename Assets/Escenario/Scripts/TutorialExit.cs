@@ -1,6 +1,7 @@
 using System;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class TutorialExit : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class TutorialExit : MonoBehaviour
             enemyAnimator.SetTrigger("ExitTutorial");
             Destroy(this.gameObject);
             bossFightCam.Priority = 2;
+            AudioManager.AM.Play("BossMusic");
         }
     }
 

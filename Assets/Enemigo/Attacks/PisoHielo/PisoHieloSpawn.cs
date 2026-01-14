@@ -6,7 +6,7 @@ public class PisoHieloSpawn : MonoBehaviour
     private Transform piso;
 
     [SerializeField] float offsetPiso = 1.5f;
-    [SerializeField] float timeDuration = 20f;
+    //[SerializeField] float timeDuration = 20f;
     private float lifeTimer = 0f;
 
     [SerializeField] float damagePeriod = 0.3f;
@@ -26,7 +26,7 @@ public class PisoHieloSpawn : MonoBehaviour
         Quaternion pisoHieloRotation = Quaternion.Euler(0f, ymirY -90f, 0f); //Ajustamos la rotación para que apunte a donde mira ymir
         transform.rotation = pisoHieloRotation;
 
-        Destroy(this.gameObject, timeDuration);
+        //Destroy(this.gameObject, timeDuration); Solo se rompe cuando el jefe lo golpea
     }
 
     void Update()
