@@ -33556,6 +33556,13 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
+    functionName: GoToTarget
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 0
     functionName: StartLookAtPlayer
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 4711e26b5901fe045affc77dcd79b176, type: 3}
@@ -33592,6 +33599,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1.4005681
     functionName: NoDamage
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.4166666
+    functionName: GoToTarget
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

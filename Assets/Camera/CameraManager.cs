@@ -75,7 +75,13 @@ public class CameraManager : MonoBehaviour
                 targetIndex = 0;
             }
         }
+        targetFocusDummy.position = Vector3.Lerp(targetFocusDummy.position, lookAtTargets[targetIndex].position, focusSmoothSpeed * Time.deltaTime);
+    }
 
+    public void GoToTarget(int target)
+    {
+        Debug.Log("Going to target: " + target);
+        targetIndex = target;
         targetFocusDummy.position = Vector3.Lerp(targetFocusDummy.position, lookAtTargets[targetIndex].position, focusSmoothSpeed * Time.deltaTime);
     }
 }

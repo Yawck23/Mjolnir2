@@ -1174,6 +1174,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4932695058198820580, guid: ef80a38684d0cff449ea575961516ac1, type: 3}
   m_PrefabInstance: {fileID: 831207953}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &154855163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 154855164}
+  m_Layer: 0
+  m_Name: CameraFollowHead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &154855164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154855163}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 100.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1665142441}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &155835859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2679,6 +2710,7 @@ MonoBehaviour:
   lookAtTargets:
   - {fileID: 1650340404}
   - {fileID: 611384084}
+  - {fileID: 154855164}
   targetFocusDummy: {fileID: 820614200}
   targetChangeKey: 114
   focusSmoothSpeed: 2
@@ -5942,6 +5974,10 @@ PrefabInstance:
     - target: {fileID: 2678894959461753600, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -67.1633
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489497601361014436, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3900430470893319715, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -15122,7 +15158,7 @@ MonoBehaviour:
   modelOffset: -100
   airDrop: {fileID: 8740546959792921959, guid: 24d2897fea5297446892d8bf1903f334, type: 3}
   pisoHielo: {fileID: 8873252093590197748, guid: d9ee716109aab534ca480ff17dc7d891, type: 3}
-  debugMode: 1
+  debugMode: 0
   debugAttack: 3
   debugStage: 2
 --- !u!54 &1007766257
@@ -15207,6 +15243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manoDerechaYmir: {fileID: 611384082}
+  bossFightCamera: {fileID: 283625746}
 --- !u!1001 &1013678252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25994,7 +26031,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1650340404}
   m_Layer: 0
-  m_Name: CameraFollow
+  m_Name: CameraFollowChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26227,6 +26264,7 @@ Transform:
   m_Children:
   - {fileID: 611384081}
   - {fileID: 1650340404}
+  - {fileID: 154855164}
   - {fileID: 820614200}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
