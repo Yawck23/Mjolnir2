@@ -48,6 +48,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 4e4f50178538df440bdbc1c1ab24313c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ebc576a40cce0fc479c8114bcf0e83ea, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 4e4f50178538df440bdbc1c1ab24313c, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8678823145569952518, guid: 9c548a6173bc072489ed31713066028c, type: 3}
     - target: {fileID: 919132149155446097, guid: 4e4f50178538df440bdbc1c1ab24313c, type: 3}
       propertyPath: m_Name
       value: PisoHielo
