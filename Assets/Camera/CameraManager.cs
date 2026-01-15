@@ -31,7 +31,7 @@ public class CameraManager : MonoBehaviour
     {
         HorizontalCamRotation();
         RadiusCamAdjust();
-        FocusTargetSelect();
+        UpdateCameraLookAt();
     }
 
     private void HorizontalCamRotation()
@@ -65,6 +65,8 @@ public class CameraManager : MonoBehaviour
         orbital.Radius = targetRadius;
     }
 
+    /* El método FocusTargetSelect sirve para cambiar entre cámaras a mano, con la tecla asignada en targetChangeKey.
+    
     private void FocusTargetSelect()
     {
         if (Input.GetKeyDown(targetChangeKey))
@@ -75,13 +77,19 @@ public class CameraManager : MonoBehaviour
                 targetIndex = 0;
             }
         }
+        
+    }*/
+
+    public void UpdateCameraLookAt()
+    {
         targetFocusDummy.position = Vector3.Lerp(targetFocusDummy.position, lookAtTargets[targetIndex].position, focusSmoothSpeed * Time.deltaTime);
     }
 
     public void GoToTarget(int target)
     {
         Debug.Log("Going to target: " + target);
+        //Target 0 = Pecho; Target 1 = Mano Derecha; Target 2 = Cabeza.
+
         targetIndex = target;
-        targetFocusDummy.position = Vector3.Lerp(targetFocusDummy.position, lookAtTargets[targetIndex].position, focusSmoothSpeed * Time.deltaTime);
     }
 }
