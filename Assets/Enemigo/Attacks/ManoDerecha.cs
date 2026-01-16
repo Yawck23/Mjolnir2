@@ -20,7 +20,7 @@ public class ManoDerecha : MonoBehaviour
     {
         if (other.CompareTag("AirDrop"))
         {
-            Destroy(other.gameObject);
+            other.GetComponent<ExplosionIntoParts>().Explosion();
         }
 
         if (other.CompareTag("PisoHielo") && attacksManager.CanDestroyPisoHielo())

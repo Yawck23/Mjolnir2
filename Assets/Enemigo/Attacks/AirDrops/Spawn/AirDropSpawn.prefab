@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2ee01a79f83302488b0291f9c4e9515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drop: {fileID: 8979455930492070439, guid: fe9e5e37053e3964bab80514d82cac17, type: 3}
-  maxDrops: 9
+  drop: {fileID: 2313898228778618667, guid: 81f40bfde755d504db0f8ac76ab761a4, type: 3}
+  maxDrops: 12
   minY: 280
   maxY: 300
   waitForNextDrop: 0.4
