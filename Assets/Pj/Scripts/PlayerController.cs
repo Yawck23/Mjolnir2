@@ -14,10 +14,13 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Variables: IceSlide
-    private Vector3 _slide;
-    [SerializeField] private float accel = 5f;
-    [SerializeField] private float friction = 0.2f;
     [SerializeField] private bool groundIsIce;
+    private float normalAccelerationRate;
+    private float normalDecelerationRate;
+    private float normalSpeed;
+    [SerializeField] private float iceMaxSpeed = 30f;
+    [SerializeField] private float iceAccelerationRate = 2f;
+    [SerializeField] private float iceDecelerationRate = 2f;
     #endregion
 
     #region Variables: Movement
@@ -26,7 +29,17 @@ public class PlayerController : MonoBehaviour
     private Vector3 _direction;
     private bool ignoreInput = false;
 
-    [SerializeField] private float speed;
+    [SerializeField] private float maxSpeed;
+    private float minSpeed = 0.003f; // Velocidad mínima inicial (no puede ser 0 para evitar divisiones por 0)
+    [SerializeField] private float accelerationRate = 5f; // Qué tan rápido acelera
+    [SerializeField] private float decelerationRate = 5f; // Qué tan rápido desacelera
+    private float _currentSpeedMultiplier = 0f; // Multiplicador que va de minSpeed/maxSpeed a 1.0
+    public float currentSpeed; // Velocidad actual considerando aceleración
+    #region Derrape
+    [SerializeField] private float stopDetectionDelay = 0.15f; // Delay para detectar si el jugador realmente se detuvo
+    private float _stoppedTime = 0f;
+    [SerializeField] private float derrapeDuration = 0.5f;
+    #endregion
 
     #endregion
     #region Variables: Rotation
@@ -61,6 +74,10 @@ public class PlayerController : MonoBehaviour
         _healthSystem = GetComponent<HealthSystem>();
         _mainCamera = Camera.main;
         _animator = GetComponent<Animator>();
+
+        normalAccelerationRate = accelerationRate;
+        normalDecelerationRate = decelerationRate;
+        normalSpeed = maxSpeed;
     }
 
     private void Update()
@@ -68,9 +85,7 @@ public class PlayerController : MonoBehaviour
         ApplyRotation();
         ApplyGravity();
         ApplyMovement();
-        DetectIceGround();
-
-        
+        DetectIceGround(); 
     }
 
     #region Movement methods
@@ -102,26 +117,56 @@ public class PlayerController : MonoBehaviour
     {
         if (isDashing) return; //Para no aplicar doble movimiento en el dash
 
-        if (!groundIsIce)
+        CalcularAceleracion();
+
+        if (!IsGrounded())
         {
-            _characterController.Move(_direction * speed * Time.deltaTime);
+            currentSpeed = maxSpeed; // Velocidad normal en el aire
+        }
+
+        if (_input.sqrMagnitude < 0.1f && !ignoreInput) //Si no hay input, moverse hacia adelante al current speed, salvo que se ignore input (en salto, por ejemplo)
+        {
+            _direction.x = transform.forward.x;
+            _direction.z = transform.forward.z;
+        }
+
+        _characterController.Move(_direction * currentSpeed * Time.deltaTime);
+        _animator.SetFloat("Movement", (_input * currentSpeed).magnitude);
+    }
+
+    private void CalcularAceleracion()
+    {
+        
+        if (groundIsIce)
+        {
+            accelerationRate = iceAccelerationRate;
+            decelerationRate = iceDecelerationRate;
+            maxSpeed = iceMaxSpeed;
         }
         else
         {
-            _slide += _direction * accel * Time.deltaTime;
-
-            // Limitar velocidad máxima
-            if (_slide.magnitude > speed)
-            {
-                _slide = _slide.normalized * speed;
-            }
-
-            _slide *= Mathf.Exp(-friction * Time.deltaTime);
-            _slide.y = _direction.y * accel;
-
-            _characterController.Move(_slide * Time.deltaTime);
+            accelerationRate = normalAccelerationRate;
+            decelerationRate = normalDecelerationRate;
+            maxSpeed = normalSpeed;
         }
-        _animator.SetFloat("Movement", (_input * speed).magnitude);
+
+        if (_input.sqrMagnitude > 0.1f) // Si hay input, acelerar
+        {
+            _currentSpeedMultiplier = Mathf.Lerp(_currentSpeedMultiplier, 1f, accelerationRate * Time.deltaTime);
+        }
+        else // Si no hay input, desacelerar
+        {
+            _currentSpeedMultiplier = Mathf.Lerp(_currentSpeedMultiplier, minSpeed, decelerationRate * Time.deltaTime);
+        }
+
+        
+        
+        if (_currentSpeedMultiplier < 0.001f){ //Evitamos, por las dudas, que llegue a 0
+            _currentSpeedMultiplier = 0.001f;
+        }
+
+        // Aplicar aceleración al movimiento
+        currentSpeed = maxSpeed * _currentSpeedMultiplier;
     }
     
     private void DetectIceGround()
@@ -142,6 +187,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
     #endregion
 
     #region Inputs
@@ -151,6 +197,17 @@ public class PlayerController : MonoBehaviour
         {
             _input = context.ReadValue<Vector2>();
             _direction = new Vector3(_input.x, 0.0f, _input.y); //Tomo el input y modifico _direction, que luego la uso en ApplyMovement
+            
+            // Resetear el contador si vuelve a presionar una tecla
+            _stoppedTime = 0f;
+            //_currentSpeedMultiplier = minSpeed / speed; // Comenzar desde velocidad mínima
+        }
+
+        if (context.canceled)
+        {
+            // Iniciar cuenta regresiva para detectar si el jugador se detuvo realmente
+            _stoppedTime = 0f;
+            StartCoroutine(DetectStopWithDelay());
         }
         
     }
@@ -172,14 +229,45 @@ public class PlayerController : MonoBehaviour
         if (isDashing || dashOnCooldown) return;
 
         _animator.SetTrigger("DashStart");
+        _currentSpeedMultiplier = 1f; // Resetear aceleración al dashear
         StartCoroutine(DoDash());
     }
     #endregion
 
     #region Corroutines
+    private IEnumerator DetectStopWithDelay()
+    {
+        yield return new WaitForSeconds(stopDetectionDelay);
+        
+        // Verificar que sigue sin input después del delay
+        if (_input.sqrMagnitude < 0.1f && !isDashing)
+        {
+            if (currentSpeed > maxSpeed * 0.5f){
+                StartCoroutine(DoDerrape());
+            } // Si la velocidad es mayor al 30% de la velocidad máxima, derrapamos
+            
+        }
+    }
+
+    private IEnumerator DoDerrape()
+    {
+        _animator.SetBool("Derrapando", true);
+
+        yield return new WaitForSeconds(derrapeDuration); //Duración del derrape
+        _animator.SetBool("Derrapando", false);
+    }
+
     private IEnumerator DoJump()
     {
         ignoreInput = true;
+
+        if (_input.sqrMagnitude < 0.1f) //Si no se está apretando WASD, el salto es en el lugar
+        {
+            _direction.x = 0f;
+            _direction.z = 0f;
+        }
+
+        _currentSpeedMultiplier = 1f; // Resetear aceleración al saltar
         _velocity = jumpPower;
 
         yield return null; //Esperar un frame para que detecte que no está en el suelo
@@ -191,6 +279,7 @@ public class PlayerController : MonoBehaviour
         }
 
         ResetInput();
+        _currentSpeedMultiplier = 20/maxSpeed; // Comenzar desde velocidad mínima al aterrizar
 
         ignoreInput = false;
     }
@@ -215,7 +304,7 @@ public class PlayerController : MonoBehaviour
             }
 
             elapsedTime += Time.deltaTime;
-            _characterController.Move(_direction * speed * dashPower * Time.deltaTime);
+            _characterController.Move(_direction * maxSpeed * dashPower * Time.deltaTime);
             yield return null;
         }
 
