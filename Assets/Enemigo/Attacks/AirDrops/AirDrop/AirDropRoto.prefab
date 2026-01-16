@@ -1035,8 +1035,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85cdcf6b0a834e245a175c2806cc4ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dissapearTimeMin: 4
-  dissapearTimeMax: 9
+  dissapearTimeMin: 3.5
+  dissapearTimeMax: 6
   explosionForce: 2000
   explosionRadius: 70
   explosionPoint: {fileID: 1053644838769795474}
