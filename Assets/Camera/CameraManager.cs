@@ -87,7 +87,6 @@ public class CameraManager : MonoBehaviour
 
     public void GoToTarget(int target)
     {
-        Debug.Log("Going to target: " + target);
         //Target 0 = Pecho; Target 1 = Mano Derecha; Target 2 = Cabeza.
 
         targetIndex = target;
