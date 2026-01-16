@@ -11,6 +11,27 @@ public class UIManager : MonoBehaviour
     private UICameraMovement cameraMovScript;
     private UILevelSelect levelSelectScript;
 
+    #region Singleton
+    public static UIManager UIM { get; private set; }
+
+    private void Awake()
+    {
+        // Se revisa si ya existe un objeto llamado UIM
+        if (UIM != null && UIM != this)
+        {
+            // Si ya existe, este objeto se destruye a s� mismo ya que no puede haber dos instancias de un elemento est�tico
+            Destroy(gameObject);
+        }
+        else
+        {
+            // Si este es el �nico elemento UIManager se asigna a la variable UIM
+            UIM = this;
+            // Se pone en un modo que evita ser destruido al cambiar de escena
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+    #endregion
+
     void Start()
     {
         cameraMovScript = GetComponent<UICameraMovement>();

@@ -44,7 +44,8 @@ public class PlayerAttackManager : MonoBehaviour
         {
             if (!controller.IsDashing()) return;
             AirDropAttack();
-            Destroy(hit.gameObject);
+            //Destroy(hit.gameObject);
+            hit.collider.GetComponent<ExplosionIntoParts>().Explosion();
         }
     }
 

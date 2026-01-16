@@ -84,7 +84,7 @@ public class AirDropSpawn : MonoBehaviour
 
         foreach (Ray ray in rays)
         {
-            if (Physics.Raycast(ray, out RaycastHit hit, 1000f, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(ray, out RaycastHit hit, 1000f, LayerMask.GetMask("Escombros"), QueryTriggerInteraction.Ignore))
             {
                 if (hit.collider.CompareTag(dropTag))
                 {

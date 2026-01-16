@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
 
     private bool Pause;
     private bool GameStarted;
-    private UIManager uiManager;
     private float gameTime;
     private float deathsCount = 0;
 
@@ -36,8 +35,6 @@ public class GameManager : MonoBehaviour
     {
         Pause = true;
         Time.timeScale = 1f; // 1 representa el tiempo normal del juego
-
-        uiManager = transform.Find("CanvasMenu").GetComponent<UIManager>();
     }
 
     void Update()
@@ -101,13 +98,13 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        switch (uiManager.GetSelectedLevel())
+        switch (UIManager.UIM.GetSelectedLevel())
         {
             case 1:
                 SceneManager.LoadScene("Level_1");
                 GameStarted = true;
                 Pause = false;
-                uiManager.StartGame();
+                UIManager.UIM.StartGame();
                 gameTime = 0;
                 deathsCount = 0;
                 break;
@@ -133,7 +130,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
         }
 
-        uiManager.GoToMainMenue();
+        UIManager.UIM.GoToMainMenue();
     }
 
     public void Resume()
@@ -155,26 +152,26 @@ public class GameManager : MonoBehaviour
 
     public void GoToLvlSelect()
     {
-        uiManager.GoToLvlSelect();
+        UIManager.UIM.GoToLvlSelect();
     }
 
     public void Win()
     {
-        uiManager.Win();
-        uiManager.unlockLevel2();
+        UIManager.UIM.Win();
+        UIManager.UIM.unlockLevel2();
     }
 
     public void GoToDeathScreen()
     {
-        uiManager.GoToDeathScreen();
+        UIManager.UIM.GoToDeathScreen();
     }
 
     public void ExitDeathScreen(){
-        uiManager.ExitDeathScreen();
+        UIManager.UIM.ExitDeathScreen();
     }
     public void GoToComingSoon()
     {
-        uiManager.GoToComingSoon();
+        UIManager.UIM.GoToComingSoon();
     }
     #endregion
 }

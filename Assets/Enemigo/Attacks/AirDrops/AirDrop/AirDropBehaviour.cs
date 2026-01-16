@@ -81,12 +81,4 @@ public class AirDropBehaviour : MonoBehaviour
             }
         }
     }
-
-    void OnDestroy()
-    {
-        if (hasLanded) //Solo se reproduce el sonido si aterrizo
-        {
-            AudioManager.AM.Play("IceBreak");
-        }
-    }
 }
