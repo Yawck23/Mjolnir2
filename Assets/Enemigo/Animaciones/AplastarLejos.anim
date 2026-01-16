@@ -33569,7 +33569,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.65467167
+  - time: 0.41666666
     functionName: StopLookAtPlayer
     data: 
     objectReferenceParameter: {fileID: 0}

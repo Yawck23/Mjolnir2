@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class AttacksManager : MonoBehaviour
@@ -29,6 +30,13 @@ public class AttacksManager : MonoBehaviour
     [SerializeField] float modelOffset = -105f;
     [SerializeField] GameObject airDrop;
     [SerializeField] GameObject pisoHielo;
+    #endregion
+
+    #region Variables: Attack Modifiers
+
+    [SerializeField] float maxVelocityMultiplier = 1.5f;
+    [SerializeField] float minLookPlayerTime = 0.0f;
+    [SerializeField] float maxLookPlayerTime = 1.5f;
     #endregion
 
     #region DebugMode
@@ -81,8 +89,16 @@ public class AttacksManager : MonoBehaviour
     }
     public void StopLookAtPlayer()
     {
+        StartCoroutine(stopLookAtPlayerRandomWait());
+    }
+
+    private IEnumerator stopLookAtPlayerRandomWait()
+    {
+        float waitTime = Random.Range(minLookPlayerTime, maxLookPlayerTime);
+        yield return new WaitForSeconds(waitTime);
         canLookAtPlayer = false;
     }
+
     public void AirDropStart()
     {
         Instantiate(airDrop);
@@ -113,11 +129,20 @@ public class AttacksManager : MonoBehaviour
 
         canDestroyPisoHielo = false; //Por defecto no puede destruir el piso de hielo
 
+        float velocityMultiplier = Random.Range(1.0f, maxVelocityMultiplier);
+        animator.SetFloat("VelocityMultiplier", velocityMultiplier);
+
         switch (randomAttackSelect)
         {
             case 1: //Aplastar cerca o lejos
-                if (playerInCerca) animator.SetTrigger("AplastarCerca");
-                if (playerInLejos) animator.SetTrigger("AplastarLejos");
+                if (playerInCerca)
+                {
+                    animator.SetTrigger("AplastarCerca");
+                }
+                else
+                {
+                    animator.SetTrigger("AplastarLejos");
+                }
                 canDestroyPisoHielo = true; //Se habilita el romper piso de hielo
                 nextAttackTimer = attackCooldown;
                 break;
