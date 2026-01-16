@@ -28826,7 +28826,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossFightCamGameObject: {fileID: 283625746}
-  mainCameraGameObject: {fileID: 516974767}
 --- !u!54 &1701759055
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33927,8 +33926,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topBar: {fileID: 278847334}
   bottomBar: {fileID: 1957118929}
-  barSize: 150
-  speed: 5
+  barSize: 120
+  speed: 3
 --- !u!222 &1738930365
 CanvasRenderer:
   m_ObjectHideFlags: 0
