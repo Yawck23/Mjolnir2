@@ -57,7 +57,10 @@ public class PlayerController : MonoBehaviour
     #endregion
     #region Variables: Jumping
     [SerializeField] private float jumpPower;
-
+    [SerializeField] private bool ignoreInputOnJump = false;
+    [SerializeField] private float speedAfterJump = 20f; // Velocidad inicial después de aterrizar
+    private bool isJumping = false;
+ 
     #endregion
     #region Variables: Dash
     [SerializeField] private float dashPower = 18f;
@@ -124,7 +127,7 @@ public class PlayerController : MonoBehaviour
             currentSpeed = maxSpeed; // Velocidad normal en el aire
         }
 
-        if (_input.sqrMagnitude < 0.1f && !ignoreInput) //Si no hay input, moverse hacia adelante al current speed, salvo que se ignore input (en salto, por ejemplo)
+        if (_input.sqrMagnitude < 0.1f && !ignoreInput && !isJumping) //Si no hay input, moverse hacia adelante al current speed, salvo que se ignore input (en salto, por ejemplo)
         {
             _direction.x = transform.forward.x;
             _direction.z = transform.forward.z;
@@ -259,7 +262,8 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator DoJump()
     {
-        ignoreInput = true;
+        isJumping = true;
+        ignoreInput = true; //Ignoramos input para detectar si salta en el lugar o no
 
         if (_input.sqrMagnitude < 0.1f) //Si no se está apretando WASD, el salto es en el lugar
         {
@@ -270,6 +274,8 @@ public class PlayerController : MonoBehaviour
         _currentSpeedMultiplier = 1f; // Resetear aceleración al saltar
         _velocity = jumpPower;
 
+        if (!ignoreInputOnJump) ignoreInput = false; //Si no se quiere ignorar el input al saltar, lo volvemos a permitir
+
         yield return null; //Esperar un frame para que detecte que no está en el suelo
 
         //Esperamos que toque el suelo para volver a tomar el input
@@ -279,9 +285,18 @@ public class PlayerController : MonoBehaviour
         }
 
         ResetInput();
-        _currentSpeedMultiplier = 20/maxSpeed; // Comenzar desde velocidad mínima al aterrizar
+
+        if (_input.sqrMagnitude < 0.1f)
+        {
+            _currentSpeedMultiplier = 0.0f; //Si no hay input, comenzar desde 0 al aterrizar
+        }
+        else
+        {
+            _currentSpeedMultiplier = speedAfterJump/maxSpeed; //Si hay input, comenzar desde una velocidad inicial al aterrizar
+        }
 
         ignoreInput = false;
+        isJumping = false;
     }
     private IEnumerator DoDash()
     {
