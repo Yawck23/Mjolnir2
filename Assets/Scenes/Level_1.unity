@@ -6319,7 +6319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3748836805809632403, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
       propertyPath: m_Name
-      value: ManoDerecha
+      value: Bone.008
       objectReference: {fileID: 0}
     - target: {fileID: -3748836805809632403, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
       propertyPath: m_TagString
