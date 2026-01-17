@@ -13,56 +13,62 @@ public class PlayerController : MonoBehaviour
     private HealthSystem _healthSystem;
     #endregion
 
-    #region Variables: IceSlide
-    [SerializeField] private bool groundIsIce;
-    private float normalAccelerationRate;
-    private float normalDecelerationRate;
-    private float normalSpeed;
-    [SerializeField] private float iceMaxSpeed = 30f;
-    [SerializeField] private float iceAccelerationRate = 2f;
-    [SerializeField] private float iceDecelerationRate = 2f;
-    #endregion
-
     #region Variables: Movement
+    [Header("Movement")]
+    [SerializeField] private float accelerationRate = 1f; // Qué tan rápido acelera
+    [SerializeField] private float maxSpeed = 50f;
+    [SerializeField] private float decelerationRate = 2f; // Qué tan rápido desacelera
     private Vector2 _input;
     private CharacterController _characterController;
     private Vector3 _direction;
     private bool ignoreInput = false;
 
-    [SerializeField] private float maxSpeed;
     private float minSpeed = 0.003f; // Velocidad mínima inicial (no puede ser 0 para evitar divisiones por 0)
-    [SerializeField] private float accelerationRate = 5f; // Qué tan rápido acelera
-    [SerializeField] private float decelerationRate = 5f; // Qué tan rápido desacelera
     private float _currentSpeedMultiplier = 0f; // Multiplicador que va de minSpeed/maxSpeed a 1.0
     public float currentSpeed; // Velocidad actual considerando aceleración
-    #region Derrape
-    [SerializeField] private float stopDetectionDelay = 0.15f; // Delay para detectar si el jugador realmente se detuvo
-    private float _stoppedTime = 0f;
-    [SerializeField] private float derrapeDuration = 0.5f;
     #endregion
 
-    #endregion
     #region Variables: Rotation
-
     [SerializeField] private float rotationSpeed = 500f;
     private Camera _mainCamera;
-
     #endregion
+    
     #region Variables: Gravity
-
-    private float _gravity = -9.81f;
     [SerializeField] private float gravityMultiplier = 3.0f;
+    private float _gravity = -9.81f;
     private float _velocity;
 
     #endregion
+    
+    #region Variables: Derrape
+    [Header("Derrape")]
+    [SerializeField] private float stopDetectionDelay = 0.15f; // Delay para detectar si el jugador realmente se detuvo
+    [SerializeField] private float derrapeDuration = 0.5f;
+    private float _stoppedTime = 0f;
+    #endregion
+    
+    #region Variables: IceSlide
+    [Header("Ice Ground")]
+    [SerializeField] private float iceMaxSpeed = 30f;
+    [SerializeField] private float iceAccelerationRate = 2f;
+    [SerializeField] private float iceDecelerationRate = 2f;
+    private bool groundIsIce = false;
+    private float normalAccelerationRate;
+    private float normalDecelerationRate;
+    private float normalSpeed;
+    #endregion
+    
     #region Variables: Jumping
+    [Header("Jump")]
     [SerializeField] private float jumpPower;
     [SerializeField] private bool ignoreInputOnJump = false;
     [SerializeField] private float speedAfterJump = 20f; // Velocidad inicial después de aterrizar
     private bool isJumping = false;
  
     #endregion
+    
     #region Variables: Dash
+    [Header("Dash")]
     [SerializeField] private float dashPower = 18f;
     [SerializeField] private float dashDuration = 0.5f;
     public float dashCooldown = 3.0f;
