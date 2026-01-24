@@ -30,6 +30,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _BUILTIN_CullMode: 2
+    - _BUILTIN_DstBlend: 10
+    - _BUILTIN_QueueControl: 0
+    - _BUILTIN_SrcBlend: 5
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
