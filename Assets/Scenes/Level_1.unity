@@ -47664,7 +47664,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 16afa1ecb71f7ee4b8b0591867debc6d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 9db8b482ae15b584fb52db006a0e398a, type: 2}
+      objectReference: {fileID: -876546973899608171, guid: ea6ac6f8076b27947aa3afbde73fc158, type: 3}
     - target: {fileID: 919132149155446097, guid: 16afa1ecb71f7ee4b8b0591867debc6d, type: 3}
       propertyPath: m_Name
       value: Piso
