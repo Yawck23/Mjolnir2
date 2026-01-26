@@ -354,5 +354,6 @@ public class PlayerController : MonoBehaviour
     #region Getters
     public bool IsGrounded() => _characterController.isGrounded; //Para no usar _characterController.isGrounded
     public bool IsDashing() => isDashing;
+    public bool IsJumping() => isJumping;
     #endregion
 }

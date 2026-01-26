@@ -574,7 +574,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: prewarm
@@ -1469,7 +1469,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: prewarm
@@ -6963,7 +6963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8567a4cdeefc32d4b9313577e931ac1a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15942,7 +15942,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: prewarm
@@ -17029,14 +17029,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548722206}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 0.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -17961,8 +17961,66 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    m_BurstCount: 0
-    m_Bursts: []
+    m_BurstCount: 1
+    m_Bursts:
+    - serializedVersion: 2
+      time: 0
+      countCurve:
+        serializedVersion: 2
+        minMaxState: 0
+        scalar: 30
+        minScalar: 30
+        maxCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        minCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+      cycleCount: 1
+      repeatInterval: 0.01
+      probability: 1
   SizeModule:
     enabled: 0
     curve:
@@ -33113,7 +33171,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: prewarm
@@ -61248,7 +61306,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: prewarm
@@ -62765,7 +62823,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 16afa1ecb71f7ee4b8b0591867debc6d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: ea6ac6f8076b27947aa3afbde73fc158, type: 3}
+      objectReference: {fileID: 2100000, guid: f0c392d1ac0eceb4695cfdb106a1564d, type: 2}
     - target: {fileID: 919132149155446097, guid: 16afa1ecb71f7ee4b8b0591867debc6d, type: 3}
       propertyPath: m_Name
       value: Piso
@@ -64966,7 +65024,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: prewarm
@@ -73339,7 +73397,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: prewarm
@@ -74325,11 +74383,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f15645b29bebd8840b84b8d62433aaf7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 53.28
+      value: 52.85
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f15645b29bebd8840b84b8d62433aaf7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -228
+      value: -227.76
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f15645b29bebd8840b84b8d62433aaf7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -86237,7 +86295,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: prewarm
@@ -86816,7 +86874,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: prewarm
@@ -92912,6 +92970,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &1749010894
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1320540221407943178, guid: 5357b54efaa98484f810a44895cab73f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.387589
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320540221407943178, guid: 5357b54efaa98484f810a44895cab73f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 123.500046
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320540221407943178, guid: 5357b54efaa98484f810a44895cab73f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 292.76135
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320540221407943178, guid: 5357b54efaa98484f810a44895cab73f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320540221407943178, guid: 5357b54efaa98484f810a44895cab73f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320540221407943178, guid: 5357b54efaa98484f810a44895cab73f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320540221407943178, guid: 5357b54efaa98484f810a44895cab73f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320540221407943178, guid: 5357b54efaa98484f810a44895cab73f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320540221407943178, guid: 5357b54efaa98484f810a44895cab73f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320540221407943178, guid: 5357b54efaa98484f810a44895cab73f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808284281337970864, guid: 5357b54efaa98484f810a44895cab73f, type: 3}
+      propertyPath: m_Name
+      value: PisoHielo
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5357b54efaa98484f810a44895cab73f, type: 3}
 --- !u!1001 &1755938417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100087,7 +100202,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1592701999772585398, guid: 587b95ee6ae276b41a5934d069fe671b, type: 3}
       propertyPath: prewarm
@@ -103779,3 +103894,4 @@ SceneRoots:
   - {fileID: 637329084}
   - {fileID: 57907195}
   - {fileID: 2055214535}
+  - {fileID: 1749010894}
