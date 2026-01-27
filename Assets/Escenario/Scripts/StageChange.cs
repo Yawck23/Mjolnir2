@@ -27,6 +27,12 @@ public class StageChange : MonoBehaviour
     [SerializeField] private float treesTransitionTime, treesStartValue, treesEndValue;
     private List<Material> treesMaterial;
 
+    [Header("Lights")]
+    [SerializeField] private Light[] daySceneLights, nightSceneLights;
+    [SerializeField] private float[] dayLightIntensityTarget, nightLightIntensityTarget;
+    [SerializeField] private float lightTransitionTime;
+
+
     #endregion
 
     void Start()
@@ -55,6 +61,7 @@ public class StageChange : MonoBehaviour
         StartCoroutine(FloorTransition(floorStartValue, floorEndValue));
         StartCoroutine(CloudSkyTransition(cloudSkyStartValue, cloudSkyEndValue));
         StartCoroutine(TreesTransition(treesStartValue, treesEndValue));
+        StartCoroutine(LightsTransitionToNight());
     }
 
     public void TransitionToNormal()
@@ -63,6 +70,7 @@ public class StageChange : MonoBehaviour
         StartCoroutine(FloorTransition(floorEndValue, floorStartValue));
         StartCoroutine(CloudSkyTransition(cloudSkyEndValue, cloudSkyStartValue));
         StartCoroutine(TreesTransition(treesEndValue, treesStartValue));
+        StartCoroutine(LightsTransitionToDay());
     }
 
     private IEnumerator IceDomeTransition(float startValue, float endValue)
@@ -124,6 +132,47 @@ public class StageChange : MonoBehaviour
         }
     }
 
+    private IEnumerator LightsTransitionToNight()
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < lightTransitionTime)
+        {
+            for( int i = 0; i < daySceneLights.Length; i++)
+            {
+                float newIntensity = Mathf.Lerp(dayLightIntensityTarget[i], 0f, elapsedTime / lightTransitionTime);
+                daySceneLights[i].intensity = newIntensity;
+            }
 
+            for (int i = 0; i < nightSceneLights.Length; i++)
+            {
+                float newIntensity = Mathf.Lerp(0f, nightLightIntensityTarget[i], elapsedTime / lightTransitionTime);
+                nightSceneLights[i].intensity = newIntensity;
+            }
 
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+        private IEnumerator LightsTransitionToDay()
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < lightTransitionTime)
+        {
+            for( int i = 0; i < nightSceneLights.Length; i++)
+            {
+                float newIntensity = Mathf.Lerp(nightLightIntensityTarget[i], 0f, elapsedTime / lightTransitionTime);
+                nightSceneLights[i].intensity = newIntensity;
+            }
+
+            for (int i = 0; i < daySceneLights.Length; i++)
+            {
+                float newIntensity = Mathf.Lerp(0f, dayLightIntensityTarget[i], elapsedTime / lightTransitionTime);
+                daySceneLights[i].intensity = newIntensity;
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
 }
