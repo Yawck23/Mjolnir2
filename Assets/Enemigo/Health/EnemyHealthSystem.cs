@@ -21,9 +21,10 @@ public class EnemyHealthSystem : MonoBehaviour
     [SerializeField] float stage4Health = 30f;
     private int actualStage;
 
-    [SerializeField] GameObject iceDome;
-
     #endregion
+
+    [SerializeField] GameObject stageGameObject;
+    private StageChange stageChangeScript;
 
     #region Variables: Components
     private Animator animatorYmir;
@@ -39,6 +40,7 @@ public class EnemyHealthSystem : MonoBehaviour
         animatorYmir = GetComponent<Animator>();
         attackManager = GetComponent<AttacksManager>();
         animatorYmir.SetInteger("Stage", actualStage);
+        stageChangeScript = stageGameObject.GetComponent<StageChange>();
     }
 
     public void TakeDamage(float amount)
@@ -85,7 +87,7 @@ public class EnemyHealthSystem : MonoBehaviour
                     actualStage = 2;
                     Debug.Log("Cambio a stage 2");
                     animatorYmir.SetInteger("Stage", actualStage);
-                    iceDome.SetActive(true);
+                    stageChangeScript.TransitionToIce();
                 }
                 break;
             
@@ -94,6 +96,7 @@ public class EnemyHealthSystem : MonoBehaviour
                     actualStage = 3;
                     Debug.Log("Cambio a stage 3");
                     animatorYmir.SetInteger("Stage", actualStage);
+                    stageChangeScript.TransitionToNormal();
                 }
                 break;
             
@@ -124,6 +127,11 @@ public class EnemyHealthSystem : MonoBehaviour
         yield return new WaitForSeconds(inmuneTime);
 
         isInmune = false;
+    }
+
+    private void StageChange()
+    {
+        
     }
 
     public int getActualStage() => actualStage;
