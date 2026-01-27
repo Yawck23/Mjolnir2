@@ -32,13 +32,19 @@ public class StageChange : MonoBehaviour
     void Start()
     {
         iceDomeMaterial = iceDome.GetComponent<Renderer>().material;
+        iceDomeMaterial.SetFloat("_Dissolve", iceDomeStarValue);
+
         floorMaterial = floor.GetComponent<Renderer>().material;
+        floorMaterial.SetFloat("_CambioTextura", floorStartValue);
+
         cloudSkyMaterial = cloudSky.GetComponent<Renderer>().material;
+        cloudSkyMaterial.SetFloat("_CloudAlpha", cloudSkyStartValue);
 
         treesMaterial = new List<Material>();
         foreach (GameObject tree in trees)
         {
             Material treeMat = tree.GetComponent<Renderer>().sharedMaterial;
+            treeMat.SetFloat("_Level", treesStartValue);
             treesMaterial.Add(treeMat);
         }
     }
@@ -61,7 +67,6 @@ public class StageChange : MonoBehaviour
 
     private IEnumerator IceDomeTransition(float startValue, float endValue)
     {
-        iceDome.SetActive(true);
         float elapsedTime = 0f;
         while (elapsedTime < iceDomeTransitionTime)
         {

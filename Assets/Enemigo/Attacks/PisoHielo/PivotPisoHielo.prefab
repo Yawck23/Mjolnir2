@@ -46,6 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetPiso: 1.5
+  damagePeriod: 0.3
+  transitionDuration: 0.5
+  startValue: 1
+  endValue: 0
 --- !u!1001 &259966818416640797
 PrefabInstance:
   m_ObjectHideFlags: 0
