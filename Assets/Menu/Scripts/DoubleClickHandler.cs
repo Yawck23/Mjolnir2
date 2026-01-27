@@ -11,7 +11,6 @@ public class DoubleClickHandler : MonoBehaviour, IPointerClickHandler
         // Verificamos si el conteo de clics es igual a 2
         if (eventData.clickCount == 2)
         {
-            Debug.Log("¡Doble clic detectado!");
             onDoubleClick.Invoke(); // Ejecuta el método que asignes
         }
     }
