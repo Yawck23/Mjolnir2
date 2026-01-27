@@ -27,7 +27,7 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _Contrast: 6
-    - _Level: 2.5
+    - _Level: 1.965142
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
