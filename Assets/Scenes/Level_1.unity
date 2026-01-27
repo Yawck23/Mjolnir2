@@ -6963,7 +6963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8567a4cdeefc32d4b9313577e931ac1a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32487,6 +32487,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 213164810}
+    - targetCorrespondingSourceObject: {fileID: -3575427240225933750, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 996991800}
     - targetCorrespondingSourceObject: {fileID: -2466357704844149868, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1565547529}
@@ -34289,7 +34292,7 @@ ParticleSystem:
   m_GameObject: {fileID: 667379898}
   serializedVersion: 8
   lengthInSec: 5
-  simulationSpeed: 20
+  simulationSpeed: 23.2
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -34363,8 +34366,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 20
-      minScalar: 10
+      scalar: 50
+      minScalar: 30
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -34416,7 +34419,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -34534,8 +34537,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 8
+      scalar: 20
+      minScalar: 15
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -34858,7 +34861,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.001
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -35227,7 +35230,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 30
+        scalar: 60
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -63241,15 +63244,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996991799}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.62, y: 123.36, z: 290.43}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.029168887, y: -0.72373843, z: 0.035055675, w: 0.6885658}
+  m_LocalPosition: {x: 0.0694, y: 0.2349, z: -0.0056}
+  m_LocalScale: {x: 0.009999995, y: 0.010000001, z: 0.009999998}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 667379901}
   - {fileID: 1573091641}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 1639816042}
+  m_LocalEulerAnglesHint: {x: 5.216, y: -92.837, z: 0.348}
 --- !u!1001 &1000803429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75618,7 +75621,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 8
+      scalar: 15
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -75789,8 +75792,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 1
+      scalar: 8
+      minScalar: 4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -76054,14 +76057,14 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 0.43633232
+      scalar: 2.6961677
       minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: -1
+          value: 0.6071421
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -76069,8 +76072,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.98236084
-          value: 0.75
+          time: 0.9786682
+          value: 0.8928566
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -81079,6 +81082,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4932695058198820580, guid: ef80a38684d0cff449ea575961516ac1, type: 3}
   m_PrefabInstance: {fileID: 1619860848}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1639816042 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3575427240225933750, guid: 412a87eaf5e371e4e8544ab54a6f10ab, type: 3}
+  m_PrefabInstance: {fileID: 611384080}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1641541180
 GameObject:
@@ -103989,7 +103997,6 @@ SceneRoots:
   - {fileID: 1877107802}
   - {fileID: 678336698}
   - {fileID: 1186134077}
-  - {fileID: 996991800}
   - {fileID: 373824087}
   - {fileID: 637329084}
   - {fileID: 57907195}
