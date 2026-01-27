@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -22,9 +23,9 @@ public class StageChange : MonoBehaviour
     private Material cloudSkyMaterial;
 
     [Header("Trees")]
-    [SerializeField] private GameObject trees;
+    [SerializeField] private GameObject[] trees;
     [SerializeField] private float treesTransitionTime, treesStartValue, treesEndValue;
-    private Material treesMaterial;
+    private List<Material> treesMaterial;
 
     #endregion
 
@@ -33,7 +34,13 @@ public class StageChange : MonoBehaviour
         iceDomeMaterial = iceDome.GetComponent<Renderer>().material;
         floorMaterial = floor.GetComponent<Renderer>().material;
         cloudSkyMaterial = cloudSky.GetComponent<Renderer>().material;
-        treesMaterial = trees.GetComponent<Renderer>().material;
+
+        treesMaterial = new List<Material>();
+        foreach (GameObject tree in trees)
+        {
+            Material treeMat = tree.GetComponent<Renderer>().sharedMaterial;
+            treesMaterial.Add(treeMat);
+        }
     }
 
     public void TransitionToIce()
@@ -94,18 +101,22 @@ public class StageChange : MonoBehaviour
 
     private IEnumerator TreesTransition(float startValue, float endValue)
     {
-        /*float elapsedTime = 0f;
+        float elapsedTime = 0f;
         while (elapsedTime < treesTransitionTime)
         {
             float newValue = Mathf.Lerp(startValue, endValue, elapsedTime / treesTransitionTime);
-            treesMaterial.SetFloat("_Level", newValue);
+            foreach (Material mat in treesMaterial)
+            {
+                mat.SetFloat("_Level", newValue);   
+            }
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        treesMaterial.SetFloat("_Level", endValue);*/
 
-        //Obtener cada hijo del objeto "Arboles" y aplicar la transición individualmente
-        yield return null;
+        foreach (Material mat in treesMaterial)
+        {
+            mat.SetFloat("_Level", endValue);
+        }
     }
 
 
