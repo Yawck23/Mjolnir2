@@ -28636,7 +28636,21 @@ AnimationClip:
     floatParameter: 0
     intParameter: 2
     messageOptions: 0
-  - time: 1.2916666
+  - time: 1.25
+    functionName: TakeDamage
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.25
+    functionName: ToggleHitMarket
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 1.5833334
     functionName: NoDamage
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -28645,6 +28659,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1.5833334
     functionName: GoToTarget
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.5833334
+    functionName: ToggleHitMarket
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

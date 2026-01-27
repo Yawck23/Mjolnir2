@@ -2,12 +2,42 @@ using UnityEngine;
 
 public class PlayerParticles : MonoBehaviour
 {
-    [SerializeField] GameObject rayoRevivir;
+    [SerializeField] private GameObject rayoRevivir;
+    [SerializeField] private ParticleSystem polvoDerrape;
+    private PlayerController playerController;
+
+    void Start()
+    {
+        playerController = GetComponent<PlayerController>();
+    }
+
+    void Update()
+    {
+        TogglePolvoDerrape();
+    }
 
     public void PlayRayoRevivir()
     {
         rayoRevivir.transform.position = transform.position;
-        ParticleSystem ps = rayoRevivir.GetComponent<ParticleSystem>();
-        ps.Play();
+
+        foreach (Transform child in rayoRevivir.transform)
+        {
+            ParticleSystem ps = child.GetComponent<ParticleSystem>();
+            ps.Play();
+        }
     }
+
+    private void TogglePolvoDerrape()
+    {
+        if (playerController.IsGrounded() && playerController.IsMoving())
+        {
+            if (polvoDerrape.isPlaying) return;
+            polvoDerrape.Play();
+        }
+        else
+        {
+            polvoDerrape.Stop();
+        }
+    }
+    
 }

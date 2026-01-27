@@ -355,5 +355,15 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded() => _characterController.isGrounded; //Para no usar _characterController.isGrounded
     public bool IsDashing() => isDashing;
     public bool IsJumping() => isJumping;
+    public bool IsMoving()
+    {
+        bool isMoving = false;
+        if (currentSpeed > 1f)
+        {
+            isMoving = true;
+        }
+
+        return isMoving;
+    }
     #endregion
 }
