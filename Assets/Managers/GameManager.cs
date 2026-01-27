@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     private bool GameStarted;
     private float gameTime;
     private float deathsCount = 0;
+    [SerializeField] private LoadingScreen loadingScreen;
 
     void Start()
     {
@@ -101,7 +102,8 @@ public class GameManager : MonoBehaviour
         switch (UIManager.UIM.GetSelectedLevel())
         {
             case 1:
-                SceneManager.LoadScene("Level_1");
+                //SceneManager.LoadScene("Level_1");
+                loadingScreen.LoadScene("Level_1");
                 GameStarted = true;
                 Pause = false;
                 UIManager.UIM.StartGame();
@@ -127,7 +129,7 @@ public class GameManager : MonoBehaviour
         // ( La escena se debe ser previamente agregada la lista de escenas en build settings)
         if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("MainMenu"))
         {
-            SceneManager.LoadScene("MainMenu");
+            loadingScreen.LoadScene("MainMenu");
         }
 
         UIManager.UIM.GoToMainMenue();
@@ -140,7 +142,7 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        loadingScreen.LoadScene(SceneManager.GetActiveScene().name);
         gameTime = 0;
         deathsCount = 0;
     }

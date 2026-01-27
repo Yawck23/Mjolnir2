@@ -132,4 +132,17 @@ public class UIManager : MonoBehaviour
         
         deathsCountTextInDeathScreen.text = "Muertes: " + GameManager.GM.GetDeathsCount().ToString("0");
     }
+
+    public void StartMjolnirRunMainMenu()
+    {
+        GameObject player = GameObject.Find("MjolnirMainMenu");
+        if (player != null)
+        {
+            PlayerMovementMainMenu playerMovement = player.GetComponent<PlayerMovementMainMenu>();
+            if (playerMovement != null)
+            {
+                playerMovement.StartMovement();
+            }
+        }
+    }
 }
