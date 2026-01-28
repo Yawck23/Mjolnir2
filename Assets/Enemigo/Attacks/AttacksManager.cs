@@ -101,7 +101,8 @@ public class AttacksManager : MonoBehaviour
 
     public void AirDropStart()
     {
-        Instantiate(airDrop);
+        Vector3 spawnPointAirDropSpawn = pivotYmir.position;
+        Instantiate(airDrop, spawnPointAirDropSpawn, Quaternion.identity);
     }
 
     public void PisoHieloStart()
