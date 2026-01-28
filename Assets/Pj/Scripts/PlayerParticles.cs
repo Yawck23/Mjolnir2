@@ -14,6 +14,7 @@ public class PlayerParticles : MonoBehaviour
     void Update()
     {
         TogglePolvoMovement();
+        TogglePolvoDerrape();
     }
 
     public void PlayRayoRevivir()
@@ -40,9 +41,12 @@ public class PlayerParticles : MonoBehaviour
         }
     }
 
-    public void PlayPolvoDerrape()
+    private void TogglePolvoDerrape()
     {
-       polvoDerrape.Play(); 
+        if (playerController.IsDerrapando())
+        {
+            polvoDerrape.Play();
+        }
     }
-    
+
 }

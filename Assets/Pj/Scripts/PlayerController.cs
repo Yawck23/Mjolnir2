@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     #region Components
     private Animator _animator;
     private HealthSystem _healthSystem;
-    private PlayerParticles _playerParticles;
     #endregion
 
     #region Variables: Movement
@@ -85,7 +84,6 @@ public class PlayerController : MonoBehaviour
         _healthSystem = GetComponent<HealthSystem>();
         _mainCamera = Camera.main;
         _animator = GetComponent<Animator>();
-        _playerParticles = GetComponent<PlayerParticles>();
 
         normalAccelerationRate = accelerationRate;
         normalDecelerationRate = decelerationRate;
@@ -265,7 +263,6 @@ public class PlayerController : MonoBehaviour
     {
         isDerrapando = true;
         _animator.SetBool("Derrapando", true);
-        _playerParticles.PlayPolvoDerrape();
 
         yield return new WaitForSeconds(derrapeDuration); //Duración del derrape
         isDerrapando = false;
