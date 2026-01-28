@@ -7,12 +7,20 @@ public class ExplosionIntoParts : MonoBehaviour
     [SerializeField] private float explosionRadius = 450f;
     [SerializeField] private Transform explosionPoint;
     private float dissapearTime;
+    private PlayerController player;
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
 
     //Este script requiere un obejto padre con rigidbody y collider y varios hijos con rigidbody.
     //Los rigidbody de los hijos deben estar en isKinematic true.
 
     public void Explosion()
     {
+        Debug.Log("Explosion triggered!");
+        
         BoxCollider bc = GetComponent<BoxCollider>();
         bc.enabled = false;
         AudioManager.AM.Play("IceBreak");
@@ -30,5 +38,17 @@ public class ExplosionIntoParts : MonoBehaviour
         }
 
         Destroy(this.gameObject, dissapearTimeMax + 1f); //Destruimos el objeto padre despues de que todos los hijos hayan desaparecido
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        
+        if (collision.collider.CompareTag("PlayerHitBox") || collision.collider.CompareTag("Player"))
+        {
+            if (player.IsDashing())
+            {
+                Explosion();
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@ public class InitialCamera : MonoBehaviour
     [SerializeField] private GameObject mjolnirInitial, mjolnirFinal;
     [SerializeField] private ParticleSystem landVfx;
     [SerializeField] private CinemachineImpulseSource cameraShake;
+    [SerializeField] private Transform mjolnirInitialSpawnPoint, mjolnirFinalSpawnPoint;
     void Start()
     {
         initialCam = GetComponentInChildren<CinemachineCamera>();
@@ -18,9 +19,10 @@ public class InitialCamera : MonoBehaviour
 
     private IEnumerator CameraMove()
     {
-        yield return new WaitForSeconds(1f);
-
-        mjolnirFinal.SetActive(false);
+        //Movemos el mjolnir real a la carcel inicial
+        mjolnirFinal.transform.position = mjolnirInitialSpawnPoint.position;
+        Quaternion mjolnirRotation = mjolnirFinal.transform.rotation;
+        yield return new WaitForSeconds(0.5f);
 
         Vector3 startPosition = transform.position;
         Vector3 endPosition = endPoint.transform.position;
@@ -35,7 +37,11 @@ public class InitialCamera : MonoBehaviour
         }
         landVfx.Play();
         mjolnirInitial.SetActive(false);
-        mjolnirFinal.SetActive(true);
+        
+        //Devolvemos el mjolnir real a su posicion final
+        mjolnirFinal.transform.position = mjolnirFinalSpawnPoint.position;
+        mjolnirFinal.transform.rotation = mjolnirRotation;
+        Physics.SyncTransforms(); //Esto no se bien que hace, pero es necesario para que no haya problemas de fisicas al mover al personaje animado.
 
         initialCam.Priority = 0;
     }

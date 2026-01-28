@@ -17,6 +17,8 @@ public class AirDropBehaviour : MonoBehaviour
     private HealthSystem playerHealth;
     private Rigidbody rb;
     private BoxCollider ObjCollider;
+    private PlayerAttackManager playerAttackManager;
+    private PlayerController playerController;
     #endregion
 
     void Start()
@@ -26,8 +28,10 @@ public class AirDropBehaviour : MonoBehaviour
         rb.useGravity = false;
         playerObject = GameObject.FindWithTag("Player");
         playerHealth = playerObject.GetComponent<HealthSystem>();
+        playerAttackManager = playerObject.GetComponent<PlayerAttackManager>();
+        playerController = playerObject.GetComponent<PlayerController>();
 
-        //Destroy(this.gameObject, destroyAfter); Solo se destruye cuando el jefe lo toca
+        //Destroy(this.gameObject, destroyAfter); Solo se destruye cuando el jefe lo toca o el jugador lo choca
     }
 
     void Update()
@@ -44,13 +48,17 @@ public class AirDropBehaviour : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Player") && !playerDetected)
+        if (collision.collider.CompareTag("Player") || collision.collider.CompareTag("PlayerHitBox"))
         {
-            if (!hasLanded)
+            if (!playerDetected && !hasLanded)
             {
                 playerDetected = true;
                 playerHealth.TakeDamage();
-                
+            }
+
+            if (hasLanded && playerController.IsDashing())
+            {
+                playerAttackManager.AirDropAttack();
             }
         }
 

@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - AirDrop
   - PisoHielo
+  - PlayerHitBox
   layers:
   - Default
   - TransparentFX

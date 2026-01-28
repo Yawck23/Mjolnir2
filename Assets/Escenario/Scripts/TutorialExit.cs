@@ -10,7 +10,6 @@ public class TutorialExit : MonoBehaviour
 
     [SerializeField] private GameObject bossFightCamGameObject;
     private CinemachineCamera bossFightCam;
-    private ExplosionIntoParts explosionIntoParts;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,18 +17,18 @@ public class TutorialExit : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         enemyAnimator = GameObject.Find("Ymir").GetComponent<Animator>();
         bossFightCam = bossFightCamGameObject.GetComponent<CinemachineCamera>();
-        explosionIntoParts = GetComponent<ExplosionIntoParts>();
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (player.IsDashing())
+        if (collision.collider.CompareTag("PlayerHitBox") || collision.collider.CompareTag("Player"))
         {
-            explosionIntoParts.Explosion();
-
-            enemyAnimator.SetTrigger("ExitTutorial");
-            bossFightCam.Priority = 2;
-            AudioManager.AM.Play("BossMusic");
+            if (player.IsDashing())
+            {
+                enemyAnimator.SetTrigger("ExitTutorial");
+                bossFightCam.Priority = 2;
+                AudioManager.AM.Play("BossMusic");
+            }
         }
     }
 }
