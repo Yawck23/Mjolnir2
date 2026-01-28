@@ -5,8 +5,8 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] Text gameTimeText, winGameTimeText, deathsCountText, deathsCountTextInDeathScreen;
-    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, TimePanel, LvlSelectPanel, WinPanel, CoomingSoonPanel, DeathScreenPanel;
+    [SerializeField] Text winGameTimeText, deathsCountTextInDeathScreen;
+    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, LvlSelectPanel, WinPanel, CoomingSoonPanel, DeathScreenPanel;
 
     private UICameraMovement cameraMovScript;
     private UILevelSelect levelSelectScript;
@@ -43,10 +43,6 @@ public class UIManager : MonoBehaviour
     {
         // Si el juego fue iniciado
         if (!GameManager.GM.GetGameStarted()) return;
-
-        gameTimeText.text = "Time: " + GameManager.GM.GetGameTime().ToString("0");
-        deathsCountText.text = "Deaths: " + GameManager.GM.GetDeathsCount().ToString("0");
-
             
         if (GameManager.GM.GetPause() && !InGameMenuPanel.activeSelf)
         {
@@ -64,7 +60,6 @@ public class UIManager : MonoBehaviour
     public void StartGame()
     {
         MainMenuPanel.SetActive(false);
-        TimePanel.SetActive(true);
         //LvlSelectPanel.SetActive(false);
     }
 
@@ -74,7 +69,6 @@ public class UIManager : MonoBehaviour
     public void GoToMainMenue()
     {
         MainMenuPanel.SetActive(true);
-        TimePanel.SetActive(false);
         InGameMenuPanel.SetActive(false);
         //LvlSelectPanel.SetActive(false);
         WinPanel.SetActive(false);

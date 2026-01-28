@@ -10,6 +10,7 @@ public class HealthSystem : MonoBehaviour
     private bool isDead = false;
 
     [SerializeField] KeyCode reviveKey = KeyCode.O;
+    [SerializeField] float waitTimeForReviveAnimation, waitForReviveInput;
     #endregion
 
 
@@ -67,11 +68,13 @@ public class HealthSystem : MonoBehaviour
         playerController.enabled = false;
         charController.enabled = false;
 
+        yield return new WaitForSeconds(waitForReviveInput); //Pequeña espera para evitar que se pueda revivir instantaneamente
+
         while (isDead == true)
         {
             if (Input.GetKeyDown(reviveKey))
             {
-                Revive();
+                StartCoroutine(Revive());
             }
             yield return null;
         }
@@ -86,9 +89,19 @@ public class HealthSystem : MonoBehaviour
         isInmune = false;
     }
 
-    void Revive()
+    private IEnumerator Revive()
     {
-        animatorRoto.SetTrigger("Revive"); //Animaci�n de revivir
+        GameManager.GM.ExitDeathScreen();
+        
+        animatorRoto.SetTrigger("Revive"); //Animación de revivir
+        playerParticles.PlayRayoRevivir(); //Particulas de revivir
+        
+        //yield return null;
+        //float waitTime = animatorRoto.GetNextAnimatorStateInfo(0).length;
+        //float speedTime = animatorRoto.GetNextAnimatorStateInfo(0).speed;
+        //waitTime = waitTime / (-speedTime);
+        //Debug.Log("Wait time revive: " + waitTime + " Speed: " + speedTime);
+        yield return new WaitForSeconds(waitTimeForReviveAnimation); //Esperamos a que termine la animacion
 
         gameObjRoto.SetActive(false);
         gameObjCadera.SetActive(true);
@@ -96,12 +109,9 @@ public class HealthSystem : MonoBehaviour
         //Rehabilitamos controller y movement
         charController.enabled = true;
         playerController.enabled = true;
-        playerParticles.PlayRayoRevivir(); //Particulas de revivir
 
-        GameManager.GM.ExitDeathScreen();
 
         StartCoroutine(InmuneCoroutine()); //Inmunidad temporal
-
     }
     
     public bool getIsDead()

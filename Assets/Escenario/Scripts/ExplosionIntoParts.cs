@@ -18,9 +18,7 @@ public class ExplosionIntoParts : MonoBehaviour
     //Los rigidbody de los hijos deben estar en isKinematic true.
 
     public void Explosion()
-    {
-        Debug.Log("Explosion triggered!");
-        
+    {        
         BoxCollider bc = GetComponent<BoxCollider>();
         bc.enabled = false;
         AudioManager.AM.Play("IceBreak");
