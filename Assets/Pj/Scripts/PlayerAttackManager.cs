@@ -53,4 +53,27 @@ public class PlayerAttackManager : MonoBehaviour
 
         _nextAirDropAttack = Time.time + airDropAttackCooldown;
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (!controller.IsDashing()) return;
+        ExplosionIntoParts explosionController = hit.collider.GetComponent<ExplosionIntoParts>();
+        TutorialExit tutorialExit = hit.collider.GetComponent<TutorialExit>();
+
+        if (hit.collider.CompareTag("AirDrop"))
+        {
+            AirDropAttack();
+        }
+
+        if (explosionController != null)
+        {
+            explosionController.Explosion();
+        }
+
+        if (tutorialExit != null)
+        {
+            tutorialExit.TutorialExitTrigger();
+        }
+
+    }
 }

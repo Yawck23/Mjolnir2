@@ -38,7 +38,7 @@ public class ExplosionIntoParts : MonoBehaviour
         Destroy(this.gameObject, dissapearTimeMax + 1f); //Destruimos el objeto padre despues de que todos los hijos hayan desaparecido
     }
 
-    void OnCollisionEnter(Collision collision)
+    /*void OnCollisionEnter(Collision collision)
     {
         
         if (collision.collider.CompareTag("PlayerHitBox") || collision.collider.CompareTag("Player"))
@@ -48,5 +48,5 @@ public class ExplosionIntoParts : MonoBehaviour
                 Explosion();
             }
         }
-    }
+    }*/
 }
