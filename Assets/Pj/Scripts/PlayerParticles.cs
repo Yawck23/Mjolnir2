@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerParticles : MonoBehaviour
 {
     [SerializeField] private GameObject rayoRevivir;
-    [SerializeField] private ParticleSystem polvoDerrape;
+    [SerializeField] private ParticleSystem polvoMovement, polvoDerrape;
     private PlayerController playerController;
 
     void Start()
@@ -13,7 +13,7 @@ public class PlayerParticles : MonoBehaviour
 
     void Update()
     {
-        TogglePolvoDerrape();
+        TogglePolvoMovement();
     }
 
     public void PlayRayoRevivir()
@@ -27,17 +27,22 @@ public class PlayerParticles : MonoBehaviour
         }
     }
 
-    private void TogglePolvoDerrape()
+    private void TogglePolvoMovement()
     {
         if (playerController.IsGrounded() && playerController.IsMoving())
         {
-            if (polvoDerrape.isPlaying) return;
-            polvoDerrape.Play();
+            if (polvoMovement.isPlaying) return;
+            polvoMovement.Play();
         }
         else
         {
-            polvoDerrape.Stop();
+            polvoMovement.Stop();
         }
+    }
+
+    public void PlayPolvoDerrape()
+    {
+       polvoDerrape.Play(); 
     }
     
 }

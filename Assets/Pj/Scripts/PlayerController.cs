@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     #region Components
     private Animator _animator;
     private HealthSystem _healthSystem;
+    private PlayerParticles _playerParticles;
     #endregion
 
     #region Variables: Movement
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float stopDetectionDelay = 0.15f; // Delay para detectar si el jugador realmente se detuvo
     [SerializeField] private float derrapeDuration = 0.5f;
     private float _stoppedTime = 0f;
+    private bool isDerrapando = false;
     #endregion
     
     #region Variables: IceSlide
@@ -83,6 +85,7 @@ public class PlayerController : MonoBehaviour
         _healthSystem = GetComponent<HealthSystem>();
         _mainCamera = Camera.main;
         _animator = GetComponent<Animator>();
+        _playerParticles = GetComponent<PlayerParticles>();
 
         normalAccelerationRate = accelerationRate;
         normalDecelerationRate = decelerationRate;
@@ -260,9 +263,12 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator DoDerrape()
     {
+        isDerrapando = true;
         _animator.SetBool("Derrapando", true);
+        _playerParticles.PlayPolvoDerrape();
 
         yield return new WaitForSeconds(derrapeDuration); //Duración del derrape
+        isDerrapando = false;
         _animator.SetBool("Derrapando", false);
     }
 
@@ -365,5 +371,7 @@ public class PlayerController : MonoBehaviour
 
         return isMoving;
     }
+
+    public bool IsDerrapando() => isDerrapando;
     #endregion
 }
