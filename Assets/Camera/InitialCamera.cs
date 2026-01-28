@@ -9,6 +9,7 @@ public class InitialCamera : MonoBehaviour
     [SerializeField] private float moveDuration = 2f;
     [SerializeField] private GameObject mjolnirInitial, mjolnirFinal;
     [SerializeField] private ParticleSystem landVfx;
+    [SerializeField] private CinemachineImpulseSource cameraShake;
     void Start()
     {
         initialCam = GetComponentInChildren<CinemachineCamera>();
@@ -27,6 +28,7 @@ public class InitialCamera : MonoBehaviour
 
         while (elapsedTime < moveDuration)
         {
+            cameraShake.GenerateImpulse();
             elapsedTime += Time.deltaTime;
             transform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / moveDuration);
             yield return null;
