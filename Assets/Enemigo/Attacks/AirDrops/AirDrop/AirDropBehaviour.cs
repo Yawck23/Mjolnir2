@@ -55,11 +55,6 @@ public class AirDropBehaviour : MonoBehaviour
                 playerDetected = true;
                 playerHealth.TakeDamage();
             }
-
-            if (hasLanded && playerController.IsDashing())
-            {
-                playerAttackManager.AirDropAttack();
-            }
         }
 
         if (collision.collider.CompareTag("AirDrop"))

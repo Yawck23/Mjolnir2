@@ -19,16 +19,10 @@ public class TutorialExit : MonoBehaviour
         bossFightCam = bossFightCamGameObject.GetComponent<CinemachineCamera>();
     }
 
-    void OnCollisionEnter(Collision collision)
+    public void TutorialExitTrigger()
     {
-        if (collision.collider.CompareTag("PlayerHitBox") || collision.collider.CompareTag("Player"))
-        {
-            if (player.IsDashing())
-            {
-                enemyAnimator.SetTrigger("ExitTutorial");
-                bossFightCam.Priority = 2;
-                AudioManager.AM.Play("BossMusic");
-            }
-        }
+        enemyAnimator.SetTrigger("ExitTutorial");
+        bossFightCam.Priority = 2;
+        AudioManager.AM.Play("BossMusic");
     }
 }

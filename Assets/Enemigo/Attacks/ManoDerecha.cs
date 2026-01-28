@@ -10,12 +10,6 @@ public class ManoDerecha : MonoBehaviour
         attacksManager = GetComponentInParent<AttacksManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("AirDrop"))
