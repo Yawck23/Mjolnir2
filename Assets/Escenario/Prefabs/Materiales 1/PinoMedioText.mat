@@ -40,7 +40,7 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _Contrast: 6
-    - _Level: 2.5
+    - _Level: 0
     - _UpNode: 0.32
     m_Colors: []
   m_BuildTextureStacks: []
