@@ -6,7 +6,7 @@ using System.Collections;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] Text winGameTimeText, deathsCountTextInDeathScreen;
-    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, LvlSelectPanel, WinPanel, CoomingSoonPanel, DeathScreenPanel;
+    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, LvlSelectPanel, WinPanel, DeathScreenPanel; //CoomingSoonPanel
 
     private UICameraMovement cameraMovScript;
     private UILevelSelect levelSelectScript;
@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour
         InGameMenuPanel.SetActive(false);
         //LvlSelectPanel.SetActive(false);
         WinPanel.SetActive(false);
-        CoomingSoonPanel.SetActive(false);
+        //CoomingSoonPanel.SetActive(false);
         DeathScreenPanel.SetActive(false);
 
         cameraMovScript.goToMainMenuCamera();
@@ -81,17 +81,17 @@ public class UIManager : MonoBehaviour
 
     public void GoToLvlSelect()
     {
-        CoomingSoonPanel.SetActive(false);
+        //CoomingSoonPanel.SetActive(false);
         MainMenuPanel.SetActive(false);
         LvlSelectPanel.SetActive(true);
         cameraMovScript.goToLvlSelectCamera();
     }
 
-    public void GoToComingSoon()
+    /*public void GoToComingSoon()
     {
         //LvlSelectPanel.SetActive(false);
         CoomingSoonPanel.SetActive(true);
-    }
+    }*/
 
     public void GoToDeathScreen()
     {

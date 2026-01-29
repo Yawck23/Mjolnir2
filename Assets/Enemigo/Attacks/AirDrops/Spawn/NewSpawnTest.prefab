@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3947406863019623719}
   - component: {fileID: 2472349885012908552}
   - component: {fileID: 7358843016199257381}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: NewSpawnTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}

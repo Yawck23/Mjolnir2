@@ -34,12 +34,12 @@ public class AirDropBehaviour : MonoBehaviour
         //Destroy(this.gameObject, destroyAfter); Solo se destruye cuando el jefe lo toca o el jugador lo choca
     }
 
-    void Update()
+    /*void Update()
     {
         if (!hasLanded){
             DetectFloor();
         }
-    }
+    }*/
 
     private void FixedUpdate()
     {
@@ -48,6 +48,11 @@ public class AirDropBehaviour : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.CompareTag("Ground") || collision.collider.CompareTag("PisoHielo"))
+        {
+            hasLanded = true;
+        }        
+        
         if (collision.collider.CompareTag("Player") || collision.collider.CompareTag("PlayerHitBox"))
         {
             if (!playerDetected && !hasLanded)
@@ -66,7 +71,7 @@ public class AirDropBehaviour : MonoBehaviour
         }
     }
 
-    private void DetectFloor()
+    /*private void DetectFloor()
     {
         // Calcular el punto central de la cara inferior del BoxCollider
         Bounds b = ObjCollider.bounds;
@@ -83,5 +88,5 @@ public class AirDropBehaviour : MonoBehaviour
                 hasLanded = true;
             }
         }
-    }
+    }*/
 }

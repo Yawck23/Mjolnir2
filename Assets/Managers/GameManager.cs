@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     private bool GameStarted;
     private float gameTime;
     private float deathsCount = 0;
+    private int lvlSelected;
     [SerializeField] private LoadingScreen loadingScreen;
 
     void Start()
@@ -109,13 +110,16 @@ public class GameManager : MonoBehaviour
                 UIManager.UIM.StartGame();
                 gameTime = 0;
                 deathsCount = 0;
+                lvlSelected = 1;
                 break;
 
             case 2:
-                GoToComingSoon();
+                //GoToComingSoon();
+                lvlSelected = 2;
                 break;
 
             case 3:
+                lvlSelected = 3;
                 break;
         }
     }
@@ -160,6 +164,8 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
         UIManager.UIM.Win();
+        if (lvlSelected == 1) PersistenceManager.Instance.EvaluateRun(Mathf.RoundToInt(gameTime), Mathf.RoundToInt(deathsCount));
+
         UIManager.UIM.unlockLevel2();
     }
 
@@ -171,9 +177,9 @@ public class GameManager : MonoBehaviour
     public void ExitDeathScreen(){
         UIManager.UIM.ExitDeathScreen();
     }
-    public void GoToComingSoon()
+    /*public void GoToComingSoon()
     {
         UIManager.UIM.GoToComingSoon();
-    }
+    }*/
     #endregion
 }
