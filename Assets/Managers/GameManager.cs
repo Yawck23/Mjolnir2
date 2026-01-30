@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Pause"))
         {
-            TogglePause();
+            TogglePause(!Pause);
         }
 
         if (!GetPause())
@@ -84,9 +84,9 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    public void TogglePause()
+    public void TogglePause(bool _pause)
     {
-        Pause = !Pause;
+        Pause = _pause;
 
         if (Pause)
         {
@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
 
     public void Resume()
     {
-        TogglePause();
+        TogglePause(false);
     }
 
     public void Restart()
