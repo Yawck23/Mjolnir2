@@ -9,6 +9,7 @@ TagManager:
   - AirDrop
   - PisoHielo
   - PlayerHitBox
+  - HumosUI
   layers:
   - Default
   - TransparentFX

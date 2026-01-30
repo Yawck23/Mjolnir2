@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     private UICameraMovement cameraMovScript;
     private UILevelSelect levelSelectScript;
     private PlayerMovementMainMenu playerMovementScript;
+    private GameObject padreHumos; //Para hacer el trigger de las animaciones
 
     #region Singleton
     public static UIManager UIM { get; private set; }
@@ -86,6 +87,8 @@ public class UIManager : MonoBehaviour
         MainMenuPanel.SetActive(false);
         //LvlSelectPanel.SetActive(true);
         cameraMovScript.goToLvlSelectCamera();
+        HumosAnimationTrigger();
+        
     }
 
     /*public void GoToComingSoon()
@@ -142,5 +145,15 @@ public class UIManager : MonoBehaviour
     public void registerPlayerMovementScript(PlayerMovementMainMenu script)
     {
         playerMovementScript = script;
+    }
+
+    private void HumosAnimationTrigger()
+    {
+        padreHumos = GameObject.FindGameObjectWithTag("HumosUI");
+        foreach (Transform child in padreHumos.transform)
+        {
+            Animator animator = child.GetComponent<Animator>();
+            if (animator != null) animator.SetTrigger("Movimiento");
+        }
     }
 }
