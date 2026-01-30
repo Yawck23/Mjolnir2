@@ -5,24 +5,36 @@ using UnityEngine.Rendering;
 
 public class TutorialExit : MonoBehaviour
 {
-    private PlayerController player;
     private Animator enemyAnimator;
 
     [SerializeField] private GameObject bossFightCamGameObject;
     private CinemachineCamera bossFightCam;
+    private bool tutorialFinished = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         enemyAnimator = GameObject.Find("Ymir").GetComponent<Animator>();
         bossFightCam = bossFightCamGameObject.GetComponent<CinemachineCamera>();
     }
 
-    public void TutorialExitTrigger()
+    private void TutorialExitTrigger()
     {
+        tutorialFinished = true;
         enemyAnimator.SetTrigger("ExitTutorial");
         bossFightCam.Priority = 2;
         AudioManager.AM.Play("BossMusic");
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (tutorialFinished) return;
+        
+        if (other.CompareTag("Player") || other.CompareTag("PlayerHitBox")) TutorialExitTrigger();
+    }
+
+    public bool IsTutorialFinished()
+    {
+        return tutorialFinished;
     }
 }

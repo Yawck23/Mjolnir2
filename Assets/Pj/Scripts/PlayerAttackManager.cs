@@ -58,7 +58,7 @@ public class PlayerAttackManager : MonoBehaviour
     {
         if (!controller.IsDashing()) return;
         ExplosionIntoParts explosionController = hit.collider.GetComponent<ExplosionIntoParts>();
-        TutorialExit tutorialExit = hit.collider.GetComponent<TutorialExit>();
+        //TutorialExit tutorialExit = hit.collider.GetComponent<TutorialExit>();
 
         if (hit.collider.CompareTag("AirDrop"))
         {
@@ -70,10 +70,10 @@ public class PlayerAttackManager : MonoBehaviour
             explosionController.Explosion();
         }
 
-        if (tutorialExit != null)
+        /*if (tutorialExit != null)
         {
             tutorialExit.TutorialExitTrigger();
-        }
+        }*/
 
     }
 }

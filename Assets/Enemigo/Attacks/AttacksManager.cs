@@ -10,6 +10,7 @@ public class AttacksManager : MonoBehaviour
 
     private Transform pivotYmir;
     private EnemyHealthSystem ymirHealth;
+    private TutorialExit tutorialExit;
     #endregion
 
     #region Variables: Boolean States
@@ -53,6 +54,8 @@ public class AttacksManager : MonoBehaviour
         ymirHealth = GetComponent<EnemyHealthSystem>();
         animator = GetComponent<Animator>();
         pivotYmir = transform.parent;
+
+        tutorialExit = GameObject.FindGameObjectWithTag("TutorialExit").GetComponent<TutorialExit>();
 
     }
 
@@ -115,6 +118,7 @@ public class AttacksManager : MonoBehaviour
         if (nextAttackTimer > 0f) return; //Esperamos al cooldown
         if (ymirHealth.IsDead()) return; //Si el boss está muerto, no elige ataques
         if (playerHealth.getIsDead()) return; //Si el player está muerto, no elige ataques
+        if (!tutorialExit.IsTutorialFinished()) return; //Si no se terminó el tutorial, no elige ataques
 
         if (debugMode)
         {
