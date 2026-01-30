@@ -6,13 +6,8 @@ public class ExplosionIntoParts : MonoBehaviour
     [SerializeField] private float explosionForce = 10000f;
     [SerializeField] private float explosionRadius = 450f;
     [SerializeField] private Transform explosionPoint;
+    [SerializeField] private GameObject hitMarket;
     private float dissapearTime;
-    private PlayerController player;
-
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-    }
 
     //Este script requiere un obejto padre con rigidbody y collider y varios hijos con rigidbody.
     //Los rigidbody de los hijos deben estar en isKinematic true.
@@ -33,6 +28,11 @@ public class ExplosionIntoParts : MonoBehaviour
             rb.isKinematic = false;
             rb.AddExplosionForce(explosionForce, explosionPoint.position, explosionRadius);
             Destroy(child.gameObject, dissapearTime);
+        }
+
+        if (hitMarket != null)
+        {
+            Destroy(hitMarket);
         }
 
         Destroy(this.gameObject, dissapearTimeMax + 1f); //Destruimos el objeto padre despues de que todos los hijos hayan desaparecido
