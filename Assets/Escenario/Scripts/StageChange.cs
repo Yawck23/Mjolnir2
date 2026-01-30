@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StageChange : MonoBehaviour
 {
-    
+
     #region Variables and Objects
     [Header("Ice Dome")]
     [SerializeField] private GameObject iceDome;
@@ -27,10 +27,10 @@ public class StageChange : MonoBehaviour
     [SerializeField] private float treesTransitionTime, treesStartValue, treesEndValue;
     private List<Material> treesMaterial;
 
-    [Header("Lights")]
+    [Header("Lights & Fog")]
     [SerializeField] private Light[] daySceneLights, nightSceneLights;
     [SerializeField] private float[] dayLightIntensityTarget, nightLightIntensityTarget;
-    [SerializeField] private float lightTransitionTime;
+    [SerializeField] private float lightTransitionTime; // fogTarget, fogTransitionTime;
 
 
     #endregion
@@ -62,6 +62,7 @@ public class StageChange : MonoBehaviour
         StartCoroutine(CloudSkyTransition(cloudSkyStartValue, cloudSkyEndValue));
         StartCoroutine(TreesTransition(treesStartValue, treesEndValue));
         StartCoroutine(LightsTransitionToNight());
+        RenderSettings.fog = false;
     }
 
     public void TransitionToNormal()
@@ -71,6 +72,7 @@ public class StageChange : MonoBehaviour
         StartCoroutine(CloudSkyTransition(cloudSkyEndValue, cloudSkyStartValue));
         StartCoroutine(TreesTransition(treesEndValue, treesStartValue));
         StartCoroutine(LightsTransitionToDay());
+        RenderSettings.fog = true;
     }
 
     private IEnumerator IceDomeTransition(float startValue, float endValue)
@@ -120,7 +122,7 @@ public class StageChange : MonoBehaviour
             float newValue = Mathf.Lerp(startValue, endValue, elapsedTime / treesTransitionTime);
             foreach (Material mat in treesMaterial)
             {
-                mat.SetFloat("_Level", newValue);   
+                mat.SetFloat("_Level", newValue);
             }
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -137,7 +139,7 @@ public class StageChange : MonoBehaviour
         float elapsedTime = 0f;
         while (elapsedTime < lightTransitionTime)
         {
-            for( int i = 0; i < daySceneLights.Length; i++)
+            for (int i = 0; i < daySceneLights.Length; i++)
             {
                 float newIntensity = Mathf.Lerp(dayLightIntensityTarget[i], 0f, elapsedTime / lightTransitionTime);
                 daySceneLights[i].intensity = newIntensity;
@@ -154,12 +156,12 @@ public class StageChange : MonoBehaviour
         }
     }
 
-        private IEnumerator LightsTransitionToDay()
+    private IEnumerator LightsTransitionToDay()
     {
         float elapsedTime = 0f;
         while (elapsedTime < lightTransitionTime)
         {
-            for( int i = 0; i < nightSceneLights.Length; i++)
+            for (int i = 0; i < nightSceneLights.Length; i++)
             {
                 float newIntensity = Mathf.Lerp(nightLightIntensityTarget[i], 0f, elapsedTime / lightTransitionTime);
                 nightSceneLights[i].intensity = newIntensity;
@@ -175,4 +177,18 @@ public class StageChange : MonoBehaviour
             yield return null;
         }
     }
+
+    /*private IEnumerator FogTransition(float startValue, float endValue)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < cloudSkyTransitionTime)
+        {
+            float newValue = Mathf.Lerp(startValue, endValue, elapsedTime / fogTransitionTime);
+            RenderSettings.fogDensity = newValue;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        
+        RenderSettings.fogDensity = endValue;
+    }*/
 }
