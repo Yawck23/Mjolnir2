@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
     [Header("Derrape")]
     [SerializeField] private float stopDetectionDelay = 0.15f; // Delay para detectar si el jugador realmente se detuvo
     [SerializeField] private float derrapeDuration = 0.5f;
-    private float _stoppedTime = 0f;
     private bool isDerrapando = false;
     #endregion
     
@@ -208,15 +207,11 @@ public class PlayerController : MonoBehaviour
             _input = context.ReadValue<Vector2>();
             _direction = new Vector3(_input.x, 0.0f, _input.y); //Tomo el input y modifico _direction, que luego la uso en ApplyMovement
             
-            // Resetear el contador si vuelve a presionar una tecla
-            _stoppedTime = 0f;
             //_currentSpeedMultiplier = minSpeed / speed; // Comenzar desde velocidad mínima
         }
 
         if (context.canceled)
         {
-            // Iniciar cuenta regresiva para detectar si el jugador se detuvo realmente
-            _stoppedTime = 0f;
             StartCoroutine(DetectStopWithDelay());
         }
         
@@ -254,7 +249,7 @@ public class PlayerController : MonoBehaviour
         {
             if (currentSpeed > maxSpeed * 0.5f){
                 StartCoroutine(DoDerrape());
-            } // Si la velocidad es mayor al 30% de la velocidad máxima, derrapamos
+            } // Si la velocidad es mayor al 50% de la velocidad máxima, derrapamos
             
         }
     }

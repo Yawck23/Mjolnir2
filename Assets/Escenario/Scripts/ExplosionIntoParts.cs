@@ -30,23 +30,11 @@ public class ExplosionIntoParts : MonoBehaviour
             Destroy(child.gameObject, dissapearTime);
         }
 
-        if (hitMarket != null)
+        if (hitMarket != null) //Si tiene hitMarket, lo destruimos para que no quede en escena
         {
             Destroy(hitMarket);
         }
 
         Destroy(this.gameObject, dissapearTimeMax + 1f); //Destruimos el objeto padre despues de que todos los hijos hayan desaparecido
     }
-
-    /*void OnCollisionEnter(Collision collision)
-    {
-        
-        if (collision.collider.CompareTag("PlayerHitBox") || collision.collider.CompareTag("Player"))
-        {
-            if (player.IsDashing())
-            {
-                Explosion();
-            }
-        }
-    }*/
 }

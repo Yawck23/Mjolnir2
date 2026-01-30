@@ -46,7 +46,6 @@ public class PlayerMovementMainMenu : MonoBehaviour
     [Header("Derrape")]
     [SerializeField] private float stopDetectionDelay = 0.15f; // Delay para detectar si el jugador realmente se detuvo
     [SerializeField] private float derrapeDuration = 0.5f;
-    private float _stoppedTime = 0f;
     #endregion
     
     #region Variables: IceSlide

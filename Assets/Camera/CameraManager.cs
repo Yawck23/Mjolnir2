@@ -13,17 +13,15 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField] Transform[] lookAtTargets;
     [SerializeField] Transform targetFocusDummy;
-    [SerializeField] KeyCode targetChangeKey = KeyCode.R;
+    //[SerializeField] KeyCode targetChangeKey = KeyCode.R;
     private int targetIndex = 0;
     [SerializeField] float focusSmoothSpeed = 5f;
 
     private CinemachineOrbitalFollow orbital;
-    private CinemachineCamera cinemachineCamera;
 
     void Awake()
     {
         orbital = GetComponent<CinemachineOrbitalFollow>();
-        cinemachineCamera = GetComponent<CinemachineCamera>();
         targetFocusDummy.position = lookAtTargets[targetIndex].position;
     }
 

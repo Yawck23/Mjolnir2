@@ -19,7 +19,7 @@ public class AttacksManager : MonoBehaviour
     private bool canLookAtPlayer;
     private bool canDestroyPisoHielo;
 
-    private bool playerInLejos = false;
+    //private bool playerInLejos = false; No es necesario dado que si no está cerca, es porque está lejos...
     private bool playerInCerca = false;
     #endregion
 
@@ -181,10 +181,11 @@ public class AttacksManager : MonoBehaviour
         if (zone == DetectionZone.ZoneType.Cerca)
         {
             playerInCerca = true;
-        }else if (zone == DetectionZone.ZoneType.Lejos)
+        }
+        /*else if (zone == DetectionZone.ZoneType.Lejos)
         {
             playerInLejos = true;
-        }
+        }*/
     }
     public void OnPlayerExitZone(DetectionZone.ZoneType zone)
     {
@@ -192,10 +193,10 @@ public class AttacksManager : MonoBehaviour
         {
             playerInCerca = false;
         }
-        else if (zone == DetectionZone.ZoneType.Lejos)
+        /*else if (zone == DetectionZone.ZoneType.Lejos)
         {
             playerInLejos = false;
-        }
+        }*/
     }
     #endregion
 
