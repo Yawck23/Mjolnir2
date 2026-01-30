@@ -127,6 +127,11 @@ public class PlayerMovementMainMenu : MonoBehaviour
         StartCoroutine(Move(movementDuration));
     }
 
+    void Start()
+    {
+        UIManager.UIM.registerPlayerMovementScript(this);
+    }
+
 
 
 
@@ -146,7 +151,7 @@ public class PlayerMovementMainMenu : MonoBehaviour
     //----------------------------------------------------------IGNORE ABOVE THIS LINE----------------------------------------------------------
 
     private void Awake()
-    {
+    {        
         _characterController = GetComponent<CharacterController>();
         _healthSystem = GetComponent<HealthSystem>();
         _mainCamera = Camera.main;

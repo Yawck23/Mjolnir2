@@ -103,7 +103,6 @@ public class GameManager : MonoBehaviour
         switch (UIManager.UIM.GetSelectedLevel())
         {
             case 1:
-                //SceneManager.LoadScene("Level_1");
                 loadingScreen.LoadScene("Level_1");
                 GameStarted = true;
                 Pause = false;

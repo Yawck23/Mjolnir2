@@ -6,10 +6,11 @@ using System.Collections;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] Text winGameTimeText, deathsCountTextInDeathScreen;
-    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, LvlSelectPanel, WinPanel, DeathScreenPanel; //CoomingSoonPanel
+    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, WinPanel, DeathScreenPanel; //CoomingSoonPanel
 
     private UICameraMovement cameraMovScript;
     private UILevelSelect levelSelectScript;
+    private PlayerMovementMainMenu playerMovementScript;
 
     #region Singleton
     public static UIManager UIM { get; private set; }
@@ -35,7 +36,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         cameraMovScript = GetComponent<UICameraMovement>();
-        levelSelectScript = LvlSelectPanel.GetComponent<UILevelSelect>();
+        //levelSelectScript = LvlSelectPanel.GetComponent<UILevelSelect>();
         GoToMainMenue();
     }
 
@@ -43,14 +44,14 @@ public class UIManager : MonoBehaviour
     {
         // Si el juego fue iniciado
         if (!GameManager.GM.GetGameStarted()) return;
-            
+
         if (GameManager.GM.GetPause() && !InGameMenuPanel.activeSelf)
         {
             InGameMenuPanel.SetActive(true);
         }
         else if (!GameManager.GM.GetPause() && InGameMenuPanel.activeSelf)
         {
-                InGameMenuPanel.SetActive(false);
+            InGameMenuPanel.SetActive(false);
         }
     }
 
@@ -83,7 +84,7 @@ public class UIManager : MonoBehaviour
     {
         //CoomingSoonPanel.SetActive(false);
         MainMenuPanel.SetActive(false);
-        LvlSelectPanel.SetActive(true);
+        //LvlSelectPanel.SetActive(true);
         cameraMovScript.goToLvlSelectCamera();
     }
 
@@ -99,7 +100,8 @@ public class UIManager : MonoBehaviour
         StartCoroutine(DeathCountCoRoutineTest());
     }
 
-    public void ExitDeathScreen(){
+    public void ExitDeathScreen()
+    {
         DeathScreenPanel.SetActive(false);
     }
 
@@ -113,7 +115,7 @@ public class UIManager : MonoBehaviour
     {
         return levelSelectScript.getLevelSelected();
     }
-    
+
     public void unlockLevel2()
     {
         levelSelectScript.unlockLevel2();
@@ -123,20 +125,22 @@ public class UIManager : MonoBehaviour
     {
         // Código antes de la espera
         yield return new WaitForSeconds(1f); // Espera para cambiar de número
-        
+
         deathsCountTextInDeathScreen.text = "Muertes: " + GameManager.GM.GetDeathsCount().ToString("0");
     }
 
     public void StartMjolnirRunMainMenu()
     {
-        GameObject player = GameObject.Find("MjolnirMainMenu");
-        if (player != null)
-        {
-            PlayerMovementMainMenu playerMovement = player.GetComponent<PlayerMovementMainMenu>();
-            if (playerMovement != null)
-            {
-                playerMovement.StartMovement();
-            }
-        }
+        playerMovementScript.StartMovement();
+    }
+
+    public void registerWorldUILvlSelectScript(UILevelSelect script)
+    {
+        levelSelectScript = script;
+    }
+
+    public void registerPlayerMovementScript(PlayerMovementMainMenu script)
+    {
+        playerMovementScript = script;
     }
 }

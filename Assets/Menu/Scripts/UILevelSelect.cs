@@ -9,6 +9,7 @@ public class UILevelSelect : MonoBehaviour
     void Start()
      {
         tg = GetComponent<ToggleGroup>();
+        UIManager.UIM.registerWorldUILvlSelectScript(this);
      }
 
     public int getLevelSelected()

@@ -1131,7 +1131,6 @@ GameObject:
   - component: {fileID: 197834700}
   - component: {fileID: 197834699}
   - component: {fileID: 197834698}
-  - component: {fileID: 197834701}
   - component: {fileID: 197834702}
   m_Layer: 5
   m_Name: Lvl3
@@ -1246,33 +1245,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197834696}
   m_CullTransparentMesh: 1
---- !u!114 &197834701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 197834696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e6f05adb4406ee4b9a34cfe9b394125, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDoubleClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 533791001}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: StartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &197834702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3184,7 +3156,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8475847449613809508}
-  - {fileID: 1479004488}
   - {fileID: 391401919}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4089,7 +4060,6 @@ GameObject:
   - component: {fileID: 757920792}
   - component: {fileID: 757920791}
   - component: {fileID: 757920790}
-  - component: {fileID: 757920789}
   - component: {fileID: 757920788}
   m_Layer: 5
   m_Name: Lvl2
@@ -4163,33 +4133,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &757920789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757920786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e6f05adb4406ee4b9a34cfe9b394125, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDoubleClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 533791001}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: StartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &757920790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8070,7 +8013,7 @@ RectTransform:
   - {fileID: 197834697}
   - {fileID: 878910555}
   - {fileID: 2107986906}
-  m_Father: {fileID: 533791002}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9994,21 +9937,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6f05adb4406ee4b9a34cfe9b394125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDoubleClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8475847449582010140}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: StartMjolnirRunMainMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1846167880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11590,7 +11518,6 @@ MonoBehaviour:
   deathsCountTextInDeathScreen: {fileID: 275717402}
   MainMenuPanel: {fileID: 215552210}
   InGameMenuPanel: {fileID: 8475847450393584106}
-  LvlSelectPanel: {fileID: 1479004484}
   WinPanel: {fileID: 1791984837}
   DeathScreenPanel: {fileID: 1557111979}
 --- !u!114 &8475847449582010141
@@ -12117,12 +12044,13 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 781594526}
   - {fileID: 533791002}
-  - {fileID: 925832081}
+  - {fileID: 8475847449582010139}
   - {fileID: 798110336}
+  - {fileID: 781594526}
+  - {fileID: 1479004488}
+  - {fileID: 925832081}
   - {fileID: 705507995}
   - {fileID: 963194228}
   - {fileID: 373988140}
-  - {fileID: 8475847449582010139}
   - {fileID: 680700841}
