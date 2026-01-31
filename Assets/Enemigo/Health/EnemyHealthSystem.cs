@@ -46,12 +46,12 @@ public class EnemyHealthSystem : MonoBehaviour
     public void TakeDamage(float amount)
     {
         if (amount <= 0f) return;
-
         if (!attackManager.CanTakeDamage()) return;
-        
         if (isInmune) return;
 
-        Debug.Log("Ymir recibe " + amount + " de daño.");
+        //Seleccionamos un hurtAnim al azar
+        int randomHurt = Random.Range(0,3);
+        animatorYmir.SetFloat("HurtSelect", randomHurt);
         
         animatorYmir.SetTrigger("Hurt");
         currentHealth -= amount;
@@ -85,7 +85,7 @@ public class EnemyHealthSystem : MonoBehaviour
             case 1:
                 if ((maxHealth - stage1Health) >= currentHealth){
                     actualStage = 2;
-                    Debug.Log("Cambio a stage 2");
+                    StartCoroutine(Stage2Transition());
                     animatorYmir.SetInteger("Stage", actualStage);
                     stageChangeScript.TransitionToIce();
                 }
@@ -94,7 +94,6 @@ public class EnemyHealthSystem : MonoBehaviour
             case 2:
                 if (maxHealth - stage1Health - stage2Health >= currentHealth){
                     actualStage = 3;
-                    Debug.Log("Cambio a stage 3");
                     animatorYmir.SetInteger("Stage", actualStage);
                     stageChangeScript.TransitionToNormal();
                 }
@@ -103,7 +102,6 @@ public class EnemyHealthSystem : MonoBehaviour
             case 3:
                 if (maxHealth - stage1Health - stage2Health - stage3Health >= currentHealth){
                     actualStage = 4;
-                    Debug.Log("Cambio a stage 4");
                     animatorYmir.SetInteger("Stage", actualStage);
                 }
                 break;
@@ -129,9 +127,13 @@ public class EnemyHealthSystem : MonoBehaviour
         isInmune = false;
     }
 
-    private void StageChange()
+    private IEnumerator Stage2Transition()
     {
-        
+        animatorYmir.SetBool("Instance2", true);
+
+        yield return new WaitForSeconds(3f);
+
+        animatorYmir.SetBool("Instance2", false);
     }
 
     public int getActualStage() => actualStage;

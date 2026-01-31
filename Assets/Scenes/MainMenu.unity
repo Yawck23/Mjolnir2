@@ -2605,7 +2605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadingScreenUI: {fileID: 1312308317}
   LoadingBarFill: {fileID: 1881045658}
-  loadSpeed: 0.5
+  loadSpeed: 1.5
 --- !u!4 &398377519 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4932695058198820580, guid: ef80a38684d0cff449ea575961516ac1, type: 3}
