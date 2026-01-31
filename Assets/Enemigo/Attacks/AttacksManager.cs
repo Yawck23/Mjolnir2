@@ -76,7 +76,7 @@ public class AttacksManager : MonoBehaviour
         canApplyDamage = true;
         canTakeDamage = false;
     }
-    public void TakeDamage()
+    public void CanTakeDamageEvent()
     {
         canTakeDamage = true;
         canApplyDamage = false;

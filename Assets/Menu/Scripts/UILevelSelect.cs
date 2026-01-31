@@ -41,7 +41,7 @@ public class UILevelSelect : MonoBehaviour
 
     }
     
-    public void unlockLevel2()
+    /*public void unlockLevel2()
     {
         foreach (Toggle t in tg.GetComponentsInChildren<Toggle>(true))
         {
@@ -50,5 +50,5 @@ public class UILevelSelect : MonoBehaviour
                 t.interactable = true;
             }
         }
-    }
+    }*/
 }
