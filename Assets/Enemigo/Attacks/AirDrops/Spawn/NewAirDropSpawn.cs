@@ -28,11 +28,13 @@ public class NewAirDropSpawn : MonoBehaviour
     private Transform playerTransform;
     #endregion
     private Animator enemyAnimator;
+    private GameObject ymirGameObject;
     //private bool animationEnded = false;
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        enemyAnimator = GameObject.Find("Ymir").GetComponent<Animator>();
+        ymirGameObject = GameObject.Find("Ymir");
+        enemyAnimator = ymirGameObject.GetComponent<Animator>();
 
         planeBounds = GetComponent<MeshRenderer>().bounds;
 
@@ -104,7 +106,10 @@ public class NewAirDropSpawn : MonoBehaviour
     private void spawnRandomDrop(Vector3 spawnPoint)
     {
         //Spawnea un objeto en una posisción dada
-        Instantiate(drop, spawnPoint, Quaternion.identity);
+        Transform parentTransform = ymirGameObject.transform.parent; //Es quien tiene el pivot
+        float anguloY = Mathf.Atan2(parentTransform.position.x - spawnPoint.x, parentTransform.position.z - spawnPoint.z) * Mathf.Rad2Deg; //Calculamos el ángulo entre el aidrop y el Ymir
+        Quaternion rotationToEnemy = Quaternion.Euler(0,anguloY,0); //Aplicamos solo en Y ya que la rotacion X,Z no cambia
+        Instantiate(drop, spawnPoint, rotationToEnemy);
     }
 
     private IEnumerator spawnCorutine()
