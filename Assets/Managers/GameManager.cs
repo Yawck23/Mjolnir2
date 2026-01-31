@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour
         UIManager.UIM.Win();
         if (lvlSelected == 1) PersistenceManager.Instance.EvaluateRun(Mathf.RoundToInt(gameTime), Mathf.RoundToInt(deathsCount));
 
-        UIManager.UIM.unlockLevel2();
+        //UIManager.UIM.unlockLevel2();
     }
 
     public void GoToDeathScreen()

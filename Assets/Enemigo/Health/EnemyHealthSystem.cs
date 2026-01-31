@@ -43,14 +43,16 @@ public class EnemyHealthSystem : MonoBehaviour
         stageChangeScript = stageGameObject.GetComponent<StageChange>();
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, string hitLocation)
     {
         if (amount <= 0f) return;
         if (!attackManager.CanTakeDamage()) return;
         if (isInmune) return;
 
-        //Seleccionamos un hurtAnim al azar
+        //Seleccionamos un hurtAnim al azar, salvo que el hit sea en el pecho, entonces se selecciona el hurtPecho
         int randomHurt = Random.Range(0,3);
+        
+        if (hitLocation.Equals("Pecho")) randomHurt = 3;
         animatorYmir.SetFloat("HurtSelect", randomHurt);
         
         animatorYmir.SetTrigger("Hurt");
@@ -95,6 +97,7 @@ public class EnemyHealthSystem : MonoBehaviour
                 if (maxHealth - stage1Health - stage2Health >= currentHealth){
                     actualStage = 3;
                     animatorYmir.SetInteger("Stage", actualStage);
+                    animatorYmir.SetFloat("IdleSelect", 1);
                     stageChangeScript.TransitionToNormal();
                 }
                 break;

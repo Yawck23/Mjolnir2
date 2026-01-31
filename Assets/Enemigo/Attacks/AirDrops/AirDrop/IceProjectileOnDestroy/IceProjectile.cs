@@ -32,7 +32,7 @@ public class IceProjectile : MonoBehaviour
     {
         if (other.tag.Equals("Enemy"))
         {
-            ymirHealth.TakeDamage(iceProjectileDamage);
+            ymirHealth.TakeDamage(iceProjectileDamage, "Pecho");
             Destroy(this.gameObject);
         }
     }

@@ -39,7 +39,7 @@ public class PlayerAttackManager : MonoBehaviour
     private void DashAttack()
     {
         animator.SetTrigger("Choque");
-        enemyHealth.TakeDamage(dashDamage);
+        enemyHealth.TakeDamage(dashDamage, "Mano");
     }
 
     public void AirDropAttack()

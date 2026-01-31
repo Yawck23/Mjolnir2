@@ -119,10 +119,10 @@ public class UIManager : MonoBehaviour
         return levelSelectScript.getLevelSelected();
     }
 
-    public void unlockLevel2()
+    /*public void unlockLevel2()
     {
         levelSelectScript.unlockLevel2();
-    }
+    }*/
 
     private IEnumerator DeathCountCoRoutineTest()
     {
