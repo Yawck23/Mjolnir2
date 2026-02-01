@@ -89,7 +89,7 @@ public class EnemyHealthSystem : MonoBehaviour
                     actualStage = 2;
                     StartCoroutine(Stage2Transition());
                     animatorYmir.SetInteger("Stage", actualStage);
-                    stageChangeScript.TransitionToIce();
+                    //La transition to Ice está en un evento de animación
                 }
                 break;
             
@@ -137,6 +137,11 @@ public class EnemyHealthSystem : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         animatorYmir.SetBool("Instance2", false);
+    }
+
+    public void TransitionToIceAnimEvent()
+    {
+        stageChangeScript.TransitionToIce();
     }
 
     public int getActualStage() => actualStage;
