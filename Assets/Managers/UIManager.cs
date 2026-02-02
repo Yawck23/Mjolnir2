@@ -5,7 +5,7 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] Text winGameTimeText, deathsCountTextInDeathScreen;
+    [SerializeField] Text winGameTimeText, deathsCountTextInDeathScreen, deathScreenReviveText;
     [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, WinPanel, DeathScreenPanel; //CoomingSoonPanel
 
     private UICameraMovement cameraMovScript;
@@ -111,7 +111,7 @@ public class UIManager : MonoBehaviour
     public void Win()
     {
         WinPanel.SetActive(true);
-        winGameTimeText.text = "Ganaste\n" + "Tiempo: " + GameManager.GM.GetGameTime().ToString("0") + "\nMuertes: " + GameManager.GM.GetDeathsCount().ToString("0");
+        winGameTimeText.text = "You win!\n" + "Time: " + GameManager.GM.GetGameTime().ToString("0") + "\nDeaths: " + GameManager.GM.GetDeathsCount().ToString("0");
     }
 
     public int GetSelectedLevel()
@@ -126,10 +126,15 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator DeathCountCoRoutineTest()
     {
+        deathScreenReviveText.enabled = false;
         // Código antes de la espera
-        yield return new WaitForSeconds(1f); // Espera para cambiar de número
+        yield return new WaitForSeconds(1.2f); // Espera para cambiar de número
 
-        deathsCountTextInDeathScreen.text = "Muertes: " + GameManager.GM.GetDeathsCount().ToString("0");
+        deathsCountTextInDeathScreen.text = "Deaths: " + GameManager.GM.GetDeathsCount().ToString("0");
+
+        yield return new WaitForSeconds(0.7f);
+
+        deathScreenReviveText.enabled = true; //Espera para mostrar texto revivir
     }
 
     public void StartMjolnirRunMainMenu()
