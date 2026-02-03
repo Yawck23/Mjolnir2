@@ -1,7 +1,6 @@
 using System.Collections;
-using Unity.VisualScripting;
+using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 
 public class YmirCinematicaFinal : MonoBehaviour
@@ -11,8 +10,9 @@ public class YmirCinematicaFinal : MonoBehaviour
 
     [SerializeField] private GameObject colmilloInicial, colmilloCinematica;
     [SerializeField] private PlayableDirector CinematicaFinalPlayable;
+    [SerializeField] private CinemachineCamera cinematicCamera;
+    [SerializeField] private BandasNegrasCamera bandasNegras;
     private bool cinematicTriggered = false;
-    private bool colmilloDesactivado = false;
 
     void Update()
     {
@@ -20,42 +20,28 @@ public class YmirCinematicaFinal : MonoBehaviour
         {
             StartCoroutine(TriggerCinematicaFinal());
         }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            ToggleColmillos();
-        }
-
-        if (colmilloDesactivado)
-        {
-            colmilloInicial.SetActive(false);
-        }
     }
 
     public IEnumerator TriggerCinematicaFinal()
     {
         cinematicTriggered = true;
-        CinematicaFinalPlayable.enabled = true;
+        cinematicCamera.Priority = 4; //Prioridad alta para que el cinemachine la tome
+        bandasNegras.ToggleBars(); //Ponemos las bandas negras
+        CinematicaFinalPlayable.enabled = true; //Habilitamos la timeline con el play on wake
         float duration = (float)CinematicaFinalPlayable.duration;
         float timer = 0f;
 
-        while (timer < duration)
+        while (timer < duration) //Iteramos mientras dura la animación
         {
             timer += Time.deltaTime;
             yield return null;
         }
 
-        Time.timeScale = 1f;
-        Debug.Log("Se resetea el time scale a 1");
-    }
-
-    public void ToggleColmillos()
-    {
-        Debug.Log("Se hizo toggle de colmillos");
-        colmilloDesactivado = true;
-        //colmilloInicial.SetActive(false);
-        //colmilloCinematica.SetActive(true);
-
+        bandasNegras.ToggleBars(); //Sacamos las bandas negras
+        Time.timeScale = 1f; //Volvemos el time scale a 1
+        //Lógica de Win (fade a negro)
+        GameManager.GM.Win();
+        //cinematicCamera.Priority = 0; //Volvemos a la cámara que corresponda
     }
 
     public void SetTimeScale (float timeScale) //De verdad, perdón

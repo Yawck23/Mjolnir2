@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -29,6 +30,8 @@ public class EnemyHealthSystem : MonoBehaviour
     #region Variables: Components
     private Animator animatorYmir;
     private AttacksManager attackManager;
+    [SerializeField] private Renderer ymirShader;
+    [SerializeField] private float ymirCambioTransitionTime = 3f;
     #endregion
 
     void Start()
@@ -99,6 +102,7 @@ public class EnemyHealthSystem : MonoBehaviour
                     animatorYmir.SetInteger("Stage", actualStage);
                     animatorYmir.SetFloat("IdleSelect", 1);
                     stageChangeScript.TransitionToNormal();
+                    ymirShader.material.DOFloat(1f, "_Cambio", ymirCambioTransitionTime);
                 }
                 break;
             
@@ -142,6 +146,11 @@ public class EnemyHealthSystem : MonoBehaviour
     public void TransitionToIceAnimEvent()
     {
         stageChangeScript.TransitionToIce();
+    }
+
+    public void TransitionYmirShaderCinematicaFinal()
+    {
+        ymirShader.material.DOFloat(1f, "_Cambio_2", ymirCambioTransitionTime);
     }
 
     public int getActualStage() => actualStage;

@@ -12,12 +12,6 @@ public class BandasNegrasCamera : MonoBehaviour
 
     void Update()
     {
-        // Detectar si presionamos una tecla para probar (ejemplo: Espacio)
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            ToggleBars();
-        }
-
         // Interpolación suave del tamaño de las barras
         float currentHeight = Mathf.Lerp(topBar.sizeDelta.y, targetSize, Time.deltaTime * speed);
         

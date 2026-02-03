@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     private bool Pause;
     private bool GameStarted;
     private float gameTime;
+    private float gameTimeScale;
     private float deathsCount = 0;
     private int lvlSelected;
     [SerializeField] private LoadingScreen loadingScreen;
@@ -36,7 +37,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Pause = true;
-        Time.timeScale = 1f; // 1 representa el tiempo normal del juego
+        gameTimeScale = 1f;
+        Time.timeScale = gameTimeScale; // 1 representa el tiempo normal del juego
     }
 
     void Update()
@@ -90,11 +92,12 @@ public class GameManager : MonoBehaviour
 
         if (Pause)
         {
+            gameTimeScale = Time.timeScale;
             Time.timeScale = 0;
         }
         else
         {
-            Time.timeScale = 1;
+            Time.timeScale = gameTimeScale;
         }
     }
 
