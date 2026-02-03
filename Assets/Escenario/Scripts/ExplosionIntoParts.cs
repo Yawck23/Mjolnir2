@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class ExplosionIntoParts : MonoBehaviour
 {
+    public enum AudioClip { IceBreak, StoneBreak }
     [SerializeField] private float dissapearTimeMin, dissapearTimeMax;
     [SerializeField] private float explosionForce = 10000f;
     [SerializeField] private float explosionRadius = 450f;
     [SerializeField] private Transform explosionPoint;
     [SerializeField] private GameObject hitMarket;
+    [SerializeField] private AudioClip audioClipName;
     private float dissapearTime;
 
     //Este script requiere un obejto padre con rigidbody y collider y varios hijos con rigidbody.
@@ -16,7 +18,7 @@ public class ExplosionIntoParts : MonoBehaviour
     {        
         BoxCollider bc = GetComponent<BoxCollider>();
         bc.enabled = false;
-        AudioManager.AM.Play("IceBreak");
+        AudioManager.AM.Play3DSound(audioClipName.ToString(), AudioPosition());
 
         foreach (Transform child in transform) //Aplicamos la explosion a cada rigidbody hijo
         {
@@ -36,5 +38,17 @@ public class ExplosionIntoParts : MonoBehaviour
         }
 
         Destroy(this.gameObject, dissapearTimeMax + 1f); //Destruimos el objeto padre despues de que todos los hijos hayan desaparecido
+    }
+
+    private Vector3 AudioPosition()
+    {
+        if (audioClipName.Equals(AudioClip.StoneBreak))
+        {
+            return transform.parent.position;
+        }
+        else
+        {
+            return transform.position;
+        }
     }
 }

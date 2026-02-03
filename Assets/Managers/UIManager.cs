@@ -31,15 +31,10 @@ public class UIManager : MonoBehaviour
             // Se pone en un modo que evita ser destruido al cambiar de escena
             DontDestroyOnLoad(gameObject);
         }
+
+        cameraMovScript = GetComponent<UICameraMovement>();
     }
     #endregion
-
-    void Start()
-    {
-        cameraMovScript = GetComponent<UICameraMovement>();
-        //levelSelectScript = LvlSelectPanel.GetComponent<UILevelSelect>();
-        GoToMainMenue();
-    }
 
     void Update()
     {
