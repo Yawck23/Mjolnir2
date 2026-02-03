@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CabezaRotaAnim
+  m_Name: CabezaRotaAnim_2
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -22,58 +22,58 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 21300000, guid: f301a7e2dde508f4988c749a83d67877, type: 3}
-    - time: 0.083333336
+    - time: 0.016666668
       value: {fileID: 21300000, guid: 22f6b22c816eabf42b6229ba10565fd8, type: 3}
-    - time: 0.16666667
+    - time: 0.033333335
       value: {fileID: 21300000, guid: 2a32ded75f2791741a6cd50a83ac3ffe, type: 3}
-    - time: 0.25
+    - time: 0.05
       value: {fileID: 21300000, guid: 6f3bee749201ff848a8d41e8322853a6, type: 3}
-    - time: 0.33333334
+    - time: 0.06666667
       value: {fileID: 21300000, guid: 45d2c74aec8265c40bd4f31f4ea1cf84, type: 3}
-    - time: 0.41666666
+    - time: 0.083333336
       value: {fileID: 21300000, guid: 222673ea8a83c0245933780febf7fce1, type: 3}
-    - time: 0.5
+    - time: 0.1
       value: {fileID: 21300000, guid: 5e5c5ea0311c68842b6810253415ad11, type: 3}
-    - time: 0.5833333
+    - time: 0.11666667
       value: {fileID: 21300000, guid: 5ba25225dad4f104fab664bacff2b7f1, type: 3}
-    - time: 0.6666667
+    - time: 0.13333334
       value: {fileID: 21300000, guid: b1dc160d1b298644e9f1598705216d3d, type: 3}
-    - time: 0.75
+    - time: 0.15
       value: {fileID: 21300000, guid: 390d113c378b67141bd532af08f5c02b, type: 3}
-    - time: 0.8333333
+    - time: 0.16666667
       value: {fileID: 21300000, guid: ce8494089ab72274c8b12035adf70435, type: 3}
-    - time: 0.9166667
+    - time: 0.18333334
       value: {fileID: 21300000, guid: 258f25f099618b044a97003fecc4dd4e, type: 3}
-    - time: 1
+    - time: 0.2
       value: {fileID: 21300000, guid: fbd396ecc18d6e942be61922e0e06b1b, type: 3}
-    - time: 1.0833334
+    - time: 0.21666667
       value: {fileID: 21300000, guid: f685b163280e0094e92afe9e9881932b, type: 3}
-    - time: 1.1666666
+    - time: 0.23333333
       value: {fileID: 21300000, guid: 690214dbb7a0eab4ca0ec213020a0794, type: 3}
-    - time: 1.25
+    - time: 0.25
       value: {fileID: 21300000, guid: 551946c702e40b342a8ce62457a6a992, type: 3}
-    - time: 1.3333334
+    - time: 0.26666668
       value: {fileID: 21300000, guid: 1dc0adce60f81374fb726098242c8026, type: 3}
-    - time: 1.4166666
+    - time: 0.28333333
       value: {fileID: 21300000, guid: 490905519be43eb46970be08ab7f8e3b, type: 3}
-    - time: 1.5
+    - time: 0.3
       value: {fileID: 21300000, guid: 62b6f911092e4e74d8ff1f3548824b32, type: 3}
-    - time: 1.5833334
+    - time: 0.31666666
       value: {fileID: 21300000, guid: 7972bd2e574c6b2469389cb3624adc90, type: 3}
-    - time: 1.6666666
+    - time: 0.33333334
       value: {fileID: 21300000, guid: cb7aca6c5d76e324eb9c4585c6ded81a, type: 3}
-    - time: 1.75
+    - time: 0.35
       value: {fileID: 21300000, guid: 26776b8c397847b49a6aa9073612ea4f, type: 3}
-    - time: 1.8333334
+    - time: 0.36666667
       value: {fileID: 21300000, guid: 1f7a6805bae9f99469af9a9ad73271d4, type: 3}
-    - time: 1.9166666
+    - time: 0.38333333
       value: {fileID: 21300000, guid: a09e6eea33a71b144a5063bab8021763, type: 3}
     attribute: m_Sprite
     path: 
-    classID: 212
-    script: {fileID: 0}
+    classID: 114
+    script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
     flags: 2
-  m_SampleRate: 12
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -82,10 +82,10 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 0
-      attribute: 0
-      script: {fileID: 0}
-      typeID: 212
-      customType: 23
+      attribute: 2015549526
+      script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+      typeID: 114
+      customType: 0
       isPPtrCurve: 1
       isIntCurve: 0
       isSerializeReferenceCurve: 0
@@ -119,12 +119,12 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2
+    m_StopTime: 0.4
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
