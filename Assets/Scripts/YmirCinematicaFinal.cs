@@ -12,11 +12,20 @@ public class YmirCinematicaFinal : MonoBehaviour
     [SerializeField] private PlayableDirector CinematicaFinalPlayable;
     [SerializeField] private CinemachineCamera cinematicCamera;
     [SerializeField] private BandasNegrasCamera bandasNegras;
+    [SerializeField] private KeyCode keyCodeTriggerCinematic = KeyCode.Q;
     private bool cinematicTriggered = false;
+
+    private EnemyHealthSystem healthSystem;
+
+    void Start()
+    {
+        colmilloCinematica.SetActive(false);
+        healthSystem = GetComponent<EnemyHealthSystem>();
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && !cinematicTriggered)
+        if (Input.GetKeyDown(keyCodeTriggerCinematic) && !cinematicTriggered && healthSystem.IsDead())
         {
             StartCoroutine(TriggerCinematicaFinal());
         }
@@ -48,5 +57,10 @@ public class YmirCinematicaFinal : MonoBehaviour
     {
         Debug.Log("Llamada a SetTimeScale con valor: " + timeScale);
         Time.timeScale = timeScale;
+    }
+
+    public void EnableColmilloCinematica()
+    {
+        colmilloCinematica.SetActive(true);
     }
 }

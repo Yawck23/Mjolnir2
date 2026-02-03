@@ -9,7 +9,7 @@ public class EnemyHealthSystem : MonoBehaviour
     private float maxHealth;
     [SerializeField] float inmuneTime = 1f;
 
-    private bool isDead;
+    private bool isDead = false;
 
     private bool isInmune = false;
     public float currentHealth;
@@ -48,6 +48,7 @@ public class EnemyHealthSystem : MonoBehaviour
 
     public void TakeDamage(float amount, string hitLocation)
     {
+        if (isDead) return;
         if (amount <= 0f) return;
         if (!attackManager.CanTakeDamage()) return;
         if (isInmune) return;
@@ -81,11 +82,11 @@ public class EnemyHealthSystem : MonoBehaviour
     private void Die()
     {
         isDead = true;
-        StartCoroutine(dieCorutine());
+        animatorYmir.SetTrigger("Dead");
     }
 
     private void StageManager (){
-
+        //Se ejecuta siempre que recibe daño, pero cada caso se ejecuta una sola vez (cada vez que cambia de etapa)
         switch (actualStage){
             case 1:
                 if ((maxHealth - stage1Health) >= currentHealth){
@@ -117,12 +118,6 @@ public class EnemyHealthSystem : MonoBehaviour
                 break;
         }
 
-    }
-
-    IEnumerator dieCorutine()
-    {
-        GameManager.GM.Win();
-        yield return null;
     }
 
     private IEnumerator InmuneCoroutine()
