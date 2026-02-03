@@ -6,7 +6,7 @@ using System.Collections;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] Text winGameTimeText, deathsCountTextInDeathScreen, deathScreenReviveText;
-    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, WinPanel, DeathScreenPanel; //CoomingSoonPanel
+    [SerializeField] GameObject MainMenuPanel, InGameMenuPanel, WinPanel, DeathScreenPanel, CinematicTriggerPanel; //CoomingSoonPanel
 
     private UICameraMovement cameraMovScript;
     private UILevelSelect levelSelectScript;
@@ -140,6 +140,11 @@ public class UIManager : MonoBehaviour
     public void StartMjolnirRunMainMenu()
     {
         playerMovementScript.StartMovement();
+    }
+
+    public void ToggleCinematicTriggerPanel(bool active)
+    {
+        CinematicTriggerPanel.SetActive(active);
     }
 
     public void registerWorldUILvlSelectScript(UILevelSelect script)

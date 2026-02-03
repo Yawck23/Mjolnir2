@@ -83,6 +83,7 @@ public class EnemyHealthSystem : MonoBehaviour
     {
         isDead = true;
         animatorYmir.SetTrigger("Dead");
+        UIManager.UIM.ToggleCinematicTriggerPanel(true);
     }
 
     private void StageManager (){

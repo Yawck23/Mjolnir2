@@ -33,6 +33,7 @@ public class YmirCinematicaFinal : MonoBehaviour
 
     public IEnumerator TriggerCinematicaFinal()
     {
+        UIManager.UIM.ToggleCinematicTriggerPanel(false);
         cinematicTriggered = true;
         cinematicCamera.Priority = 4; //Prioridad alta para que el cinemachine la tome
         bandasNegras.ToggleBars(); //Ponemos las bandas negras
