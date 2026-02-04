@@ -4567,25 +4567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a3b906050d5ef46bdf1c494502ee2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - name: BossMusic
-    clip: {fileID: 8300000, guid: 954807dab0793594b8320e4231d991c6, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 1
-    spatialBlend: 0
-    minDistance: 0
-    maxDistance: 0
-    source: {fileID: 0}
-  - name: StoneBreak
-    clip: {fileID: 8300000, guid: de681038c5169ef4ebd36d93a4361ae1, type: 3}
-    volume: 0.25
-    pitch: 1
-    loop: 0
-    spatialBlend: 1
-    minDistance: 80
-    maxDistance: 150
-    source: {fileID: 0}
+  _3DSounds:
   - name: IceBreak
     clip: {fileID: 8300000, guid: 74017ed6704005640afcb291ea880d05, type: 3}
     volume: 0.25
@@ -4595,24 +4577,128 @@ MonoBehaviour:
     minDistance: 40
     maxDistance: 200
     source: {fileID: 0}
-  - name: MenuInicio
-    clip: {fileID: 8300000, guid: 8090b99524d91ec45ae0b8ca968a46ad, type: 3}
+  - name: StoneBreak1
+    clip: {fileID: 8300000, guid: d282ebb4854057548b10cc90f4dfd49a, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    spatialBlend: 1
+    minDistance: 40
+    maxDistance: 200
+    source: {fileID: 0}
+  - name: StoneBreak2
+    clip: {fileID: 8300000, guid: 56563ce7752a33948828f1fa8b7d46a1, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    spatialBlend: 1
+    minDistance: 40
+    maxDistance: 200
+    source: {fileID: 0}
+  _2DSounds:
+  - name: YmirDialogoInicial
+    clip: {fileID: 8300000, guid: 94f9d3907cfb440469e8bea5ab1c275a, type: 3}
     volume: 1
     pitch: 1
-    loop: 1
+    loop: 0
     spatialBlend: 0
     minDistance: 0
     maxDistance: 0
     source: {fileID: 0}
-  - name: Tutorial
-    clip: {fileID: 8300000, guid: 84b976dc73676fd49993ba2581c007d2, type: 3}
+  - name: YmirDialogoStage2
+    clip: {fileID: 8300000, guid: 496753ec529f32a43895a8515a0cda40, type: 3}
     volume: 1
     pitch: 1
-    loop: 1
+    loop: 0
     spatialBlend: 0
     minDistance: 0
     maxDistance: 0
     source: {fileID: 0}
+  - name: YmirHurt1
+    clip: {fileID: 8300000, guid: 259cf6bbb46bf3c43a081cf9018a900b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: YmirHurt2
+    clip: {fileID: 8300000, guid: 7b1d8e1b5e39d5d4a86decce62be1e19, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: YmirHurt3
+    clip: {fileID: 8300000, guid: 7b1d8e1b5e39d5d4a86decce62be1e19, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: YmirLaugh1
+    clip: {fileID: 8300000, guid: 16f5bffb6ae1bba4da20c99d93e7f8be, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: YmirLaugh2
+    clip: {fileID: 8300000, guid: af0ddc2ac84368943b993b520524bd60, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: YmirLaugh3
+    clip: {fileID: 8300000, guid: bd112257b4518aa4caf7bcc61760a604, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: YmirJadeo1
+    clip: {fileID: 8300000, guid: 52dab8d49e072f043b90b2090e4c0500, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: YmirJadeo2
+    clip: {fileID: 8300000, guid: 91e331109d20d8348afce8a70aaf3ee7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  <IceBreak>k__BackingField: IceBreak
+  <StoneBreak1>k__BackingField: StoneBreak1
+  <StoneBreak2>k__BackingField: StoneBreak2
+  <YmirDialogoInicial>k__BackingField: YmirDialogoInicial
+  <YmirDialogoStage2>k__BackingField: YmirDialogoStage2
+  <YmirHurt1>k__BackingField: YmirHurt1
+  <YmirHurt2>k__BackingField: YmirHurt2
+  <YmirHurt3>k__BackingField: YmirHurt3
+  <YmirLaugh1>k__BackingField: YmirLaugh1
+  <YmirLaugh2>k__BackingField: YmirLaugh2
+  <YmirLaugh3>k__BackingField: YmirLaugh3
+  <YmirJadeo1>k__BackingField: YmirJadeo1
+  <YmirJadeo2>k__BackingField: YmirJadeo2
 --- !u!1 &805301483
 GameObject:
   m_ObjectHideFlags: 0
@@ -12358,5 +12444,5 @@ SceneRoots:
   - {fileID: 373988140}
   - {fileID: 533791002}
   - {fileID: 798110336}
-  - {fileID: 781594526}
   - {fileID: 1661244461}
+  - {fileID: 781594526}

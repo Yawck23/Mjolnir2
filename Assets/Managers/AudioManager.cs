@@ -1,9 +1,30 @@
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] private Sound[] sounds;
+    [SerializeField] private Sound[] _3DSounds;
+    [SerializeField] private Sound[] _2DSounds;
+
+    #region Scene sounds
+    [field: Header ("Scene sounds")]
+    [field: SerializeField] public string IceBreak { get; private set; }
+    [field: SerializeField] public string StoneBreak1 { get; private set; }
+    [field: SerializeField] public string StoneBreak2 { get; private set; }
+    #endregion
+
+    #region Ymir Sounds
+    [field: Header ("Ymir sounds")]
+    [field: SerializeField] public string YmirDialogoInicial { get; private set; }
+    [field: SerializeField] public string YmirDialogoStage2 { get; private set; }
+    [field: SerializeField] public string YmirHurt1 { get; private set; }
+    [field: SerializeField] public string YmirHurt2 { get; private set; }
+    [field: SerializeField] public string YmirHurt3 { get; private set; }
+    [field: SerializeField] public string YmirLaugh1 { get; private set; }
+    [field: SerializeField] public string YmirLaugh2 { get; private set; }
+    [field: SerializeField] public string YmirLaugh3 { get; private set; }
+    [field: SerializeField] public string YmirJadeo1 { get; private set; }
+    [field: SerializeField] public string YmirJadeo2 { get; private set; }
+    #endregion
 
     #region Singleton y Seteo inicial de sonidos
     public static AudioManager AM { get; private set; }
@@ -24,7 +45,7 @@ public class AudioManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        foreach (Sound s in sounds)
+        foreach (Sound s in _3DSounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -37,39 +58,33 @@ public class AudioManager : MonoBehaviour
             s.source.rolloffMode = AudioRolloffMode.Linear; //Para atenuar el sonido 3D
         }
 
+        foreach (Sound s in _2DSounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
+            s.source.spatialBlend = 0f;
+        }
+
     }
     #endregion
 
-    /*public void Play(string name)
+    public void Play(string name)
     {
-        Sound s = System.Array.Find(sounds, sound => sound.name == name);
+        Sound s = System.Array.Find(_2DSounds, sound => sound.name == name);
         if (s == null)
         {
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
         s.source.Play();
-    }*/
-
-    /*public void Play(string name, float volume)
-    {
-        float realVolume = Mathf.Clamp(volume, 0, 1); //Lo mantenemos entre 0 y 1
-        Sound s = System.Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning("Sound: " + name + " not found!");
-            return;
-        }
-
-        float anteriorVolume = s.source.volume; //Guardamos el valor del volumen configurado del clip
-        s.source.volume = realVolume;
-        s.source.Play();
-        s.source.volume = anteriorVolume; //Devolvemos el volumen real al clip
-    }*/
+    }
 
     public void Play3DSound(string name, Vector3 position)
     {
-        Sound s = System.Array.Find(sounds, sound => sound.name == name);
+        Sound s = System.Array.Find(_3DSounds, sound => sound.name == name);
         if (s == null)
         {
             Debug.LogWarning("Sound: " + name + " not found!");
@@ -91,23 +106,4 @@ public class AudioManager : MonoBehaviour
 
         Destroy(tempGO, s.clip.length); // Se limpia solo
     }
-
-    /*public void Stop(string name)
-    {
-        Sound s = System.Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning("Sound: " + name + " not found!");
-            return;
-        }
-        s.source.Stop();
-    }
-
-    public void StopAllSounds()
-    {
-        foreach (Sound s in sounds)
-        {
-            s.source.Stop();
-        }
-    }*/
 }

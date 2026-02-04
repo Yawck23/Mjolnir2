@@ -18,7 +18,7 @@ public class ExplosionIntoParts : MonoBehaviour
     {        
         BoxCollider bc = GetComponent<BoxCollider>();
         bc.enabled = false;
-        AudioManager.AM.Play3DSound(audioClipName.ToString(), AudioPosition());
+        AudioManager.AM.Play3DSound(AudioName(), AudioPosition());
 
         foreach (Transform child in transform) //Aplicamos la explosion a cada rigidbody hijo
         {
@@ -50,5 +50,28 @@ public class ExplosionIntoParts : MonoBehaviour
         {
             return transform.position;
         }
+    }
+
+    private string AudioName()
+    {
+        string audioName = null;
+        if (audioClipName.Equals(AudioClip.IceBreak)) audioName = AudioManager.AM.IceBreak;
+
+        if (audioClipName.Equals(AudioClip.StoneBreak))
+        {
+            int randomBreak = Random.Range(1, 3);
+            switch (randomBreak)
+            {
+                case 1:
+                    audioName = AudioManager.AM.StoneBreak1;
+                    break;
+                
+                case 2:
+                    audioName = AudioManager.AM.StoneBreak2;
+                    break;     
+            }
+        }
+
+        return audioName;
     }
 }
