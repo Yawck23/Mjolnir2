@@ -8906,6 +8906,122 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648770885}
   m_CullTransparentMesh: 1
+--- !u!1 &1661244459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1661244461}
+  - component: {fileID: 1661244460}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1661244460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661244459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff9b4c0881d2504ca5419c34202fc75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: MenuInicio
+    clip: {fileID: 8300000, guid: 3633ed2ebb156db4b8d04bddedf947c7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: Tutorial
+    clip: {fileID: 8300000, guid: 0500d9eb6dcc9304b932398c3012c4a3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: Ymir1
+    clip: {fileID: 8300000, guid: 45ac8677ad4e8434eb0f10a94038551f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: Ymir2
+    clip: {fileID: 8300000, guid: 0e2ba112d20a64743b9d0c3debc03727, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: Ymir3
+    clip: {fileID: 8300000, guid: 2df49fa52a6a44e4b9b4c33fd9f8880a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: Muerte
+    clip: {fileID: 8300000, guid: 3868ec292e781704f9cc87794c5b7669, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: PostCinematica
+    clip: {fileID: 8300000, guid: 404159db310c34d43b6f0e6d9b875006, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  <MenuInicio>k__BackingField: MenuInicio
+  <Tutorial>k__BackingField: Tutorial
+  <Ymir1>k__BackingField: Ymir1
+  <Ymir2>k__BackingField: Ymir2
+  <Ymir3>k__BackingField: Ymir3
+  <Muerte>k__BackingField: Muerte
+  <PostCinematica>k__BackingField: PostCinematica
+  fadeDuration: 2
+--- !u!4 &1661244461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661244459}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 115.37022, y: 0, z: -121.98706}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1665613197
 GameObject:
   m_ObjectHideFlags: 0
@@ -12243,3 +12359,4 @@ SceneRoots:
   - {fileID: 533791002}
   - {fileID: 798110336}
   - {fileID: 781594526}
+  - {fileID: 1661244461}

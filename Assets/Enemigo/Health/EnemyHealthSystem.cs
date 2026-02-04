@@ -19,7 +19,6 @@ public class EnemyHealthSystem : MonoBehaviour
     [SerializeField] float stage1Health = 30f;
     [SerializeField] float stage2Health = 30f;
     [SerializeField] float stage3Health = 30f;
-    [SerializeField] float stage4Health = 30f;
     private int actualStage;
 
     #endregion
@@ -38,7 +37,7 @@ public class EnemyHealthSystem : MonoBehaviour
     {
         isDead = false;
         actualStage = 1;
-        maxHealth = stage1Health + stage2Health + stage3Health + stage4Health;
+        maxHealth = stage1Health + stage2Health + stage3Health;
         currentHealth = maxHealth;
         animatorYmir = GetComponent<Animator>();
         attackManager = GetComponent<AttacksManager>();
@@ -94,6 +93,7 @@ public class EnemyHealthSystem : MonoBehaviour
                     actualStage = 2;
                     StartCoroutine(Stage2Transition());
                     animatorYmir.SetInteger("Stage", actualStage);
+                    MusicManager.Instance.PlayMusic(MusicManager.Instance.Ymir2);
                     //La transition to Ice está en un evento de animación
                 }
                 break;
@@ -105,17 +105,8 @@ public class EnemyHealthSystem : MonoBehaviour
                     animatorYmir.SetFloat("IdleSelect", 1);
                     stageChangeScript.TransitionToNormal();
                     ymirShader.material.DOFloat(1f, "_Cambio", ymirCambioTransitionTime);
+                    MusicManager.Instance.PlayMusic(MusicManager.Instance.Ymir3);
                 }
-                break;
-            
-            case 3:
-                if (maxHealth - stage1Health - stage2Health - stage3Health >= currentHealth){
-                    actualStage = 4;
-                    animatorYmir.SetInteger("Stage", actualStage);
-                }
-                break;
-
-            case 4:
                 break;
         }
 

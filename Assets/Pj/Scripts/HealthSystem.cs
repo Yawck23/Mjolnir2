@@ -47,6 +47,7 @@ public class HealthSystem : MonoBehaviour
 
     void Die()
     {
+        MusicManager.Instance.PlayMusic(MusicManager.Instance.Muerte);
         GameManager.GM.AddToDeathCount();
 
         gameObjCadera.SetActive(false);
@@ -91,21 +92,17 @@ public class HealthSystem : MonoBehaviour
 
     private IEnumerator Revive()
     {
+        isDead = false;
         GameManager.GM.ExitDeathScreen();
-        
+        MusicManager.Instance.PlayLastMusicBeforeActual();
         animatorRoto.SetTrigger("Revive"); //Animación de revivir
         playerParticles.PlayRayoRevivir(); //Particulas de revivir
         
-        //yield return null;
-        //float waitTime = animatorRoto.GetNextAnimatorStateInfo(0).length;
-        //float speedTime = animatorRoto.GetNextAnimatorStateInfo(0).speed;
-        //waitTime = waitTime / (-speedTime);
-        //Debug.Log("Wait time revive: " + waitTime + " Speed: " + speedTime);
         yield return new WaitForSeconds(waitTimeForReviveAnimation); //Esperamos a que termine la animacion
 
         gameObjRoto.SetActive(false);
         gameObjCadera.SetActive(true);
-        isDead = false;
+        
         //Rehabilitamos controller y movement
         charController.enabled = true;
         playerController.enabled = true;

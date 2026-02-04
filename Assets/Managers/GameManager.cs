@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         gameTimeScale = 1f;
         Time.timeScale = gameTimeScale; // 1 representa el tiempo normal del juego
         GoToMainMenu();
-        AudioManager.AM.Play("MenuInicio");
+        MusicManager.Instance.PlayMusic(MusicManager.Instance.MenuInicio);
     }
 
     void Update()
@@ -109,8 +109,7 @@ public class GameManager : MonoBehaviour
         {
             case 1:
                 loadingScreen.LoadScene("Level_1");
-                AudioManager.AM.StopAllSounds();
-                AudioManager.AM.Play("Tutorial");
+                MusicManager.Instance.PlayMusic(MusicManager.Instance.Tutorial);
                 GameStarted = true;
                 Pause = false;
                 UIManager.UIM.StartGame();
@@ -139,9 +138,8 @@ public class GameManager : MonoBehaviour
         // ( La escena se debe ser previamente agregada la lista de escenas en build settings)
         if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("MainMenu"))
         {
-            AudioManager.AM.StopAllSounds();
             loadingScreen.LoadScene("MainMenu");
-            AudioManager.AM.Play("MenuInicio");
+            MusicManager.Instance.PlayMusic(MusicManager.Instance.MenuInicio);
         }
 
         UIManager.UIM.GoToMainMenue();

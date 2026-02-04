@@ -47,9 +47,9 @@ public class YmirCinematicaFinal : MonoBehaviour
             yield return null;
         }
 
+        MusicManager.Instance.PlayMusic(MusicManager.Instance.PostCinematica);
         bandasNegras.ToggleBars(); //Sacamos las bandas negras
         Time.timeScale = 1f; //Volvemos el time scale a 1
-        //Lógica de Win (fade a negro)
         GameManager.GM.Win();
         //cinematicCamera.Priority = 0; //Volvemos a la cámara que corresponda
     }

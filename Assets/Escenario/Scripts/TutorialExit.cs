@@ -23,7 +23,7 @@ public class TutorialExit : MonoBehaviour
         tutorialFinished = true;
         enemyAnimator.SetTrigger("ExitTutorial");
         bossFightCam.Priority = 2;
-        AudioManager.AM.Play("BossMusic");
+        MusicManager.Instance.PlayMusic(MusicManager.Instance.Ymir1);
     }
 
     void OnTriggerEnter(Collider other)

@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
     }
     #endregion
 
-    public void Play(string name)
+    /*public void Play(string name)
     {
         Sound s = System.Array.Find(sounds, sound => sound.name == name);
         if (s == null)
@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.Play();
-    }
+    }*/
 
     /*public void Play(string name, float volume)
     {
@@ -92,7 +92,7 @@ public class AudioManager : MonoBehaviour
         Destroy(tempGO, s.clip.length); // Se limpia solo
     }
 
-    public void Stop(string name)
+    /*public void Stop(string name)
     {
         Sound s = System.Array.Find(sounds, sound => sound.name == name);
         if (s == null)
@@ -109,5 +109,5 @@ public class AudioManager : MonoBehaviour
         {
             s.source.Stop();
         }
-    }
+    }*/
 }
