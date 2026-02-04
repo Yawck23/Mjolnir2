@@ -18,6 +18,7 @@ public class LoadingScreen : MonoBehaviour
     private IEnumerator LoadSceneAsync(string sceneName)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        operation.allowSceneActivation = false;
         LoadingScreenUI.SetActive(true);
         LoadingBarFill.fillAmount = 0;
 
@@ -37,10 +38,13 @@ public class LoadingScreen : MonoBehaviour
             //Si la carga interna ya terminó (0.9), pero la barra no ha llegado a 1, seguimos animando la barra.
             if (operation.progress >= 0.9f && LoadingBarFill.fillAmount >= 0.99f)
             {
+                operation.allowSceneActivation = true;
                 LoadingBarFill.fillAmount = 1.0f; // Aseguramos el final
                 yield return new WaitForSeconds(0.2f); // Un pequeño respiro visual
+                
                 break;
             }
+            
 
             yield return null;
         }
