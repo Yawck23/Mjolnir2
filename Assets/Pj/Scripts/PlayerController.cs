@@ -225,6 +225,7 @@ public class PlayerController : MonoBehaviour
 
         _animator.SetTrigger("JumpStart");
         StartCoroutine(DoJump());
+        AudioManager.AM.Play(AudioManager.AM.MjolnirSalto);
     }
 
     public void Dash(InputAction.CallbackContext context)

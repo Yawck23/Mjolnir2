@@ -51,6 +51,7 @@ public class AirDropBehaviour : MonoBehaviour
         if (collision.collider.CompareTag("Ground") || collision.collider.CompareTag("PisoHielo"))
         {
             hasLanded = true;
+            AudioManager.AM.Play3DSound(AudioManager.AM.AirDropGroundHit, collision.contacts[0].point);
         }        
         
         if (collision.collider.CompareTag("Player") || collision.collider.CompareTag("PlayerHitBox"))

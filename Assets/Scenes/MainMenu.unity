@@ -1350,6 +1350,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 798110337}
+          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+          m_MethodName: Play
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: SeleccionNivel
+            m_BoolArgument: 1
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -4083,6 +4095,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 798110337}
+          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+          m_MethodName: Play
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: SeleccionNivel
+            m_BoolArgument: 1
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -4595,6 +4619,15 @@ MonoBehaviour:
     minDistance: 40
     maxDistance: 200
     source: {fileID: 0}
+  - name: YmirAirDropHit
+    clip: {fileID: 8300000, guid: f0776086dd6d0cd43b4703afb4c851e3, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    spatialBlend: 1
+    minDistance: 40
+    maxDistance: 200
+    source: {fileID: 0}
   _2DSounds:
   - name: YmirDialogoInicial
     clip: {fileID: 8300000, guid: 94f9d3907cfb440469e8bea5ab1c275a, type: 3}
@@ -4669,7 +4702,7 @@ MonoBehaviour:
     maxDistance: 0
     source: {fileID: 0}
   - name: YmirJadeo1
-    clip: {fileID: 8300000, guid: 52dab8d49e072f043b90b2090e4c0500, type: 3}
+    clip: {fileID: 8300000, guid: d5c7c8ac3586ea44fa6d7acde5cc8ec4, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -4678,7 +4711,79 @@ MonoBehaviour:
     maxDistance: 0
     source: {fileID: 0}
   - name: YmirJadeo2
-    clip: {fileID: 8300000, guid: 91e331109d20d8348afce8a70aaf3ee7, type: 3}
+    clip: {fileID: 8300000, guid: 742c6af1e54d9b44b9f8231b09408837, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: YmirAplastar
+    clip: {fileID: 8300000, guid: 85d4c85b5b5beee47a81e6a722a8dbc1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: YmirArrastrar
+    clip: {fileID: 8300000, guid: d5484d661db1d8b46a8425d5e50899db, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: YmirEscupeHielo
+    clip: {fileID: 8300000, guid: af918a03ec9c16a4c92aff70539f7ff3, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: MjolnirSalto
+    clip: {fileID: 8300000, guid: caf94bbe1181b4442a2f45ae5dbc60c7, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: MjolnirDeath
+    clip: {fileID: 8300000, guid: ea7423c7862d55e46884c128506c755e, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: MjolnirRevivir
+    clip: {fileID: 8300000, guid: 2e2e6654bef02e843832edabd6bafdde, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: SeleccionNivel
+    clip: {fileID: 8300000, guid: 1999aaac35e7203448ed82c5887955f3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: ClickPlay
+    clip: {fileID: 8300000, guid: 6103410e08443504dbb72e3e531c7ca0, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -4689,6 +4794,7 @@ MonoBehaviour:
   <IceBreak>k__BackingField: IceBreak
   <StoneBreak1>k__BackingField: StoneBreak1
   <StoneBreak2>k__BackingField: StoneBreak2
+  <AirDropGroundHit>k__BackingField: YmirAirDropHit
   <YmirDialogoInicial>k__BackingField: YmirDialogoInicial
   <YmirDialogoStage2>k__BackingField: YmirDialogoStage2
   <YmirHurt1>k__BackingField: YmirHurt1
@@ -4699,6 +4805,14 @@ MonoBehaviour:
   <YmirLaugh3>k__BackingField: YmirLaugh3
   <YmirJadeo1>k__BackingField: YmirJadeo1
   <YmirJadeo2>k__BackingField: YmirJadeo2
+  <YmirAplastar>k__BackingField: YmirAplastar
+  <YmirArrastrar>k__BackingField: YmirArrastrar
+  <YmirEscupeHielo>k__BackingField: YmirEscupeHielo
+  <MjolnirSalto>k__BackingField: MjolnirSalto
+  <MjolnirDeath>k__BackingField: MjolnirDeath
+  <MjolnirRevivir>k__BackingField: MjolnirRevivir
+  <SeleccionNivel>k__BackingField: SeleccionNivel
+  <ClickPlay>k__BackingField: ClickPlay
 --- !u!1 &805301483
 GameObject:
   m_ObjectHideFlags: 0
@@ -5606,6 +5720,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 798110337}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ClickPlay
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &998989585
@@ -10207,6 +10333,18 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 798110337}
+          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+          m_MethodName: Play
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: SeleccionNivel
             m_BoolArgument: 1
           m_CallState: 2
   - eventID: 1

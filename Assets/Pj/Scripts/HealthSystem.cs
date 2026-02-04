@@ -48,6 +48,10 @@ public class HealthSystem : MonoBehaviour
     void Die()
     {
         MusicManager.Instance.PlayMusic(MusicManager.Instance.Muerte);
+        AudioManager.AM.Play(AudioManager.AM.MjolnirDeath);
+        AudioManager.AM.Play(SelectRisaYmir());
+
+        
         GameManager.GM.AddToDeathCount();
 
         gameObjCadera.SetActive(false);
@@ -97,6 +101,7 @@ public class HealthSystem : MonoBehaviour
         MusicManager.Instance.PlayLastMusicBeforeActual();
         animatorRoto.SetTrigger("Revive"); //Animación de revivir
         playerParticles.PlayRayoRevivir(); //Particulas de revivir
+        AudioManager.AM.Play(AudioManager.AM.MjolnirRevivir);
         
         yield return new WaitForSeconds(waitTimeForReviveAnimation); //Esperamos a que termine la animacion
 
@@ -128,5 +133,27 @@ public class HealthSystem : MonoBehaviour
                 TakeDamage(); //Daño si el piso de hielo es muy nuevo
             }
         }
+    }
+
+    private string SelectRisaYmir()
+    {
+        string risa = null;
+        int randomRisa = Random.Range(1,4);
+        switch (randomRisa)
+        {
+            case 1:
+                risa = AudioManager.AM.YmirLaugh1;
+                break;
+
+            case 2:
+                risa = AudioManager.AM.YmirLaugh2;
+                break;
+
+            case 3:
+                risa = AudioManager.AM.YmirLaugh3;
+                break;
+        }
+
+        return risa;
     }
 }

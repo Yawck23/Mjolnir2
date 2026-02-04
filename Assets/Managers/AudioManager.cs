@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     [field: SerializeField] public string IceBreak { get; private set; }
     [field: SerializeField] public string StoneBreak1 { get; private set; }
     [field: SerializeField] public string StoneBreak2 { get; private set; }
+    [field: SerializeField] public string AirDropGroundHit { get; private set; }
     #endregion
 
     #region Ymir Sounds
@@ -24,9 +25,26 @@ public class AudioManager : MonoBehaviour
     [field: SerializeField] public string YmirLaugh3 { get; private set; }
     [field: SerializeField] public string YmirJadeo1 { get; private set; }
     [field: SerializeField] public string YmirJadeo2 { get; private set; }
+    [field: SerializeField] public string YmirAplastar { get; private set; }
+    [field: SerializeField] public string YmirArrastrar { get; private set; }
+    [field: SerializeField] public string YmirEscupeHielo { get; private set;}
+    #endregion
+
+    #region Mjolnir Sounds
+    [field: SerializeField] public string MjolnirSalto { get; private set; }
+    [field: SerializeField] public string MjolnirDeath { get; private set; }
+    [field: SerializeField] public string MjolnirRevivir { get; private set; }
+
+    #endregion
+
+    #region Menu Sounds
+    [field: SerializeField] public string SeleccionNivel { get; private set; }
+    [field: SerializeField] public string ClickPlay { get; private set; }
     #endregion
 
     #region Singleton y Seteo inicial de sonidos
+
+
     public static AudioManager AM { get; private set; }
 
     private void Awake()

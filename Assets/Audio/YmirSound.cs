@@ -70,4 +70,19 @@ public class YmirSound : MonoBehaviour
                 break;
         }
     }
+
+    public void PlayAplastar()
+    {
+        AudioManager.AM.Play(AudioManager.AM.YmirAplastar);
+    }
+
+    public void PlayArrastrar()
+    {
+        AudioManager.AM.Play(AudioManager.AM.YmirArrastrar);
+    }
+
+    public void PlayEscupeHielo()
+    {
+        AudioManager.AM.Play(AudioManager.AM.YmirEscupeHielo);
+    }
 }
