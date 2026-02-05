@@ -48,8 +48,11 @@ public class PlayerAttackManager : MonoBehaviour
 
         animator.SetTrigger("Choque");
 
-        //Instanciamos el proyectil
-        Instantiate(iceProjectile, transform.position, transform.rotation);
+        //Instanciamos el proyectil. Angle es para que apunte hacia arriba
+        Vector3 angle = transform.eulerAngles;
+        angle.x = -20f;
+        Quaternion rotation = Quaternion.Euler(angle);
+        Instantiate(iceProjectile, transform.position, rotation);
 
         _nextAirDropAttack = Time.time + airDropAttackCooldown;
     }

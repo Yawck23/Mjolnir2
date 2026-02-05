@@ -137,6 +137,10 @@ public class AttacksManager : MonoBehaviour
         float velocityMultiplier = Random.Range(1.0f, maxVelocityMultiplier);
         animator.SetFloat("VelocityMultiplier", velocityMultiplier);
 
+        int bisAttack = Random.Range(0, 2);
+        if (bisAttack == 0) animator.SetBool("BisAttack", false);
+        if (bisAttack == 1) animator.SetBool("BisAttack", true); 
+
         switch (randomAttackSelect)
         {
             case 1: //Aplastar cerca o lejos
@@ -168,9 +172,7 @@ public class AttacksManager : MonoBehaviour
                 break;
         }
 
-        int bisAttack = Random.Range(0, 2);
-        if (bisAttack == 0) animator.SetBool("BisAttack", false);
-        if (bisAttack == 1) animator.SetBool("BisAttack", true);        
+       
     }
 
     #endregion
