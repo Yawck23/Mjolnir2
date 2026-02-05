@@ -13,6 +13,7 @@ public class MusicManager : MonoBehaviour
     [field: SerializeField] public string Ymir3 { get; private set; }
     [field: SerializeField] public string Muerte { get; private set; }
     [field: SerializeField] public string PostCinematica { get; private set; }
+    [field: SerializeField] public string Cinematica { get; private set; }
 
     private Sound currentlyPlaying;
     private Sound playedBefore;
@@ -98,5 +99,10 @@ public class MusicManager : MonoBehaviour
 
         playedBefore = currentlyPlaying;
         currentlyPlaying = toBePlayed;
+    }
+
+    public void StopWithFadeOut(float fadeTime)
+    {
+        currentlyPlaying.source.DOFade(0f, fadeTime);
     }
 }

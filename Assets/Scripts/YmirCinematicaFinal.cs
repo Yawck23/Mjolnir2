@@ -41,6 +41,8 @@ public class YmirCinematicaFinal : MonoBehaviour
         float duration = (float)CinematicaFinalPlayable.duration;
         float timer = 0f;
 
+        MusicManager.Instance.StopWithFadeOut(14f);
+
         while (timer < duration) //Iteramos mientras dura la animación
         {
             timer += Time.deltaTime;

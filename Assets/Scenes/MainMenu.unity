@@ -9296,6 +9296,15 @@ MonoBehaviour:
     minDistance: 0
     maxDistance: 0
     source: {fileID: 0}
+  - name: Cinematica
+    clip: {fileID: 8300000, guid: 767ebd7292079224aa9de462c9c7cd35, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
   <MenuInicio>k__BackingField: MenuInicio
   <Tutorial>k__BackingField: Tutorial
   <Ymir1>k__BackingField: Ymir1
@@ -9303,6 +9312,7 @@ MonoBehaviour:
   <Ymir3>k__BackingField: Ymir3
   <Muerte>k__BackingField: Muerte
   <PostCinematica>k__BackingField: PostCinematica
+  <Cinematica>k__BackingField: Cinematica
   fadeDuration: 2
 --- !u!4 &1661244461
 Transform:
