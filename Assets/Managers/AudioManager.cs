@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     [field: Header ("Ymir sounds")]
     [field: SerializeField] public string YmirDialogoInicial { get; private set; }
     [field: SerializeField] public string YmirDialogoStage2 { get; private set; }
+    [field: SerializeField] public string YmirTormentaStage2 { get; private set; }
     [field: SerializeField] public string YmirHurt1 { get; private set; }
     [field: SerializeField] public string YmirHurt2 { get; private set; }
     [field: SerializeField] public string YmirHurt3 { get; private set; }
@@ -34,12 +35,17 @@ public class AudioManager : MonoBehaviour
     [field: SerializeField] public string MjolnirSalto { get; private set; }
     [field: SerializeField] public string MjolnirDeath { get; private set; }
     [field: SerializeField] public string MjolnirRevivir { get; private set; }
+    [field: SerializeField] public string MjolnirPasoPasto { get; private set; }
+    [field: SerializeField] public string MjolnirPasoHielo { get; private set; }
+    [field: SerializeField] public string MjolnirCaidaComienzoViento { get; private set; }
+    [field: SerializeField] public string MjolnirCaidaComienzoGolpe { get; private set; }
 
     #endregion
 
     #region Menu Sounds
     [field: SerializeField] public string SeleccionNivel { get; private set; }
     [field: SerializeField] public string ClickPlay { get; private set; }
+    [field: SerializeField] public string ClickButton { get; private set; }
     #endregion
 
     #region Singleton y Seteo inicial de sonidos
@@ -98,6 +104,30 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.Play();
+    }
+
+    public void PlayUnicSound(string name)
+    {
+        Sound s = System.Array.Find(_2DSounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+
+        if (s.source.isPlaying) return; //Para evitar que se reproduzca varias veces
+        s.source.Play();
+    }
+
+    public void Stop(string name)
+    {
+        Sound s = System.Array.Find(_2DSounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+        s.source.Stop();
     }
 
     public void Play3DSound(string name, Vector3 position)

@@ -27,6 +27,7 @@ public class InitialCamera : MonoBehaviour
         Vector3 startPosition = transform.position;
         Vector3 endPosition = endPoint.transform.position;
         float elapsedTime = 0f;
+        AudioManager.AM.Play(AudioManager.AM.MjolnirCaidaComienzoViento);
 
         while (elapsedTime < moveDuration)
         {
@@ -35,6 +36,8 @@ public class InitialCamera : MonoBehaviour
             transform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / moveDuration);
             yield return null;
         }
+        AudioManager.AM.Stop(AudioManager.AM.MjolnirCaidaComienzoViento);
+        AudioManager.AM.Play(AudioManager.AM.MjolnirCaidaComienzoGolpe);
         landVfx.Play();
         mjolnirInitial.SetActive(false);
         

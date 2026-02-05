@@ -140,6 +140,7 @@ public class PlayerController : MonoBehaviour
         }
 
         _characterController.Move(_direction * currentSpeed * Time.deltaTime);
+        PlayPasoAudio();
         _animator.SetFloat("Movement", (_input * currentSpeed).magnitude);
     }
 
@@ -207,7 +208,10 @@ public class PlayerController : MonoBehaviour
             _input = context.ReadValue<Vector2>();
             _direction = new Vector3(_input.x, 0.0f, _input.y); //Tomo el input y modifico _direction, que luego la uso en ApplyMovement
             
-            //_currentSpeedMultiplier = minSpeed / speed; // Comenzar desde velocidad mínima
+            /*if (_input.sqrMagnitude > 0.01f)
+            {
+                PlayPasoAudio();
+            }*/
         }
 
         if (context.canceled)
@@ -347,6 +351,23 @@ public class PlayerController : MonoBehaviour
         {
             _direction.x = 0f;
             _direction.z = 0f;
+        }
+    }
+
+    private void PlayPasoAudio()
+    {
+        if (!IsGrounded()) return;
+        if (isDashing) return;
+        if (isJumping) return;
+        if (currentSpeed < 10f) return;
+
+        if (groundIsIce)
+        {
+            AudioManager.AM.PlayUnicSound(AudioManager.AM.MjolnirPasoHielo);
+        }
+        else
+        {
+            AudioManager.AM.PlayUnicSound(AudioManager.AM.MjolnirPasoPasto);
         }
     }
 

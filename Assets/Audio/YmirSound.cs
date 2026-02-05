@@ -3,10 +3,12 @@ using UnityEngine;
 public class YmirSound : MonoBehaviour
 {
     private EnemyHealthSystem healthSystem;
+    private TutorialExit tutorialExit;
 
     void Start()
     {
         healthSystem = GetComponent<EnemyHealthSystem>();
+        tutorialExit = GameObject.FindGameObjectWithTag("TutorialExit").GetComponent<TutorialExit>();
     }
 
     public void PlayDialogoInicial()
@@ -17,6 +19,11 @@ public class YmirSound : MonoBehaviour
     public void PlayDialogoStage2()
     {
         AudioManager.AM.Play(AudioManager.AM.YmirDialogoStage2);
+    }
+
+    public void PlayTormentaStage2()
+    {
+        AudioManager.AM.Play(AudioManager.AM.YmirTormentaStage2);
     }
 
     public void PlayHurt()
@@ -40,6 +47,9 @@ public class YmirSound : MonoBehaviour
 
     public void PlayJadeo()
     {
+
+        if (!tutorialExit.IsTutorialFinished()) return; //Esperamos a que empiece la pelea para no escucharlo desde el tutorial
+
         switch (healthSystem.getActualStage())
         {
             case 1 or 2:

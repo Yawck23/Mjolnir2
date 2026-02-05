@@ -1350,10 +1350,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 798110337}
-          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-          m_MethodName: Play
-          m_Mode: 5
+        - m_Target: {fileID: 1479004491}
+          m_TargetAssemblyTypeName: MenuAudio, Assembly-CSharp
+          m_MethodName: PlaySeleccionNivel
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4095,16 +4095,16 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 798110337}
-          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-          m_MethodName: Play
-          m_Mode: 5
+        - m_Target: {fileID: 1479004491}
+          m_TargetAssemblyTypeName: MenuAudio, Assembly-CSharp
+          m_MethodName: PlaySeleccionNivel
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: SeleccionNivel
+            m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
   - eventID: 1
@@ -4603,7 +4603,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: StoneBreak1
     clip: {fileID: 8300000, guid: d282ebb4854057548b10cc90f4dfd49a, type: 3}
-    volume: 0.25
+    volume: 0.4
     pitch: 1
     loop: 0
     spatialBlend: 1
@@ -4612,7 +4612,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: StoneBreak2
     clip: {fileID: 8300000, guid: 56563ce7752a33948828f1fa8b7d46a1, type: 3}
-    volume: 0.25
+    volume: 0.4
     pitch: 1
     loop: 0
     spatialBlend: 1
@@ -4621,11 +4621,11 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: YmirAirDropHit
     clip: {fileID: 8300000, guid: f0776086dd6d0cd43b4703afb4c851e3, type: 3}
-    volume: 0.25
+    volume: 1
     pitch: 1
     loop: 0
     spatialBlend: 1
-    minDistance: 40
+    minDistance: 60
     maxDistance: 200
     source: {fileID: 0}
   _2DSounds:
@@ -4640,6 +4640,15 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: YmirDialogoStage2
     clip: {fileID: 8300000, guid: 496753ec529f32a43895a8515a0cda40, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: YmirTormentaStage2
+    clip: {fileID: 8300000, guid: 615ce383871a6924ca4ab39960614d69, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -4666,7 +4675,7 @@ MonoBehaviour:
     maxDistance: 0
     source: {fileID: 0}
   - name: YmirHurt3
-    clip: {fileID: 8300000, guid: 7b1d8e1b5e39d5d4a86decce62be1e19, type: 3}
+    clip: {fileID: 8300000, guid: 2c8e7a3cacd052a4a8493cfcf1ac4b94, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -4748,7 +4757,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: MjolnirSalto
     clip: {fileID: 8300000, guid: caf94bbe1181b4442a2f45ae5dbc60c7, type: 3}
-    volume: 0.5
+    volume: 0.75
     pitch: 1
     loop: 0
     spatialBlend: 0
@@ -4791,12 +4800,58 @@ MonoBehaviour:
     minDistance: 0
     maxDistance: 0
     source: {fileID: 0}
+  - name: CaidaComienzoViento
+    clip: {fileID: 8300000, guid: b50a7a5f4fd987d409f31f61df400451, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: CaidaComienzoGolpe
+    clip: {fileID: 8300000, guid: 8919a1b9614d60546a52ce0662c2209f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: MjolnirPasoPasto
+    clip: {fileID: 8300000, guid: 4244b9ed28fb53543825c273520cb4a6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: MjolnirPasoHielo
+    clip: {fileID: 8300000, guid: 8e12e3de2eb4f8c4b881af35fb77b191, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: ClickButton
+    clip: {fileID: 8300000, guid: c8a991fca1bc4c14782bd6c2ad713dae, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
   <IceBreak>k__BackingField: IceBreak
   <StoneBreak1>k__BackingField: StoneBreak1
   <StoneBreak2>k__BackingField: StoneBreak2
   <AirDropGroundHit>k__BackingField: YmirAirDropHit
   <YmirDialogoInicial>k__BackingField: YmirDialogoInicial
   <YmirDialogoStage2>k__BackingField: YmirDialogoStage2
+  <YmirTormentaStage2>k__BackingField: YmirTormentaStage2
   <YmirHurt1>k__BackingField: YmirHurt1
   <YmirHurt2>k__BackingField: YmirHurt2
   <YmirHurt3>k__BackingField: YmirHurt3
@@ -4811,8 +4866,13 @@ MonoBehaviour:
   <MjolnirSalto>k__BackingField: MjolnirSalto
   <MjolnirDeath>k__BackingField: MjolnirDeath
   <MjolnirRevivir>k__BackingField: MjolnirRevivir
+  <MjolnirPasoPasto>k__BackingField: MjolnirPasoPasto
+  <MjolnirPasoHielo>k__BackingField: MjolnirPasoHielo
+  <MjolnirCaidaComienzoViento>k__BackingField: CaidaComienzoViento
+  <MjolnirCaidaComienzoGolpe>k__BackingField: CaidaComienzoGolpe
   <SeleccionNivel>k__BackingField: SeleccionNivel
   <ClickPlay>k__BackingField: ClickPlay
+  <ClickButton>k__BackingField: ClickButton
 --- !u!1 &805301483
 GameObject:
   m_ObjectHideFlags: 0
@@ -5722,10 +5782,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 798110337}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 5
+      - m_Target: {fileID: 8475847449582010142}
+        m_TargetAssemblyTypeName: MenuAudio, Assembly-CSharp
+        m_MethodName: PlayClickPlay
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6232,6 +6292,18 @@ MonoBehaviour:
       - m_Target: {fileID: 533791001}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: GoToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8475847449582010142}
+        m_TargetAssemblyTypeName: MenuAudio, Assembly-CSharp
+        m_MethodName: PlayClickButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8164,6 +8236,7 @@ GameObject:
   - component: {fileID: 1479004485}
   - component: {fileID: 1479004490}
   - component: {fileID: 1479004489}
+  - component: {fileID: 1479004491}
   m_Layer: 5
   m_Name: WorldSpaceUI
   m_TagString: Untagged
@@ -8285,6 +8358,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 0
+--- !u!114 &1479004491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479004484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21f5a26e5d0bb374bb773676ca17dcd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1551536224
 GameObject:
   m_ObjectHideFlags: 0
@@ -9150,7 +9235,7 @@ MonoBehaviour:
   sounds:
   - name: MenuInicio
     clip: {fileID: 8300000, guid: 3633ed2ebb156db4b8d04bddedf947c7, type: 3}
-    volume: 1
+    volume: 0.7
     pitch: 1
     loop: 1
     spatialBlend: 0
@@ -9159,7 +9244,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Tutorial
     clip: {fileID: 8300000, guid: 0500d9eb6dcc9304b932398c3012c4a3, type: 3}
-    volume: 1
+    volume: 0.7
     pitch: 1
     loop: 1
     spatialBlend: 0
@@ -10335,16 +10420,16 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 798110337}
-          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-          m_MethodName: Play
-          m_Mode: 5
+        - m_Target: {fileID: 1479004491}
+          m_TargetAssemblyTypeName: MenuAudio, Assembly-CSharp
+          m_MethodName: PlaySeleccionNivel
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: SeleccionNivel
+            m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
   - eventID: 1
@@ -11216,6 +11301,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 8475847449582010142}
+        m_TargetAssemblyTypeName: MenuAudio, Assembly-CSharp
+        m_MethodName: PlayClickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 533791001}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Exit
@@ -11606,6 +11703,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8475847449582010142}
+        m_TargetAssemblyTypeName: MenuAudio, Assembly-CSharp
+        m_MethodName: PlayClickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &8475847448751382593
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11934,6 +12043,7 @@ GameObject:
   - component: {fileID: 8475847449582010134}
   - component: {fileID: 8475847449582010140}
   - component: {fileID: 8475847449582010141}
+  - component: {fileID: 8475847449582010142}
   m_Layer: 5
   m_Name: CanvasMenu
   m_TagString: Untagged
@@ -12066,6 +12176,18 @@ MonoBehaviour:
   mainCameraName: MainCamera
   lvlSelectCameraName: LvlSelectCamera
   transitionDuration: 3
+--- !u!114 &8475847449582010142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8475847449582010128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21f5a26e5d0bb374bb773676ca17dcd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8475847449613809508
 Transform:
   m_ObjectHideFlags: 0
@@ -12278,6 +12400,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8475847449582010142}
+        m_TargetAssemblyTypeName: MenuAudio, Assembly-CSharp
+        m_MethodName: PlayClickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8475847450124795820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12355,6 +12489,18 @@ MonoBehaviour:
       - m_Target: {fileID: 533791001}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8475847449582010142}
+        m_TargetAssemblyTypeName: MenuAudio, Assembly-CSharp
+        m_MethodName: PlayClickButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
