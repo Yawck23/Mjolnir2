@@ -1,4 +1,6 @@
 using System.Collections;
+using Unity.VisualScripting;
+
 
 
 //using System.Numerics;
@@ -112,6 +114,7 @@ public class PlayerMovementMainMenu : MonoBehaviour
         }
 
         Jump();
+        AudioManager.AM.Play(AudioManager.AM.MjolnirSalto);
 
         yield return new WaitForSeconds(waitAfterJump);
 
