@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
         }
 
         _characterController.Move(_direction * currentSpeed * Time.deltaTime);
-        PlayPasoAudio();
+        //PlayPasoAudio();
         _animator.SetFloat("Movement", (_input * currentSpeed).magnitude);
     }
 

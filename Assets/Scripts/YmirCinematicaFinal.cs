@@ -33,6 +33,7 @@ public class YmirCinematicaFinal : MonoBehaviour
 
     public IEnumerator TriggerCinematicaFinal()
     {
+        DestroyAllAirDrops();
         UIManager.UIM.ToggleCinematicTriggerPanel(false);
         cinematicTriggered = true;
         cinematicCamera.Priority = 4; //Prioridad alta para que el cinemachine la tome
@@ -65,5 +66,15 @@ public class YmirCinematicaFinal : MonoBehaviour
     public void EnableColmilloCinematica()
     {
         colmilloCinematica.SetActive(true);
+    }
+
+    private void DestroyAllAirDrops(){
+        GameObject[] airDrops = GameObject.FindGameObjectsWithTag("AirDrop");
+        if (airDrops == null) return;
+
+        foreach (GameObject airDrop in airDrops)
+        {
+            Destroy(airDrop);
+        }
     }
 }
